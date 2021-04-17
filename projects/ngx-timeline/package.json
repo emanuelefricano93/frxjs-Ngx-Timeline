@@ -1,0 +1,16 @@
+{
+  "name": "@frxjs/ngx-timeline",
+  "version": "0.0.5",
+  "author": {
+    "name": "Emanuele Fricano",
+    "email": "emanuelefricano93@gmail.com"
+  },
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/common": "^11.0.9",
+    "@angular/core": "^11.0.9"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  }
+}
