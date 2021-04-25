@@ -7,7 +7,7 @@ import { NgxTimelineService } from 'ngx-timeline';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'testing-app';
+  title = 'demo-app';
 
   constructor(private timelineService: NgxTimelineService) {
     this.timelineService.sum(1, 2);

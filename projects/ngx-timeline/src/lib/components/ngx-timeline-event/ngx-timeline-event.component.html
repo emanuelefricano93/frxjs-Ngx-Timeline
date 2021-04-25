@@ -1,0 +1,49 @@
+<div class="event-container" [ngClass]="{'reverse': reverse}">
+  <div class="event-info-container">
+    <div class="event-info-header">
+      <div class="icon-container">
+        <ng-container *ngTemplateOutlet="eventIcon"></ng-container>
+      </div>
+      <div class="title-container">{{event?.title | titlecase}}</div>
+    </div>
+    <div class="event-info-body">
+      <p class="event-info-description">{{event?.description}}</p>
+      <!-- <div class="category-container" *ngIf="event?.category">
+        <p class="category-label">{{'CLAIMS.EVENT_CATEGORY_LABEL' | translate}}:</p>
+        <p class="category-value">{{event?.category}}</p>
+      </div> -->
+      <!-- <div class="expiration-container" *ngIf="event?.expirationDate &&
+        (event?.type === 'DOCUMENT' || event?.type === 'EXPIRATION_NOTICE')">
+        <p class="expiration-label">{{'CLAIMS.EVENT_EXPIRATION_LABEL' | translate}}:</p>
+        <p class="expiration-value">{{event?.expirationDate | ngxdate: }}</p>
+      </div> -->
+    </div>
+    <div class="event-info-footer" *ngIf="showLink()" (click)="handleFooterClick()">
+      <div class="footer-inner-container">
+        <!-- <p> {{getUrlLabel() | translate}}</p>
+        <nb-icon icon="{{this.event?.type === 'DOCUMENT' ? 'download-outline' : 'chevron-right-outline'}}"></nb-icon> -->
+      </div>
+    </div>
+  </div>
+
+  <div class="event-divider-container">
+    <hr/>
+  </div>
+
+  <div class="event-date-container" *ngIf="getDateObj() as dateObj">
+    <div>
+      <p>{{dateObj?.month?.substring(0, 3) | titlecase}}</p>
+    </div>
+    <div>
+      <p class="day">{{dateObj?.day}}</p>
+    </div>
+    <div>
+      <p>{{dateObj?.year}}</p>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #eventIcon>
+  <!-- <nb-icon icon="{{getIcon()}}"></nb-icon> -->
+</ng-template>

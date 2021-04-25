@@ -8,7 +8,7 @@ First of all, in order to track everything, open an issue describing the problem
 To start the contribution:
 - `npm run watch-lib` (you are builduing the lib with --watch options)
 - `npm run link` (you are linking the folder in your node modules in your machine to the dist folder containing the lib)
-- `npm run link-lib` (you are linking the folder in the node modules used by the testing app to the lib)
+- `npm run link-lib` (you are linking the folder in the node modules used by the demo app to the lib)
 - `npm run start` (you are serving the app)
 
 Every time you will change the code in your lib, any udpdate will trigger the reload of the app.
