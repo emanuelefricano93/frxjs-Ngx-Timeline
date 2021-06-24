@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { NgxTimelineEvent, NgxTimelineItem } from '../../models/NgxTimelineEvent';
+import { Component, OnInit, Input, Output } from '@angular/core';
+import { NgxTimelineItem, NgxTimelineItemPosition } from '../../models/NgxTimelineEvent';
 import { DatePipe } from '@angular/common';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'ngx-timeline-event',
@@ -10,8 +11,12 @@ import { DatePipe } from '@angular/common';
 export class NgxTimelineEventComponent implements OnInit {
 
   @Input() event: NgxTimelineItem;
-  @Input() reverse: boolean;
+  @Input() position: NgxTimelineItemPosition;
   @Input() langCode?: string;
+  @Output() clickEmitter: BehaviorSubject<NgxTimelineItem> = new BehaviorSubject(null);
+
+  ON_LEFT = NgxTimelineItemPosition.ON_LEFT;
+  ON_RIGHT = NgxTimelineItemPosition.ON_RIGHT;
 
   constructor() { }
 
@@ -51,47 +56,6 @@ export class NgxTimelineEventComponent implements OnInit {
       label = 'CLAIMS.EVENT_DOWNLOAD_DOCUMENT';
     }
     return label;
-  }
-
-  handleFooterClick() {
-    /* const type = this.event?.type;
-    if(type === 'DOCUMENT' && this.event.documentId) {
-      this.startDownloadDocument(this.event.documentId);
-    } else if (this.event?.externalUrl){
-      let url = this.event.externalUrl;
-      url = url.startsWith('http') ? url : `http://${url}`;
-      window.open(url, '_blank');
-    } */
-  }
-
-  showLink() {
-    const show = false;
-    /* const type = this.event?.type;
-    if(type === 'DOCUMENT' && this.event.documentId) {
-      show = true;
-    } else if (this.event?.externalUrl){
-      show = true;
-    } */
-    return show;
-  }
-
-  startDownloadDocument(documentId) {
-    /* this.documentService.getDocument(documentId).subscribe(res => {
-      if (res?.document?.format && res.document.title) {
-        this.downloadDocument(documentId, res.document);
-      }
-    }); */
-  }
-
-  downloadDocument(documentId: string) {
-    /* console.warn('here');
-    this.documentService.downloadDocument(documentId).subscribe(
-      (r) => {
-        console.warn('here 2');
-        const file = new Blob([r], {type: document.format});
-        saveAs(file, document.title);
-      }
-    ); */
   }
 
 }

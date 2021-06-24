@@ -29,7 +29,7 @@
 
   <!-- Ngx-timeline -->
   <div class="bordered">
-    <ngx-timeline [events]="events" [centerIconCustomTemplate]="centerIconCustomTemplate"></ngx-timeline>
+    <ngx-timeline class="inter" [events]="events" [centerIconCustomTemplate]="centerIconCustomTemplate"></ngx-timeline>
   </div>
 
   <!-- Ngx-timeline example with custom template for period and event-->
@@ -47,7 +47,7 @@
 
   <ng-template #centerIconCustomTemplate>
     <div class="icon-container">
-      <div class="icon" [ngStyle]="{'background-color': backgroundColor}"></div>
+      <img src="assets/inter.png"/>
     </div>
   </ng-template>
 

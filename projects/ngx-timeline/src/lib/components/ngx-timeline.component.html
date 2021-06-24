@@ -3,10 +3,10 @@
     <div *ngFor="let item of items; let index = index;" class="row">
       <!-- DESKTOP VISUALIZTION -->
       <div class="col col-left desktop" [ngClass]="item.periodInfo ? 'col-period' : 'col-event'">
-        <div class="event-container" *ngIf="item.eventInfo && item.position === ON_LEFT">
-          <ng-container *ngTemplateOutlet="eventCustomTemplate || eventTemplate; context: {event: item, arrowPosition: ON_RIGHT}"></ng-container>
+        <div class="event-outer-container" *ngIf="item.eventInfo && item.position === ON_LEFT">
+          <ng-container *ngTemplateOutlet="eventCustomTemplate || eventTemplate; context: {event: item, position: ON_LEFT}"></ng-container>
         </div>
-        <div class="event hour left" *ngIf="item.eventInfo && item.position === ON_RIGHT">
+        <div class="hour left" *ngIf="item.eventInfo && item.position === ON_RIGHT">
           <ng-container *ngTemplateOutlet="dateInstantTemplate; context: {item: item.eventInfo}" ></ng-container>
         </div>
       </div>
@@ -21,17 +21,17 @@
       </div>
 
       <div class="col col-right desktop" [ngClass]="item.periodInfo ? 'col-period' : 'col-event'">
-        <div class="event-container" *ngIf="item.eventInfo && item.position === ON_RIGHT">
-          <ng-container *ngTemplateOutlet="eventTemplate; context: {event: item, arrowPosition: ON_LEFT}"></ng-container>
+        <div class="event-outer-container" *ngIf="item.eventInfo && item.position === ON_RIGHT">
+          <ng-container *ngTemplateOutlet="eventTemplate; context: {event: item, position: ON_RIGHT}"></ng-container>
         </div>
-        <div class="event hour right" *ngIf="item.eventInfo && item.position === ON_LEFT">
+        <div class="hour right" *ngIf="item.eventInfo && item.position === ON_LEFT">
           <ng-container *ngTemplateOutlet="dateInstantTemplate; context: {item: item.eventInfo}" ></ng-container>
         </div>
       </div>
 
       <!-- MOBILE VISUALIZTION -->
       <div class="col col-left mobile" [ngClass]="item.periodInfo ? 'col-period' : 'col-event'">
-        <div class="event hour left" *ngIf="item.eventInfo">
+        <div class="hour left" *ngIf="item.eventInfo">
           <div class="hour-inner-container">
             <ng-container *ngTemplateOutlet="dateInstantTemplate; context: {item: item.eventInfo}" ></ng-container>
           </div>
@@ -48,8 +48,8 @@
       </div>
 
       <div class="col col-right mobile" [ngClass]="item.periodInfo ? 'col-period' : 'col-event'">
-        <div class="event-container" *ngIf="item.eventInfo">
-          <ng-container *ngTemplateOutlet="eventTemplate; context: {event: item, arrowPosition: ON_LEFT}"></ng-container>
+        <div class="event-outer-container" *ngIf="item.eventInfo">
+          <ng-container *ngTemplateOutlet="eventTemplate; context: {event: item, position: ON_RIGHT}"></ng-container>
         </div>
       </div>
     </div>
@@ -64,8 +64,8 @@
 </ng-template>
 
 <ng-template #centerIconTemplate>
-  <div class="ball-container">
-    <div class="ball"></div>
+  <div class="center-icon-container">
+    <div class="icon"></div>
   </div>
 </ng-template>
 
@@ -85,11 +85,10 @@
   <div class="line"></div>
 </ng-template>
 
-<ng-template #eventTemplate let-event=event let-arrowPosition=arrowPosition>
-  <div *ngIf="arrowPosition===ON_LEFT" class="arrow left"></div>
-  <div class="event">
-    <ngx-timeline-event [event]="event" [reverse]=!event.onLeft></ngx-timeline-event>
-  </div>
-  <div *ngIf="arrowPosition===ON_RIGHT" class="arrow right"></div>
+<ng-template #eventTemplate let-event=event let-position=position>
+  <ngx-timeline-event
+    [event]="event"
+    [position]=position>
+  </ngx-timeline-event>
 </ng-template>
 

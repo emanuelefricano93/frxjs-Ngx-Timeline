@@ -1,3 +1,10 @@
+.event-wrapper-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
 .arrow {
   width: 0;
   height: 0;
@@ -17,6 +24,24 @@
   }
 }
 
+.arrow {
+  width: 0;
+  height: 0;
+  border-top: 0.5rem solid transparent;
+  border-bottom: 0.5rem solid transparent;
+  border-radius: 6px;
+  z-index: 10;
+
+  &.right {
+    filter: drop-shadow(1px 0px 0px #244a6e22);
+    border-left: 0.5rem solid white;
+  }
+
+  &.left {
+    border-right: 0.5rem solid white;
+    filter: drop-shadow(-1px 0px 0px #244a6e22);
+  }
+}
 
 .event {
   background: white;

@@ -307,15 +307,20 @@ svg#clouds {
     margin: 0;
     position: absolute;
   }
+  img {
+    max-width: 1.25rem;
+    max-height: 1.25rem;
+  }
 }
 
-/* ::ng-deep  {
-  ngx-timeline {
-    .event-info-container {
-      background: red;
+::ng-deep ngx-timeline.inter {
+  .period-container {
+    background: blue !important;
+    .period-inner-container {
+      background: blue !important;
     }
   }
-} */
+}
 
 @media screen and (max-width: 575px) {
   svg#rocket-smoke {
