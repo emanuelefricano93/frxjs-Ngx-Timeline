@@ -280,6 +280,43 @@ svg#clouds {
   }
 }
 
+.bordered {
+  //border: solid 1px black;
+  width: 50%;
+}
+
+.event {
+  border: solid 1px red;
+}
+
+.icon-container {
+  padding: .8rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  background: white;
+
+  .icon {
+    height: 1rem;
+    width: 1rem;
+    border-radius: 50%;
+    background: red;
+    margin: 0;
+    position: absolute;
+  }
+}
+
+/* ::ng-deep  {
+  ngx-timeline {
+    .event-info-container {
+      background: red;
+    }
+  }
+} */
+
 @media screen and (max-width: 575px) {
   svg#rocket-smoke {
     display: none;

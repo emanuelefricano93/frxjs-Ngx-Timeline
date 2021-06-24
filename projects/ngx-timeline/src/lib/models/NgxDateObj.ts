@@ -1,4 +1,4 @@
-export interface NgxDateObj {
+export interface NgxConfigDate {
   code: string;
   fullDate: string;
   monthYear: string;
@@ -6,6 +6,6 @@ export interface NgxDateObj {
 }
 
 export interface NgxDateObjMap {
-  [key: string]: NgxDateObj;
+  [key: string]: NgxConfigDate;
 }
 

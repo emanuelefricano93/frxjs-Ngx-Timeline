@@ -2,50 +2,50 @@
   <div class="items-container">
     <div *ngFor="let item of items; let index = index;" class="row">
       <!-- DESKTOP VISUALIZTION -->
-      <div class="col col-left desktop" [ngClass]="item.periodKey ? 'col-period' : 'col-event'">
-        <div class="event-container" *ngIf="item.timestamp && item.onLeft">
-          <ng-container *ngTemplateOutlet="timelineEvent; context: {event: item, arrow: 'right'}"></ng-container>
+      <div class="col col-left desktop" [ngClass]="item.periodInfo ? 'col-period' : 'col-event'">
+        <div class="event-container" *ngIf="item.eventInfo && item.position === 'ON_LEFT'">
+          <ng-container *ngTemplateOutlet="eventCustomTemplate || eventTemplate; context: {event: item, arrow: 'right'}"></ng-container>
         </div>
-        <div class="event hour left" *ngIf="item.timestamp && !item.onLeft">
+        <div class="event hour left" *ngIf="item.eventInfo && item.position === 'ON_RIGHT'">
           <ng-container *ngTemplateOutlet="hourAndMinutes; context: {item: item}" ></ng-container>
         </div>
       </div>
-      <div class="col col-center desktop" [ngClass]="item.periodKey ? 'col-period' : 'col-event'">
-        <div class="center-inner" *ngIf="item.periodKey;">
-          <ng-container *ngTemplateOutlet="monthAndYear; context: {period: item, index: index}"></ng-container>
+      <div class="col col-center desktop" [ngClass]="item.periodInfo ? 'col-period' : 'col-event'">
+        <div class="center-inner" *ngIf="item.periodInfo">
+          <ng-container *ngTemplateOutlet="periodCustomTemplate || periodTemplate; context: {period: item.periodInfo, index: index}"></ng-container>
         </div>
-        <div class="center-inner no-period-key" *ngIf="!item.periodKey;">
+        <div class="center-inner no-period-key" *ngIf="!item.periodInfo">
           <ng-container *ngTemplateOutlet="centerColWithBall"></ng-container>
         </div>
       </div>
-      <div class="col col-right desktop" [ngClass]="item.periodKey ? 'col-period' : 'col-event'">
-        <div class="event-container" *ngIf="item.timestamp && !item.onLeft">
-          <ng-container *ngTemplateOutlet="timelineEvent; context: {event: item, arrow:'left'}"></ng-container>
+      <div class="col col-right desktop" [ngClass]="item.periodInfo ? 'col-period' : 'col-event'">
+        <div class="event-container" *ngIf="item.eventInfo && item.position === 'ON_RIGHT'">
+          <ng-container *ngTemplateOutlet="eventTemplate; context: {event: item, arrow:'left'}"></ng-container>
         </div>
-        <div class="event hour right" *ngIf="item.timestamp && item.onLeft">
+        <div class="event hour right" *ngIf="item.eventInfo && item.position === 'ON_LEFT'">
           <ng-container *ngTemplateOutlet="hourAndMinutes; context: {item: item}" ></ng-container>
         </div>
       </div>
 
       <!-- MOBILE VISUALIZTION -->
-      <div class="col col-left mobile" [ngClass]="item.periodKey ? 'col-period' : 'col-event'">
-        <div class="event hour left" *ngIf="item.timestamp">
+      <div class="col col-left mobile" [ngClass]="item.periodInfo ? 'col-period' : 'col-event'">
+        <div class="event hour left" *ngIf="item.eventInfo">
           <div class="hour-inner-container">
             <ng-container *ngTemplateOutlet="hourAndMinutes; context: {item: item}" ></ng-container>
           </div>
         </div>
       </div>
-      <div class="col col-center mobile" [ngClass]="item.periodKey ? 'col-period' : 'col-event'">
-        <div class="center-inner" *ngIf="item.periodKey;">
-            <ng-container *ngTemplateOutlet="monthAndYear; context: {period: item, index: index}"></ng-container>
+      <div class="col col-center mobile" [ngClass]="item.periodInfo ? 'col-period' : 'col-event'">
+        <div class="center-inner" *ngIf="item.periodInfo;">
+            <ng-container *ngTemplateOutlet="periodTemplate; context: {period: item, index: index}"></ng-container>
         </div>
-        <div class="center-inner no-period-key" *ngIf="!item.periodKey;">
+        <div class="center-inner no-period-key" *ngIf="!item.periodInfo;">
           <ng-container *ngTemplateOutlet="centerColWithBall;"></ng-container>
         </div>
       </div>
-      <div class="col col-right mobile" [ngClass]="item.periodKey ? 'col-period' : 'col-event'">
-        <div class="event-container" *ngIf="item.timestamp">
-          <ng-container *ngTemplateOutlet="timelineEvent; context: {event: item, arrow: 'left'}"></ng-container>
+      <div class="col col-right mobile" [ngClass]="item.periodInfo ? 'col-period' : 'col-event'">
+        <div class="event-container" *ngIf="item.eventInfo">
+          <ng-container *ngTemplateOutlet="eventTemplate; context: {event: item, arrow: 'left'}"></ng-container>
         </div>
       </div>
     </div>
@@ -53,21 +53,26 @@
 </div>
 
 
-<ng-template #monthAndYear let-period=period let-index=index>
+<ng-template #periodTemplate let-period=period let-index=index>
   <div [ngClass]="{'transparent': !index}" class="line"></div>
   <div class="period-container">
     <div class="period-inner-container">
-      <span>{{period?.firstDate | ngxdate : true : langCode}}</span></div>
+      <span>{{period?.firstDate | ngxdate : false : true: langCode}}</span>
     </div>
+  </div>
   <div class="line"></div>
 </ng-template>
 
 <ng-template #centerColWithBall let-item=item>
   <div class="line"></div>
+  <ng-container *ngTemplateOutlet="centerIconCustomTemplate || centerIconTemplate"></ng-container>
+  <div class="line"></div>
+</ng-template>
+
+<ng-template #centerIconTemplate>
   <div class="ball-container">
     <div class="ball"></div>
   </div>
-  <div class="line"></div>
 </ng-template>
 
 <ng-template #hourAndMinutes let-item=item>
@@ -76,7 +81,7 @@
   </span>
 </ng-template>
 
-<ng-template #timelineEvent let-event=event let-arrow=arrow>
+<ng-template #eventTemplate let-event=event let-arrow=arrow>
   <div *ngIf="arrow==='left'" class="arrow left"></div>
   <div class="event">
     <ngx-timeline-event [event]="event" [reverse]=!event.onLeft></ngx-timeline-event>

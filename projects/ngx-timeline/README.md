@@ -1,24 +1,18 @@
 # NgxTimeline
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.9.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.2.
 
-## Code scaffolding
+## How to contribute
+First of all, in order to track everything, open an issue describing the problem or a missing functionality you would like to add to the lib.
 
-Run `ng generate component component-name --project ngx-timeline` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ngx-timeline`.
-> Note: Don't forget to add `--project ngx-timeline` or else it will be added to the default project in your `angular.json` file. 
+To start the contribution:
+- `npm run watch-lib` (you are builduing the lib with --watch options)
+- `npm run link` (you are linking the folder in your node modules in your machine to the dist folder containing the lib)
+- `npm run link-lib` (you are linking the folder in the node modules used by the demo app to the lib)
+- `npm run start` (you are serving the app)
 
-## Build
+Every time you will change the code in your lib, any udpdate will trigger the reload of the app.
+When your code will be ready, create a Pull Request and put the link in a comment under the issue you opened before.
+Now is time to enjoy and start to code.
 
-Run `ng build ngx-timeline` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Publishing
-
-After building your library with `ng build ngx-timeline`, go to the dist folder `cd dist/ngx-timeline` and run `npm publish`.
-
-## Running unit tests
-
-Run `ng test ngx-timeline` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Thanks in advance for your contribution

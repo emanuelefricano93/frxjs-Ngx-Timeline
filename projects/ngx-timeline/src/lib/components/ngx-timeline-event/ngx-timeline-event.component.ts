@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { NgxTimelineEvent } from '../../models/NgxTimelineEvent';
+import { NgxTimelineEvent, NgxTimelineItem } from '../../models/NgxTimelineEvent';
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -9,7 +9,7 @@ import { DatePipe } from '@angular/common';
 })
 export class NgxTimelineEventComponent implements OnInit {
 
-  @Input() event: NgxTimelineEvent;
+  @Input() event: NgxTimelineItem;
   @Input() reverse: boolean;
   @Input() langCode?: string;
 
@@ -22,10 +22,11 @@ export class NgxTimelineEventComponent implements OnInit {
     let day;
     let month;
     let year;
-    if (this.event?.timestamp) {
-      const timestamp = new Date(this.event.timestamp);
-      month = new DatePipe(this.langCode === 'en' ? 'en-US' : 'it-IT').transform(timestamp, 'MMMM');
-      day = new DatePipe(this.langCode === 'en' ? 'en-US' : 'it-IT').transform(timestamp, 'dd');
+    const dateTimestamp = this.event?.eventInfo.timestamp;
+    if (dateTimestamp) {
+      const timestamp = new Date(dateTimestamp);
+      month = new DatePipe(this.langCode === 'it' ? 'it-IT' : 'en-US').transform(timestamp, 'MMMM');
+      day = new DatePipe(this.langCode === 'it' ? 'it-IT' : 'en-US').transform(timestamp, 'dd');
       year = timestamp.getFullYear();
     }
 
@@ -37,7 +38,7 @@ export class NgxTimelineEventComponent implements OnInit {
     const type = this.event?.type;
     if (type === 'EXPIRATION_NOTICE') {
       icon = 'calendar-outline';
-    } else if(type === 'DOCUMENT') {
+    } else if (type === 'DOCUMENT') {
       icon = 'file-outline';
     }
     return icon;
@@ -46,7 +47,7 @@ export class NgxTimelineEventComponent implements OnInit {
   getUrlLabel() {
     let label = 'CLAIMS.EVENT_GO_TO_DETAIL';
     const type = this.event?.type;
-    if(type === 'DOCUMENT') {
+    if (type === 'DOCUMENT') {
       label = 'CLAIMS.EVENT_DOWNLOAD_DOCUMENT';
     }
     return label;
@@ -64,7 +65,7 @@ export class NgxTimelineEventComponent implements OnInit {
   }
 
   showLink() {
-    let show = false;
+    const show = false;
     /* const type = this.event?.type;
     if(type === 'DOCUMENT' && this.event.documentId) {
       show = true;

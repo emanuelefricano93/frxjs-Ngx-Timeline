@@ -1,6 +1,6 @@
 {
-  "name": "ngx-timeline",
-  "version": "0.0.5",
+  "name": "@frxjs/ngx-timeline",
+  "version": "0.0.7",
   "author": {
     "name": "Emanuele Fricano",
     "email": "emanuelefricano93@gmail.com"
@@ -13,6 +13,7 @@
     "watch-lib": "ng build --watch",
     "test": "ng test",
     "lint": "ng lint",
+    "lint:fix": "ng lint --fix",
     "e2e": "ng e2e",
     "link": "cd dist/ngx-timeline && npm link",
     "link-lib": "npm link @frxjs/ngx-timeline",

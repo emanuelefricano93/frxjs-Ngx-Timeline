@@ -20,10 +20,44 @@
   <!-- Next Steps -->
   <h2>Ngx-Timeline Demo</h2>
 
+    <!-- Ngx-timeline -->
+    <div class="bordered">
+      <ngx-timeline [events]="events"></ngx-timeline>
+    </div>
+
+  <h2>Ngx-Timeline with custom icon separator</h2>
+
   <!-- Ngx-timeline -->
-  <div>
-    <ngx-timeline [size]="10" [totalPages]="2"></ngx-timeline>
+  <div class="bordered">
+    <ngx-timeline [events]="events" [centerIconCustomTemplate]="centerIconCustomTemplate"></ngx-timeline>
   </div>
+
+  <!-- Ngx-timeline example with custom template for period and event-->
+<!--   <div class="bordered" style="margin-top: 100px;">
+    <ngx-timeline
+      [events]="items"
+      [langCode]="'it'"
+      [eventCustomTemplate]="eventCustomTemplate"
+      [periodCustomTemplate]="periodCustomTemplate"></ngx-timeline>
+  </div> -->
+
+  <ng-template #periodCustomTemplate let-period=period let-index=index>
+    <div>example {{period |json}}</div>
+  </ng-template>
+
+  <ng-template #centerIconCustomTemplate>
+    <div class="icon-container">
+      <div class="icon" [ngStyle]="{'background-color': backgroundColor}"></div>
+    </div>
+  </ng-template>
+
+  <ng-template #eventCustomTemplate let-event=event let-arrow=arrow>
+    <div class="event" (click)="handleClick(event)">
+      {{event | json}}
+    </div>
+  </ng-template>
+
+
 
 </div>
 

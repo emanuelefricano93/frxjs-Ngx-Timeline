@@ -7,7 +7,7 @@ export class NgxTimelineService {
 
   constructor() { }
 
-  sum(a: number, b: number):number {
+  sum(a: number, b: number): number {
     return a + b;
   }
 }

@@ -4,10 +4,10 @@
       <div class="icon-container">
         <ng-container *ngTemplateOutlet="eventIcon"></ng-container>
       </div>
-      <div class="title-container">{{event?.title | titlecase}}</div>
+      <div class="title-container">{{event?.eventInfo.title | titlecase}}</div>
     </div>
     <div class="event-info-body">
-      <p class="event-info-description">{{event?.description}}</p>
+      <p class="event-info-description">{{event?.eventInfo.description}}</p>
       <!-- <div class="category-container" *ngIf="event?.category">
         <p class="category-label">{{'CLAIMS.EVENT_CATEGORY_LABEL' | translate}}:</p>
         <p class="category-value">{{event?.category}}</p>
