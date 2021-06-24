@@ -1,3 +1,56 @@
+.arrow {
+  width: 0;
+  height: 0;
+  border-top: 0.5rem solid transparent;
+  border-bottom: 0.5rem solid transparent;
+  border-radius: 6px;
+  z-index: 10;
+
+  &.right {
+    filter: drop-shadow(1px 0px 0px #244a6e22);
+    border-left: 0.5rem solid white;
+  }
+
+  &.left {
+    border-right: 0.5rem solid white;
+    filter: drop-shadow(-1px 0px 0px #244a6e22);
+  }
+}
+
+
+.event {
+  background: white;
+  border-radius: 0.8rem;
+  padding: 1rem;
+  width: 100%;
+  margin: 1rem 0;
+
+  &:not(.hour) {
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #244a6e52;
+  }
+
+  &.hour {
+    padding: 0.5rem;
+    background: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &.right {
+      justify-content: flex-start;
+    }
+
+    &.left {
+      justify-content: flex-end;
+    }
+  }
+
+  .hour-inner-container {
+    margin: 0;
+  }
+}
+
 .event-container {
   display: flex;
 

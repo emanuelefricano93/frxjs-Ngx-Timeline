@@ -3,27 +3,29 @@
     <div *ngFor="let item of items; let index = index;" class="row">
       <!-- DESKTOP VISUALIZTION -->
       <div class="col col-left desktop" [ngClass]="item.periodInfo ? 'col-period' : 'col-event'">
-        <div class="event-container" *ngIf="item.eventInfo && item.position === 'ON_LEFT'">
-          <ng-container *ngTemplateOutlet="eventCustomTemplate || eventTemplate; context: {event: item, arrow: 'right'}"></ng-container>
+        <div class="event-container" *ngIf="item.eventInfo && item.position === ON_LEFT">
+          <ng-container *ngTemplateOutlet="eventCustomTemplate || eventTemplate; context: {event: item, arrowPosition: ON_RIGHT}"></ng-container>
         </div>
-        <div class="event hour left" *ngIf="item.eventInfo && item.position === 'ON_RIGHT'">
-          <ng-container *ngTemplateOutlet="hourAndMinutes; context: {item: item}" ></ng-container>
+        <div class="event hour left" *ngIf="item.eventInfo && item.position === ON_RIGHT">
+          <ng-container *ngTemplateOutlet="dateInstantTemplate; context: {item: item.eventInfo}" ></ng-container>
         </div>
       </div>
+
       <div class="col col-center desktop" [ngClass]="item.periodInfo ? 'col-period' : 'col-event'">
         <div class="center-inner" *ngIf="item.periodInfo">
           <ng-container *ngTemplateOutlet="periodCustomTemplate || periodTemplate; context: {period: item.periodInfo, index: index}"></ng-container>
         </div>
         <div class="center-inner no-period-key" *ngIf="!item.periodInfo">
-          <ng-container *ngTemplateOutlet="centerColWithBall"></ng-container>
+          <ng-container *ngTemplateOutlet="centerColWithBall; context: {index: index}"></ng-container>
         </div>
       </div>
+
       <div class="col col-right desktop" [ngClass]="item.periodInfo ? 'col-period' : 'col-event'">
-        <div class="event-container" *ngIf="item.eventInfo && item.position === 'ON_RIGHT'">
-          <ng-container *ngTemplateOutlet="eventTemplate; context: {event: item, arrow:'left'}"></ng-container>
+        <div class="event-container" *ngIf="item.eventInfo && item.position === ON_RIGHT">
+          <ng-container *ngTemplateOutlet="eventTemplate; context: {event: item, arrowPosition: ON_LEFT}"></ng-container>
         </div>
-        <div class="event hour right" *ngIf="item.eventInfo && item.position === 'ON_LEFT'">
-          <ng-container *ngTemplateOutlet="hourAndMinutes; context: {item: item}" ></ng-container>
+        <div class="event hour right" *ngIf="item.eventInfo && item.position === ON_LEFT">
+          <ng-container *ngTemplateOutlet="dateInstantTemplate; context: {item: item.eventInfo}" ></ng-container>
         </div>
       </div>
 
@@ -31,27 +33,47 @@
       <div class="col col-left mobile" [ngClass]="item.periodInfo ? 'col-period' : 'col-event'">
         <div class="event hour left" *ngIf="item.eventInfo">
           <div class="hour-inner-container">
-            <ng-container *ngTemplateOutlet="hourAndMinutes; context: {item: item}" ></ng-container>
+            <ng-container *ngTemplateOutlet="dateInstantTemplate; context: {item: item.eventInfo}" ></ng-container>
           </div>
         </div>
       </div>
+
       <div class="col col-center mobile" [ngClass]="item.periodInfo ? 'col-period' : 'col-event'">
         <div class="center-inner" *ngIf="item.periodInfo;">
-            <ng-container *ngTemplateOutlet="periodTemplate; context: {period: item, index: index}"></ng-container>
+            <ng-container *ngTemplateOutlet="periodTemplate; context: {period: item.periodInfo, index: index}"></ng-container>
         </div>
         <div class="center-inner no-period-key" *ngIf="!item.periodInfo;">
-          <ng-container *ngTemplateOutlet="centerColWithBall;"></ng-container>
+          <ng-container *ngTemplateOutlet="centerColWithBall;context: {index: index}"></ng-container>
         </div>
       </div>
+
       <div class="col col-right mobile" [ngClass]="item.periodInfo ? 'col-period' : 'col-event'">
         <div class="event-container" *ngIf="item.eventInfo">
-          <ng-container *ngTemplateOutlet="eventTemplate; context: {event: item, arrow: 'left'}"></ng-container>
+          <ng-container *ngTemplateOutlet="eventTemplate; context: {event: item, arrowPosition: ON_LEFT}"></ng-container>
         </div>
       </div>
     </div>
   </div>
 </div>
 
+
+<ng-template #centerColWithBall let-index=index>
+  <div class="line"></div>
+  <ng-container *ngTemplateOutlet="centerIconCustomTemplate || centerIconTemplate"></ng-container>
+  <div [ngClass]="{'transparent': index===items.length - 1}" class="line"></div>
+</ng-template>
+
+<ng-template #centerIconTemplate>
+  <div class="ball-container">
+    <div class="ball"></div>
+  </div>
+</ng-template>
+
+<ng-template #dateInstantTemplate let-item=item>
+  <span>
+    {{item?.timestamp | ngxdate : false : langCode}}
+  </span>
+</ng-template>
 
 <ng-template #periodTemplate let-period=period let-index=index>
   <div [ngClass]="{'transparent': !index}" class="line"></div>
@@ -63,29 +85,11 @@
   <div class="line"></div>
 </ng-template>
 
-<ng-template #centerColWithBall let-item=item>
-  <div class="line"></div>
-  <ng-container *ngTemplateOutlet="centerIconCustomTemplate || centerIconTemplate"></ng-container>
-  <div class="line"></div>
-</ng-template>
-
-<ng-template #centerIconTemplate>
-  <div class="ball-container">
-    <div class="ball"></div>
-  </div>
-</ng-template>
-
-<ng-template #hourAndMinutes let-item=item>
-  <span>
-    {{item?.timestamp | ngxdate : false : langCode}}
-  </span>
-</ng-template>
-
-<ng-template #eventTemplate let-event=event let-arrow=arrow>
-  <div *ngIf="arrow==='left'" class="arrow left"></div>
+<ng-template #eventTemplate let-event=event let-arrowPosition=arrowPosition>
+  <div *ngIf="arrowPosition===ON_LEFT" class="arrow left"></div>
   <div class="event">
     <ngx-timeline-event [event]="event" [reverse]=!event.onLeft></ngx-timeline-event>
   </div>
-  <div *ngIf="arrow==='right'" class="arrow right"></div>
+  <div *ngIf="arrowPosition===ON_RIGHT" class="arrow right"></div>
 </ng-template>
 

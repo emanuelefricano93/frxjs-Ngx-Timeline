@@ -6,7 +6,7 @@ export interface NgxTimelineEvent {
 
 export interface NgxTimelineItem {
   type?: string;
-  position?: 'ON_LEFT' | 'ON_RIGHT';
+  position?: NgxTimelineItemPosition.ON_LEFT | NgxTimelineItemPosition.ON_RIGHT;
   periodInfo?: {
     periodKey?: string;
     year?: number;
@@ -18,4 +18,8 @@ export interface NgxTimelineItem {
     title?: string;
     description?: string;
   };
+}
+
+export enum NgxTimelineItemPosition {
+  ON_LEFT, ON_RIGHT
 }
