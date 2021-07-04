@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, TemplateRef, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, TemplateRef, OnChanges, SimpleChanges, Output } from '@angular/core';
 import { NgxTimelineEvent, NgxTimelineItem, NgxTimelineItemPosition } from '../models/NgxTimelineEvent';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'ngx-timeline',
@@ -27,6 +28,19 @@ export class NgxTimelineComponent implements OnInit, OnChanges {
    * Custom Template displayed to show an separator icon
    */
   @Input() centerIconCustomTemplate: TemplateRef<any>;
+  /**
+   * Custom Template displayed to show the date
+   */
+  @Input() dateInstantCustomTemplate: TemplateRef<any>;
+  /**
+   * Custom Template displayed to show the inner event
+   */
+  @Input() innerEventCustomTemplate: TemplateRef<any>;
+  /**
+   * Output click event emitter
+   */
+  @Output()
+  clickEmitter: BehaviorSubject<NgxTimelineItem> = new BehaviorSubject(null);
 
   groups: { [key: string]: any[] } = {};
   periods: NgxTimelineItem[] = [];
@@ -40,9 +54,9 @@ export class NgxTimelineComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.events && changes.events.previousValue != changes.events.currentValue) {
+    //if (changes.events && changes.events.previousValue != changes.events.currentValue) {
       this.groupEvents();
-    }
+    //}
   }
 
   groupEvents() {

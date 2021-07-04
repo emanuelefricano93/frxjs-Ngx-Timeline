@@ -14,7 +14,7 @@
   z-index: 10;
 
   &.right {
-    filter: drop-shadow(1px 0px 0px #244a6e22);
+    filter: drop-shadow(2px 0px 0px #244a6e22);
     border-left: 0.5rem solid white;
   }
 
@@ -86,7 +86,6 @@
   .event-info-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: flex-start;
     padding: 0.1rem;
     flex: 88 88 0;
@@ -203,12 +202,5 @@
         padding: 0.5rem 0;
       }
     }
-  }
-}
-
-@media (max-width: 900px) {
-  //in mobile we show the date awlays on the left
-  .event-container {
-    flex-direction: row-reverse;
   }
 }

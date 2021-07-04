@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, TemplateRef } from '@angular/core';
 import { NgxTimelineItem, NgxTimelineItemPosition } from '../../models/NgxTimelineEvent';
 import { DatePipe } from '@angular/common';
 import { BehaviorSubject } from 'rxjs';
@@ -11,8 +11,9 @@ import { BehaviorSubject } from 'rxjs';
 export class NgxTimelineEventComponent implements OnInit {
 
   @Input() event: NgxTimelineItem;
-  @Input() position: NgxTimelineItemPosition;
+  @Input() colSidePosition: NgxTimelineItemPosition;
   @Input() langCode?: string;
+  @Input() innerEventCustomTemplate?: TemplateRef<any>;
   @Output() clickEmitter: BehaviorSubject<NgxTimelineItem> = new BehaviorSubject(null);
 
   ON_LEFT = NgxTimelineItemPosition.ON_LEFT;

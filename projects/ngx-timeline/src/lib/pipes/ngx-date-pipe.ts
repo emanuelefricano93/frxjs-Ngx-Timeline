@@ -23,17 +23,17 @@ export class NgxDatePipe implements PipeTransform {
   constructor() {
   }
 
-  transform(date: Date | string, full?: boolean, monthYear?: boolean, langCode?: string): string {
+  transform(date: Date | string, monthYear?: boolean, langCode?: string): string {
     let transformedDate = null;
     if (date) {
       const objDate = this.getDateConfig(langCode);
-      transformedDate = new DatePipe(objDate.code).transform(new Date(date), this.dateFormat(full, monthYear, objDate));
+      transformedDate = new DatePipe(objDate.code).transform(new Date(date), this.dateFormat(monthYear, objDate));
     }
     return transformedDate;
   }
 
-  private dateFormat(full: boolean, monthYear: boolean, configDate: NgxConfigDate): string {
-    return full ? configDate.fullDate : monthYear ? configDate.monthYear : configDate.hoursMinutes;
+  private dateFormat(monthYear: boolean, configDate: NgxConfigDate): string {
+    return monthYear ? configDate.monthYear : configDate.hoursMinutes;
   }
 
   private getDateConfig(langCode: string) {

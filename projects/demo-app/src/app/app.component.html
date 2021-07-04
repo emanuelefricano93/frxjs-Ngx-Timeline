@@ -22,7 +22,7 @@
 
     <!-- Ngx-timeline -->
     <div class="bordered">
-      <ngx-timeline [events]="events"></ngx-timeline>
+      <ngx-timeline [events]="events" (clickEmitter)="handleClick($event)"></ngx-timeline>
     </div>
 
   <h2>Ngx-Timeline with custom icon separator</h2>

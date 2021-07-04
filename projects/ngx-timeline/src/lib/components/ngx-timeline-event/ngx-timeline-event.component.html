@@ -1,14 +1,14 @@
 <div class="event-wrapper-container" (click)="clickEmitter.next(event)">
-  <div *ngIf="position===ON_RIGHT" class="arrow left"></div>
+  <div *ngIf="colSidePosition===ON_RIGHT" class="arrow left"></div>
   <div class="event">
-    <ng-container *ngTemplateOutlet="innerEventContainer">
+    <ng-container *ngTemplateOutlet="innerEventCustomTemplate || innerEventContainer">
     </ng-container>
   </div>
-  <div *ngIf="position===ON_LEFT" class="arrow right"></div>
+  <div *ngIf="colSidePosition===ON_LEFT" class="arrow right"></div>
 </div>
 
 <ng-template #innerEventContainer>
-  <div class="event-container" [ngClass]="{'reverse': event.position === ON_LEFT}">
+  <div class="event-container" [ngClass]="{'reverse': colSidePosition === ON_LEFT}">
     <div class="event-info-container">
       <div class="event-info-header">
         <div class="title-container">{{event?.eventInfo.title | titlecase}}</div>

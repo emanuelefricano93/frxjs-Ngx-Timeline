@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NgxTimelineService, NgxTimelineEvent } from 'ngx-timeline';
+import { NgxTimelineEvent } from 'ngx-timeline';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +12,7 @@ export class AppComponent {
   color = 0;
   backgroundColor = 'red';
 
-  constructor(private timelineService: NgxTimelineService) {
+  constructor() {
     const today = new Date();
     const tomorrow = new Date();
     tomorrow.setDate(today.getDate() + 1);
@@ -20,29 +20,25 @@ export class AppComponent {
     nextMonth.setMonth(today.getMonth() + 1);
 
     this.events = [
-      {description: 'descrizione', timestamp: today, title: 'title'},
-      {description: 'descrizione', timestamp: today, title: 'title'},
-      {description: 'descrizione', timestamp: tomorrow, title: 'title'},
-      {description: 'descrizione', timestamp: tomorrow, title: 'title'},
-      {description: 'descrizione', timestamp: nextMonth, title: 'title'},
+      {description: 'This is the description of the event', timestamp: today, title: 'title'},
+      {description: 'This is the description of the event', timestamp: today, title: 'title'},
+      {description: 'This is the description of the event', timestamp: tomorrow, title: 'title'},
+      {description: 'This is the description of the event', timestamp: tomorrow, title: 'title'},
+      {description: 'This is the description of the event', timestamp: nextMonth, title: 'title'},
     ];
 
-    /* setInterval(() => {
-      this.color += 100;
-      this.backgroundColor = `${this.getHexColor(this.color)}`;
-      if(this.color > 80000) {
-        this.color = 0;
-      }
-    }, 1); */
+    setTimeout(() => {
+      this.events[0].description = "italian description";
+    }, 2000);
+
   }
 
-
-  getHexColor(number){
-    return "#"+((number)>>>0).toString(16).slice(-6);
-}
-
   handleClick(event: any) {
-    const a = 5;
-    window.console.log('',event);
+    if (event) {
+      const a = 5;
+      window.console.log('',event);
+      // set iterable differ
+      this.events[0].description = "italian description";
+    }
   }
 }
