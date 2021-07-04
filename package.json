@@ -1,6 +1,6 @@
 {
   "name": "@frxjs/ngx-timeline",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "author": {
     "name": "Emanuele Fricano",
     "email": "emanuelefricano93@gmail.com"
@@ -19,7 +19,7 @@
     "link-lib": "npm link @frxjs/ngx-timeline",
     "publish": "ng build --prod && cd dist/ngx-timeline && npm publish --access public"
   },
-  "private": true,
+  "private": false,
   "dependencies": {
     "@angular/animations": "~11.0.1",
     "@angular/common": "~11.0.1",
