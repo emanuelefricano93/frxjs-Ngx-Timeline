@@ -13,6 +13,7 @@ export interface NgxDateObjMap {
 
 export enum NgxDateFormat {
   DAY_MONTH_YEAR  = 'DAY_MONTH_YEAR',
+  FULL_DATE  = 'FULL_DATE',
   MONTH_YEAR  = 'MONTH_YEAR',
   HOURS_MINUTES = 'HOURS_MINUTES',
   YEAR  = 'YEAR'

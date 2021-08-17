@@ -53,7 +53,7 @@ export class NgxTimelineComponent implements OnInit, OnChanges {
   @Output()
   clickEmitter: BehaviorSubject<NgxTimelineItem> = new BehaviorSubject(null);
 
-  groups: { [key: string]: any[] } = {};
+  groups: { [key: string]: NgxTimelineEvent[] } = {};
   periods: NgxTimelineItem[] = [];
   items: NgxTimelineItem[] = [];
   ON_LEFT = NgxTimelineItemPosition.ON_LEFT;
@@ -96,6 +96,10 @@ export class NgxTimelineComponent implements OnInit, OnChanges {
     return periodKeyDateFormat;
   }
 
+  private sortEvents(events: NgxTimelineEvent[]) {
+    events.sort((a, b) => a.timestamp.getTime() - b.timestamp.getTime());
+  }
+
   private setGroups(events: NgxTimelineEvent[]) {
     events.forEach((event) => {
       // conversion from string to actual Date
@@ -106,6 +110,7 @@ export class NgxTimelineComponent implements OnInit, OnChanges {
       }
       this.groups[periodKey].push(event);
     });
+    Object.keys(this.groups).forEach(key => this.sortEvents(this.groups[key]));
   }
 
   private setItems() {
@@ -131,7 +136,7 @@ export class NgxTimelineComponent implements OnInit, OnChanges {
   /**
    * Compare the events inside the same group
    */
-  private compareEvents(prevEvent: {timestamp: Date}, event: {timestamp: Date}) {
+  private compareEvents(prevEvent: NgxTimelineEvent, event: NgxTimelineEvent) {
     let res = prevEvent.timestamp.getFullYear() !== event.timestamp.getFullYear() ||
       prevEvent.timestamp.getMonth() !== event.timestamp.getMonth() ||
       prevEvent.timestamp.getDay() !== event.timestamp.getDay();

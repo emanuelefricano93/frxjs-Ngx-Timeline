@@ -269,9 +269,31 @@ svg#clouds {
     margin-bottom: 0.5rem;
 
     select {
-      min-width: 220px;
+      min-width: 15.625rem;
+      padding: 0.5rem 0.25rem;
     }
   }
+}
+
+.line {
+  min-height: 50%;
+  max-height: 50%;
+  height: 50%;
+  background: #464646;
+  width: 0.1rem;
+
+  &.transparent {
+    background: transparent;
+  }
+}
+
+.period-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: max-content;
+  padding: 0.25rem;
+  color: white;
 }
 
 /* Responsive Styles */

@@ -22,6 +22,30 @@ export class NgxDatePipe implements PipeTransform {
       monthYear: 'MMMM yyyy',
       year: 'yyyy',
       hoursMinutes: 'HH:mm'
+    },
+    fr: {
+      code: 'fr-FR',
+      fullDate: 'dd/MM/yyyy H:mm',
+      dayMonthYear: 'dd MMMM yyyy',
+      monthYear: 'MMMM yyyy',
+      year: 'yyyy',
+      hoursMinutes: 'HH:mm'
+    },
+    de: {
+      code: 'de',
+      fullDate: 'dd/MM/yyyy H:mm',
+      dayMonthYear: 'dd MMMM yyyy',
+      monthYear: 'MMMM yyyy',
+      year: 'yyyy',
+      hoursMinutes: 'HH:mm'
+    },
+    es: {
+      code: 'es',
+      fullDate: 'dd/MM/yyyy H:mm',
+      dayMonthYear: 'dd MMMM yyyy',
+      monthYear: 'MMMM yyyy',
+      year: 'yyyy',
+      hoursMinutes: 'HH:mm'
     }
   };
 
@@ -45,7 +69,9 @@ export class NgxDatePipe implements PipeTransform {
       format = configDate.year;
     } else if (dateFormat === NgxDateFormat.HOURS_MINUTES) {
       format = configDate.hoursMinutes;
-    }
+    } else if (dateFormat === NgxDateFormat.FULL_DATE) {
+    format = configDate.fullDate;
+  }
     return format;
   }
 

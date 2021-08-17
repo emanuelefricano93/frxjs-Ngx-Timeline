@@ -17,7 +17,7 @@
 
 <div class="content" role="main">
 
-  <h2 class="title">Configurable Ngx-Timeline</h2>
+  <h2 class="title">Ngx-Timeline</h2>
 
   <div class="inner-container">
 
@@ -35,16 +35,27 @@
     <ngx-timeline
       [events]="events"
       [ngClass]="form.get('customClass').value ? 'inter' : ''"
+      [langCode]="form.get('langCode').value"
       [groupEvent]="form.get('groupEvent').value"
-      [innerEventCustomTemplate]="form.get('innerEventCustomTemplate').value ? innerEventCustomTemplate : null"
       [changeSideInGroup]="form.get('changeSideInGroup').value"
+      [eventCustomTemplate]="form.get('eventCustomTemplate').value ? eventCustomTemplate : null"
+      [innerEventCustomTemplate]="form.get('innerEventCustomTemplate').value ? innerEventCustomTemplate : null"
       [centerIconCustomTemplate]="form.get('centerIconCustomTemplate').value ? centerIconCustomTemplate : null"
+      [dateInstantCustomTemplate]="form.get('dateInstantCustomTemplate').value ? dateInstantCustomTemplate : null"
+      [periodCustomTemplate]="form.get('periodCustomTemplate').value ? periodCustomTemplate : null"
+      (clickEmitter)="form.get('clickEmitter').value ? handleClick($event) : null"
     ></ngx-timeline>
   </div>
 
 
   <ng-template #periodCustomTemplate let-period=period let-index=index>
-    <div>example {{period |json}}</div>
+    <div [ngClass]="{'transparent': !index}" class="line"></div>
+    <div class="period-container">
+      <p>
+        {{index}} - {{period?.firstDate | ngxdate }}
+      </p>
+    </div>
+    <div class="line"></div>
   </ng-template>
 
   <ng-template #centerIconCustomTemplate>
@@ -59,6 +70,17 @@
     </div>
   </ng-template>
 
+  <ng-template #eventCustomTemplate let-event=event let-colSidePosition=colSidePosition>
+    <div class="event" (click)="handleClick(event)">
+      {{event | json}}
+    </div>
+  </ng-template>
+
+  <ng-template #dateInstantCustomTemplate let-item=item>
+    <span>
+      {{item?.timestamp | ngxdate : ngxDateFormat.FULL_DATE }}
+    </span>
+  </ng-template>
 
 
 </div>
