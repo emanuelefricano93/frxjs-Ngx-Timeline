@@ -31,32 +31,13 @@ export class NgxTimelineEventComponent implements OnInit {
     const dateTimestamp = this.event?.eventInfo.timestamp;
     if (dateTimestamp) {
       const timestamp = new Date(dateTimestamp);
-      month = new DatePipe(this.langCode === 'it' ? 'it-IT' : 'en-US').transform(timestamp, 'MMMM');
-      day = new DatePipe(this.langCode === 'it' ? 'it-IT' : 'en-US').transform(timestamp, 'dd');
+      const langCode = this.langCode === 'it' ? 'it-IT' : 'en-US';
+      month = new DatePipe(langCode).transform(timestamp, 'MMMM');
+      day = new DatePipe(langCode).transform(timestamp, 'dd');
       year = timestamp.getFullYear();
     }
 
     return {day, month, year};
-  }
-
-  getIcon() {
-    let icon = 'bell-outline';
-    const type = this.event?.type;
-    if (type === 'EXPIRATION_NOTICE') {
-      icon = 'calendar-outline';
-    } else if (type === 'DOCUMENT') {
-      icon = 'file-outline';
-    }
-    return icon;
-  }
-
-  getUrlLabel() {
-    let label = 'CLAIMS.EVENT_GO_TO_DETAIL';
-    const type = this.event?.type;
-    if (type === 'DOCUMENT') {
-      label = 'CLAIMS.EVENT_DOWNLOAD_DOCUMENT';
-    }
-    return label;
   }
 
 }

@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Pipe, PipeTransform } from '@angular/core';
-import { NgxConfigDate, NgxDateObjMap } from '../models/NgxDateObj';
+import { NgxConfigDate, NgxDateObjMap, NgxDateFormat } from '../models/NgxDateObj';
 
 @Pipe({ name: 'ngxdate', pure: false })
 export class NgxDatePipe implements PipeTransform {
@@ -10,12 +10,17 @@ export class NgxDatePipe implements PipeTransform {
     en: {
       code: 'en-US',
       fullDate: 'MM/dd/yyyy h:mm a',
+      dayMonthYear: 'dd MMMM yyyy',
       monthYear: 'MMMM yyyy',
+      year: 'yyyy',
       hoursMinutes: 'hh:mm a'
-    }, it: {
+    },
+    it: {
       code: 'it-IT',
       fullDate: 'dd/MM/yyyy H:mm',
+      dayMonthYear: 'dd MMMM yyyy',
       monthYear: 'MMMM yyyy',
+      year: 'yyyy',
       hoursMinutes: 'HH:mm'
     }
   };
@@ -23,17 +28,25 @@ export class NgxDatePipe implements PipeTransform {
   constructor() {
   }
 
-  transform(date: Date | string, monthYear?: boolean, langCode?: string): string {
+  transform(date: Date | string, dateFormat?: string, langCode?: string): string {
     let transformedDate = null;
     if (date) {
       const objDate = this.getDateConfig(langCode);
-      transformedDate = new DatePipe(objDate.code).transform(new Date(date), this.dateFormat(monthYear, objDate));
+      transformedDate = new DatePipe(objDate.code).transform(new Date(date), this.dateFormat(dateFormat, objDate));
     }
     return transformedDate;
   }
 
-  private dateFormat(monthYear: boolean, configDate: NgxConfigDate): string {
-    return monthYear ? configDate.monthYear : configDate.hoursMinutes;
+  private dateFormat(dateFormat: string, configDate: NgxConfigDate): string {
+    let format = configDate.dayMonthYear;
+    if (dateFormat === NgxDateFormat.MONTH_YEAR) {
+      format = configDate.monthYear;
+    } else if (dateFormat === NgxDateFormat.YEAR) {
+      format = configDate.year;
+    } else if (dateFormat === NgxDateFormat.HOURS_MINUTES) {
+      format = configDate.hoursMinutes;
+    }
+    return format;
   }
 
   private getDateConfig(langCode: string) {

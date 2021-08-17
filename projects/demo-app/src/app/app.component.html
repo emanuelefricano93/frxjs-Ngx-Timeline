@@ -17,29 +17,31 @@
 
 <div class="content" role="main">
 
-  <!-- Next Steps -->
-  <h2>Ngx-Timeline Demo</h2>
+  <h2 class="title">Configurable Ngx-Timeline</h2>
 
-    <!-- Ngx-timeline -->
-    <div class="bordered">
-      <ngx-timeline [events]="events" (clickEmitter)="handleClick($event)"></ngx-timeline>
-    </div>
+  <div class="inner-container">
 
-  <h2>Ngx-Timeline with custom icon separator</h2>
+    <form [formGroup]="form">
+      <div class="form-container">
+        <div class="form-select" *ngFor="let configuration of configurations">
+          <label>{{configuration.label}}</label>
+          <select formControlName="{{configuration.formControlName}}">
+            <option *ngFor="let option of configuration.options" [ngValue]="option.value">{{ option.name }}</option>
+          </select>
+        </div>
+      </div>
+    </form>
 
-  <!-- Ngx-timeline -->
-  <div class="bordered">
-    <ngx-timeline class="inter" [events]="events" [centerIconCustomTemplate]="centerIconCustomTemplate"></ngx-timeline>
+    <ngx-timeline
+      [events]="events"
+      [ngClass]="form.get('customClass').value ? 'inter' : ''"
+      [groupEvent]="form.get('groupEvent').value"
+      [innerEventCustomTemplate]="form.get('innerEventCustomTemplate').value ? innerEventCustomTemplate : null"
+      [changeSideInGroup]="form.get('changeSideInGroup').value"
+      [centerIconCustomTemplate]="form.get('centerIconCustomTemplate').value ? centerIconCustomTemplate : null"
+    ></ngx-timeline>
   </div>
 
-  <!-- Ngx-timeline example with custom template for period and event-->
-<!--   <div class="bordered" style="margin-top: 100px;">
-    <ngx-timeline
-      [events]="items"
-      [langCode]="'it'"
-      [eventCustomTemplate]="eventCustomTemplate"
-      [periodCustomTemplate]="periodCustomTemplate"></ngx-timeline>
-  </div> -->
 
   <ng-template #periodCustomTemplate let-period=period let-index=index>
     <div>example {{period |json}}</div>
@@ -51,7 +53,7 @@
     </div>
   </ng-template>
 
-  <ng-template #eventCustomTemplate let-event=event let-arrow=arrow>
+  <ng-template #innerEventCustomTemplate let-event=event>
     <div class="event" (click)="handleClick(event)">
       {{event | json}}
     </div>

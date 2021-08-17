@@ -54,9 +54,12 @@ p {
   display: flex;
   margin: 82px auto 32px;
   padding: 0 16px;
-  max-width: 960px;
   flex-direction: column;
   align-items: center;
+
+  .title {
+    margin-bottom: 2rem;
+  }
 }
 
 svg.material-icons {
@@ -256,6 +259,20 @@ svg#clouds {
   width: 1920px;
 }
 
+.form-container {
+  display: flex;
+  flex-direction: column;
+
+  .form-select {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+
+    select {
+      min-width: 220px;
+    }
+  }
+}
 
 /* Responsive Styles */
 @media screen and (max-width: 767px) {
@@ -280,9 +297,29 @@ svg#clouds {
   }
 }
 
-.bordered {
-  //border: solid 1px black;
-  width: 50%;
+.inner-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  align-items: center;
+
+  form {
+    display: flex;
+    align-items: flex-start;
+    flex: 0 0 20%;
+    height: 100vh;
+
+    label {
+      font-weight: bold;
+    }
+  }
+
+  ngx-timeline {
+    max-width: 900px;
+    display: flex;
+    flex: 0 0 80%;
+  }
+
 }
 
 .event {
@@ -322,9 +359,31 @@ svg#clouds {
   }
 }
 
-@media screen and (max-width: 575px) {
+@media screen and (max-width: 1300px) {
   svg#rocket-smoke {
     display: none;
     visibility: hidden;
+  }
+
+  .inner-container {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+    form {
+      justify-content: space-between;
+      height: auto;
+
+      .form-container {
+        min-width: 60vw;
+      }
+    }
+
+    ngx-timeline {
+      min-width: 80vw;
+    }
+
   }
 }
