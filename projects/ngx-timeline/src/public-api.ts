@@ -1,10 +1,7 @@
 /*
  * Public API Surface of ngx-timeline
  */
-
-export * from './lib/components/ngx-timeline.component';
-export * from './lib/components/ngx-timeline-event/ngx-timeline-event.component';
-export * from './lib/models/NgxTimelineEvent';
+export * from './lib/components';
 export * from './lib/models';
-export * from './lib/pipes/ngx-date-pipe';
+export * from './lib/pipes/';
 export * from './lib/ngx-timeline.module';

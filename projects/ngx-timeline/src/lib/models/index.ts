@@ -1,3 +1,2 @@
-export * from './NgxDateObj';
+export * from './NgxConfigObj';
 export * from './NgxTimelineEvent';
-export * from './NgxTimelineGroupEvent';

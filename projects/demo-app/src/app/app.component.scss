@@ -293,7 +293,7 @@ svg#clouds {
   align-items: center;
   width: max-content;
   padding: 0.25rem;
-  color: white;
+  color: lightgrey;
 }
 
 /* Responsive Styles */
@@ -378,6 +378,12 @@ svg#clouds {
     .period-inner-container {
       background: blue !important;
     }
+  }
+  .line:not(.first-line):not(.last-line) {
+    background-color: lightgrey !important;
+  }
+  .center-icon-container .icon {
+    background: blue !important;
   }
 }
 

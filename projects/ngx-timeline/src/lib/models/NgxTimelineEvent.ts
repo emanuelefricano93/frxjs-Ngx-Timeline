@@ -8,22 +8,25 @@ export interface NgxTimelineEvent {
   id?: any;
 }
 
+export interface NgxTimelinePeriodInfo {
+  periodKey?: string;
+  year?: number;
+  month?: number;
+  day?: number;
+  firstDate: any;
+}
+
 /**
  * Item used inside the timeline
  */
 export interface NgxTimelineItem {
   type?: string;
   position?: NgxTimelineItemPosition.ON_LEFT | NgxTimelineItemPosition.ON_RIGHT;
-  periodInfo?: {
-    periodKey?: string;
-    year?: number;
-    month: number;
-    firstDate: any;
-  };
+  periodInfo?: NgxTimelinePeriodInfo;
   eventInfo?: NgxTimelineEvent;
 }
 
 export enum NgxTimelineItemPosition {
-  ON_LEFT = "ON_LEFT",
-  ON_RIGHT = "ON_RIGHT"
+  ON_LEFT = 'ON_LEFT',
+  ON_RIGHT = 'ON_RIGHT'
 }

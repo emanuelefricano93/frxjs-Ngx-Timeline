@@ -21,6 +21,7 @@
 
   <div class="inner-container">
 
+    <!-- ALL CONFIGURATIONS -->
     <form [formGroup]="form">
       <div class="form-container">
         <div class="form-select" *ngFor="let configuration of configurations">
@@ -32,10 +33,12 @@
       </div>
     </form>
 
+    <!-- ngx-timeline -->
     <ngx-timeline
       [events]="events"
       [ngClass]="form.get('customClass').value ? 'inter' : ''"
       [langCode]="form.get('langCode').value"
+      [enableAnimation]="form.get('enableAnimation').value"
       [groupEvent]="form.get('groupEvent').value"
       [changeSideInGroup]="form.get('changeSideInGroup').value"
       [eventCustomTemplate]="form.get('eventCustomTemplate').value ? eventCustomTemplate : null"
@@ -47,9 +50,9 @@
     ></ngx-timeline>
   </div>
 
-
+  <!-- CUSTOM TEMPLATES -->
   <ng-template #periodCustomTemplate let-period=period let-index=index>
-    <div [ngClass]="{'transparent': !index}" class="line"></div>
+    <div [ngClass]="{'transparent first-line': !index}" class="line"></div>
     <div class="period-container">
       <p>
         {{index}} - {{period?.firstDate | ngxdate }}

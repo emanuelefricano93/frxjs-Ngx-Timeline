@@ -31,6 +31,16 @@
   width: 100%;
   margin: 1rem 0;
 
+  &.enableAnimation:hover {
+    padding: 2rem;
+    transition: all 0.5s ease-in-out;
+  }
+
+  &.enableAnimation:not(:hover) {
+    padding: 1rem;
+    transition: all 0.5s ease-in-out;
+  }
+
   &:not(.hour) {
     background: #ffffff 0% 0% no-repeat padding-box;
     box-shadow: 0px 3px 6px #244a6e52;

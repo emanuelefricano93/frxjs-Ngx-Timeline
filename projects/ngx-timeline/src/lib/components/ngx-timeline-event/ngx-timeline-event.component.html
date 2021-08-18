@@ -1,14 +1,14 @@
 <div class="event-wrapper-container" (click)="clickEmitter.next(event)">
-  <div *ngIf="colSidePosition===ON_RIGHT" class="arrow left"></div>
-  <div class="event">
+  <div *ngIf="colSidePosition===ngxTimelineItemPosition.ON_RIGHT" class="arrow left"></div>
+  <div class="event" [ngClass]="{'enableAnimation': enableAnimation}">
     <ng-container *ngTemplateOutlet="innerEventCustomTemplate || innerEventContainer; context: {event: event}">
     </ng-container>
   </div>
-  <div *ngIf="colSidePosition===ON_LEFT" class="arrow right"></div>
+  <div *ngIf="colSidePosition===ngxTimelineItemPosition.ON_LEFT" class="arrow right"></div>
 </div>
 
 <ng-template #innerEventContainer let-event=event>
-  <div class="event-container" [ngClass]="{'reverse': colSidePosition === ON_LEFT}">
+  <div class="event-container" [ngClass]="{'reverse': colSidePosition === ngxTimelineItemPosition.ON_LEFT}">
     <div class="event-info-container">
       <div class="event-info-header">
         <div class="title-container">{{event?.eventInfo?.title | titlecase}}</div>
@@ -24,7 +24,7 @@
 
     <div class="event-date-container" *ngIf="getDateObj() as dateObj">
       <div>
-        <p>{{dateObj?.month?.substring(0, 3) | titlecase}}</p>
+        <p>{{dateObj?.month}}</p>
       </div>
       <div>
         <p class="day">{{dateObj?.day}}</p>
