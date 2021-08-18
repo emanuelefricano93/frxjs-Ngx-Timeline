@@ -11,6 +11,7 @@
     "start": "ng serve",
     "build": "ng build",
     "watch-lib": "ng build --watch",
+    "start-dev": "npm run link && npm run link-lib && npm run start",
     "test": "ng test",
     "lint": "ng lint",
     "lint:fix": "ng lint --fix",
