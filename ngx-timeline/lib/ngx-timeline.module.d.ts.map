@@ -1,0 +1,1 @@
+{"version":3,"file":"ngx-timeline.module.d.ts","sources":["ngx-timeline.module.d.ts"],"names":[],"mappings":";;;;;AAAA;;;AACA","sourcesContent":["export declare class NgxTimelineModule {\r\n}\r\n"]}

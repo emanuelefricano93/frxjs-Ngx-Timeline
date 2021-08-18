@@ -1,0 +1,7 @@
+import { PipeTransform } from '@angular/core';
+export declare class NgxDatePipe implements PipeTransform {
+    constructor();
+    transform(date: Date | string, dateFormat?: string, langCode?: string): string;
+    private dateFormat;
+    private getDateConfig;
+}
