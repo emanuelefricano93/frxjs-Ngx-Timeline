@@ -1,7 +1,6 @@
 import { TemplateRef } from '@angular/core';
 import { NgxTimelineItem, NgxTimelineItemPosition } from '../../models/NgxTimelineEvent';
 import { BehaviorSubject } from 'rxjs';
-import * as ɵngcc0 from '@angular/core';
 export declare class NgxTimelineEventComponent {
     /**
      * Event to be displayed
@@ -33,8 +32,4 @@ export declare class NgxTimelineEventComponent {
     constructor();
     protected getDateObj(): any;
     protected getLangCode(): string;
-    static ɵfac: ɵngcc0.ɵɵFactoryDef<NgxTimelineEventComponent, never>;
-    static ɵcmp: ɵngcc0.ɵɵComponentDefWithMeta<NgxTimelineEventComponent, "ngx-timeline-event", never, { "enableAnimation": "enableAnimation"; "event": "event"; "colSidePosition": "colSidePosition"; "langCode": "langCode"; "innerEventCustomTemplate": "innerEventCustomTemplate"; }, { "clickEmitter": "clickEmitter"; }, never, never>;
 }
-
-//# sourceMappingURL=ngx-timeline-event.component.d.ts.map

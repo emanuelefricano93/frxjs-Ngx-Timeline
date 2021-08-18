@@ -1,7 +1,6 @@
 import { OnInit, TemplateRef, OnChanges, SimpleChanges } from '@angular/core';
 import { NgxTimelineEvent, NgxTimelineItem, NgxTimelineItemPosition, NgxTimelinePeriodInfo, NgxDateFormat, NgxTimelineEventGroup, NgxTimelineEventChangeSideInGroup } from '../models';
 import { BehaviorSubject } from 'rxjs';
-import * as ɵngcc0 from '@angular/core';
 export declare class NgxTimelineComponent implements OnInit, OnChanges {
     /**
      * List of events to be displayed
@@ -74,8 +73,4 @@ export declare class NgxTimelineComponent implements OnInit, OnChanges {
     protected setPeriods(): void;
     private getPeriodInfo;
     protected getPeriodKeyFromEvent(event: NgxTimelineEvent): string;
-    static ɵfac: ɵngcc0.ɵɵFactoryDef<NgxTimelineComponent, never>;
-    static ɵcmp: ɵngcc0.ɵɵComponentDefWithMeta<NgxTimelineComponent, "ngx-timeline", never, { "enableAnimation": "enableAnimation"; "groupEvent": "groupEvent"; "changeSideInGroup": "changeSideInGroup"; "events": "events"; "langCode": "langCode"; "periodCustomTemplate": "periodCustomTemplate"; "eventCustomTemplate": "eventCustomTemplate"; "centerIconCustomTemplate": "centerIconCustomTemplate"; "dateInstantCustomTemplate": "dateInstantCustomTemplate"; "innerEventCustomTemplate": "innerEventCustomTemplate"; }, { "clickEmitter": "clickEmitter"; }, never, never>;
 }
-
-//# sourceMappingURL=ngx-timeline.component.d.ts.map

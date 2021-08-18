@@ -1,8 +1,0 @@
-/*
- * Public API Surface of ngx-timeline
- */
-export * from './lib/components';
-export * from './lib/models';
-export * from './lib/pipes/';
-export * from './lib/ngx-timeline.module';
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljLWFwaS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3Byb2plY3RzL25neC10aW1lbGluZS9zcmMvcHVibGljLWFwaS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTs7R0FFRztBQUNILGNBQWMsa0JBQWtCLENBQUM7QUFDakMsY0FBYyxjQUFjLENBQUM7QUFDN0IsY0FBYyxjQUFjLENBQUM7QUFDN0IsY0FBYywyQkFBMkIsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbIi8qXG4gKiBQdWJsaWMgQVBJIFN1cmZhY2Ugb2Ygbmd4LXRpbWVsaW5lXG4gKi9cbmV4cG9ydCAqIGZyb20gJy4vbGliL2NvbXBvbmVudHMnO1xuZXhwb3J0ICogZnJvbSAnLi9saWIvbW9kZWxzJztcbmV4cG9ydCAqIGZyb20gJy4vbGliL3BpcGVzLyc7XG5leHBvcnQgKiBmcm9tICcuL2xpYi9uZ3gtdGltZWxpbmUubW9kdWxlJztcbiJdfQ==
