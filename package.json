@@ -17,7 +17,7 @@
     "e2e": "ng e2e",
     "link": "cd dist/ngx-timeline && npm link",
     "link-lib": "npm link @frxjs/ngx-timeline",
-    "prepare-github-pages": "ng build demo-app --prod --baseHref='https://emanuelefricano93.github.io/frxjs-Ngx-Timeline/'",
+    "prepare-github-pages": "ng build demo-app --prod --baseHref=https://emanuelefricano93.github.io/frxjs-Ngx-Timeline/",
     "publish": "ng build --prod && cd dist/ngx-timeline && npm publish --access public"
   },
   "private": false,
