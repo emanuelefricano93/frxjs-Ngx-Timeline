@@ -13,7 +13,7 @@ export interface NgxTimelinePeriodInfo {
   year?: number;
   month?: number;
   day?: number;
-  firstDate: any;
+  firstDate?: any;
 }
 
 /**

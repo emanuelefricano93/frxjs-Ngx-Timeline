@@ -26,6 +26,7 @@
           "options": {
             "main": "projects/ngx-timeline/src/test.ts",
             "tsConfig": "projects/ngx-timeline/tsconfig.spec.json",
+            "codeCoverage": true,
             "karmaConfig": "projects/ngx-timeline/karma.conf.js"
           }
         },

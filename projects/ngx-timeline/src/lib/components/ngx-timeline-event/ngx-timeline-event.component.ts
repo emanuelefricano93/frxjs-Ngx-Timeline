@@ -43,11 +43,11 @@ export class NgxTimelineEventComponent {
 
   constructor() { }
 
-  protected getDateObj(): any {
+  getDateObj(): any {
     let day;
     let month;
     let year;
-    const dateTimestamp = this.event.eventInfo?.timestamp;
+    const dateTimestamp = this.event?.eventInfo?.timestamp;
     if (dateTimestamp) {
       const timestamp = new Date(dateTimestamp);
       const langCode = this.getLangCode();
