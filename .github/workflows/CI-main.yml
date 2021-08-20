@@ -38,18 +38,11 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-    - name: Publish if version has been updated
-      uses: pascalgn/npm-publish-action@1.3.8
-      with:
-        tag_name: "v%s"
-        tag_message: "v%s"
-        create_tag: "true"
-        commit_pattern: "^Release (\\S+)"
-        workspace: "."
-        publish_command: "node --max_old_space_size=4096 node_modules/@angular/cli/bin/ng build --prod && cd dist/ngx-timeline && npm publish --access public"
-        publish_args: "--non-interactive"
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          registry-url: https://registry.npmjs.org/
+      - run: npm run publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
