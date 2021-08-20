@@ -48,7 +48,7 @@ jobs:
         create_tag: "true"
         commit_pattern: "^Release (\\S+)"
         workspace: "."
-        publish_command: "npm run publish"
+        publish_command: "node --max_old_space_size=4096 node_modules/@angular/cli/bin/ng build --prod && cd dist/ngx-timeline && npm publish --access public"
         publish_args: "--non-interactive"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
