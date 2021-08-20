@@ -48,7 +48,7 @@ jobs:
         create_tag: "true"
         commit_pattern: "^Release (\\S+)"
         workspace: "."
-        publish_command: "npm run"
+        publish_command: "npm run publish"
         publish_args: "--non-interactive"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
