@@ -1,6 +1,7 @@
 {
   "name": "@frxjs/ngx-timeline",
-  "version": "1.0.0",
+  "version": "1.0.3",
+  "keywords": ["angular", "timeline"],
   "author": {
     "name": "Emanuele Fricano",
     "email": "emanuelefricano93@gmail.com"
@@ -10,6 +11,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:prod": "ng build --prod",
     "watch-lib": "ng build --watch",
     "start-dev": "npm run link && npm run link-lib && npm run start",
     "test": "ng test",
