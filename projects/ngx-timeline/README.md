@@ -11,9 +11,18 @@ Fig.1 - Preview of <a href="https://emanuelefricano93.github.io/frxjs-Ngx-Timeli
 <br/><br/>
 
 
+## Installation
+Running the following command to install the library
+```
+npm install @frxjs/ngx-timeline
+```
+<br/><br/>
+
+
+
 ## Examples of Usage
 
-After including "@frxjs/ngx-timeline": "1.0.3" in your dependencies list, npm install and including NgxTimelineModule in your imports module you could add one of following examples to your template in order to display your timeline
+After installing the library and including NgxTimelineModule in your imports module you could add one of following examples to your template in order to display your timeline
 
 ```
 <ngx-timeline [events]="events"></ngx-timeline>
