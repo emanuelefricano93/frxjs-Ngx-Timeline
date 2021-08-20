@@ -1,7 +1,10 @@
 {
   "name": "@frxjs/ngx-timeline",
   "version": "1.0.3",
-  "keywords": ["angular", "timeline"],
+  "keywords": [
+    "angular",
+    "timeline"
+  ],
   "author": {
     "name": "Emanuele Fricano",
     "email": "emanuelefricano93@gmail.com"
