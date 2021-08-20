@@ -30,16 +30,19 @@ jobs:
         run: npm run build:prod
 
       - name: Run test
-        run: ng test
+        run: npm run test
+
+  #if the version will be updated in package.json to 1.2.3 with the commit message Release 1.2.3 this job action will perform a new tag before publishing
   npm-publish:
     name: npm-publish
+    needs: build
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
     - name: Publish if version has been updated
       uses: pascalgn/npm-publish-action@1.3.8
-      with: #if the version will be updated in package.json to 1.2.3 with the commit message Release 1.2.3 the action will perform a new tag before publishing
+      with:
         tag_name: "v%s"
         tag_message: "v%s"
         create_tag: "true"
