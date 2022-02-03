@@ -165,5 +165,8 @@
       }
     }
   },
-  "defaultProject": "ngx-timeline"
+  "defaultProject": "ngx-timeline",
+  "cli": {
+    "analytics": false
+  }
 }

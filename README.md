@@ -131,6 +131,6 @@ To start the contribution:
 
 Every time you will change the code in your lib, any update will trigger the re-load of the app.
 When your code will be ready, create a Pull Request and put the link in a comment under the issue you opened before.
-Now is time to enjoy and start to code.
+Now it's time to enjoy and start to code.
 
 Thanks in advance for your contribution
