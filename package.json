@@ -1,6 +1,6 @@
 {
   "name": "@frxjs/ngx-timeline",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "keywords": [
     "angular",
     "timeline"
@@ -21,8 +21,8 @@
     "watch-lib": "ng build --watch",
     "start-dev": "npm run link && npm run link-lib && npm run start",
     "test": "ng test",
-    "lint": "ng lint",
-    "lint:fix": "ng lint --fix",
+    "lint": "npx eslint 'projects/ngx-timeline/src/lib/**/*.ts'",
+    "lint:fix": "npm rum lint -- --fix",
     "e2e": "ng e2e",
     "link": "cd dist/ngx-timeline && npm link",
     "link-lib": "npm link @frxjs/ngx-timeline",
@@ -45,11 +45,19 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~13.2.2",
+    "@angular-eslint/builder": "13.0.1",
+    "@angular-eslint/eslint-plugin": "13.0.1",
+    "@angular-eslint/eslint-plugin-template": "^13.0.1",
+    "@angular-eslint/schematics": "13.0.1",
+    "@angular-eslint/template-parser": "13.0.1",
     "@angular/cli": "~13.2.2",
     "@angular/compiler-cli": "~13.2.1",
     "@types/jasmine": "~3.8.0",
     "@types/node": "^12.11.1",
+    "@typescript-eslint/eslint-plugin": "^5.10.2",
+    "@typescript-eslint/parser": "^5.10.2",
     "codelyzer": "^6.0.0",
+    "eslint": "^8.8.0",
     "jasmine-core": "~3.8.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~6.3.13",

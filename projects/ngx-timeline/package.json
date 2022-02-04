@@ -1,6 +1,6 @@
 {
   "name": "@frxjs/ngx-timeline",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "keywords": ["angular", "timeline"],
   "author": {
     "name": "Emanuele Fricano",
@@ -11,8 +11,9 @@
   },
   "license": "MIT",
   "peerDependencies": {
-    "@angular/common": "~12.2.16",
-    "@angular/core": "~12.2.16"
+    "@angular/common": "~13.2.1",
+    "@angular/compiler": "~13.2.1",
+    "@angular/core": "~13.2.1"
   },
   "dependencies": {
     "tslib": "^2.0.0"

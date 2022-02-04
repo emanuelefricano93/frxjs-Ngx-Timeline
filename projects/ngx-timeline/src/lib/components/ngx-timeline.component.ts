@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, TemplateRef, OnChanges, SimpleChanges, Output } from '@angular/core';
+import {Component, OnInit, Input, TemplateRef, OnChanges, SimpleChanges, Output} from '@angular/core';
 import {
   NgxTimelineEvent,
   NgxTimelineItem,
@@ -9,8 +9,8 @@ import {
   NgxTimelineEventChangeSideInGroup,
   periodKeyDateFormat,
   fieldsToCheckEventChangeSideInGroup,
-  fieldsToAddEventGroup } from '../models';
-import { BehaviorSubject } from 'rxjs';
+  fieldsToAddEventGroup} from '../models';
+import {BehaviorSubject} from 'rxjs';
 
 @Component({
   selector: 'ngx-timeline',
@@ -62,7 +62,7 @@ export class NgxTimelineComponent implements OnInit, OnChanges {
    * Output click event emitter
    */
   @Output()
-  clickEmitter: BehaviorSubject<NgxTimelineItem> = new BehaviorSubject(null);
+    clickEmitter: BehaviorSubject<NgxTimelineItem> = new BehaviorSubject(null);
 
   groups: { [key: string]: NgxTimelineEvent[] } = {};
   periods: NgxTimelineItem[] = [];
@@ -145,8 +145,8 @@ export class NgxTimelineComponent implements OnInit, OnChanges {
 
   protected pushEventOnItems(event: NgxTimelineEvent, onLeft: boolean): void {
     this.items.push({
-      eventInfo: { ...event }, position: onLeft ?
-        this.ngxTimelineItemPosition.ON_LEFT : this.ngxTimelineItemPosition.ON_RIGHT
+      eventInfo: {...event}, position: onLeft ?
+        this.ngxTimelineItemPosition.ON_LEFT : this.ngxTimelineItemPosition.ON_RIGHT,
     });
   }
 
@@ -182,6 +182,6 @@ export class NgxTimelineComponent implements OnInit, OnChanges {
   }
 
   protected getPeriodKeyFromEvent(event: NgxTimelineEvent): string {
-    return fieldsToAddEventGroup[this.groupEvent].map(field => event.timestamp[field]()).join(this.separator);
+    return fieldsToAddEventGroup[this.groupEvent].map((field) => event.timestamp[field]()).join(this.separator);
   }
 }

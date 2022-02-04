@@ -31,14 +31,11 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/ngx-timeline/tsconfig.lib.json",
-              "projects/ngx-timeline/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "projects/ngx-timeline/**/*.ts",
+              "projects/ngx-timeline/**/*.html"
             ]
           }
         }
@@ -173,6 +170,7 @@
   },
   "defaultProject": "ngx-timeline",
   "cli": {
-    "analytics": false
+    "analytics": false,
+    "defaultCollection": "@angular-eslint/schematics"
   }
 }

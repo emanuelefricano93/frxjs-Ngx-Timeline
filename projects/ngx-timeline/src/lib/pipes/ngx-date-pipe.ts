@@ -1,10 +1,9 @@
-import { DatePipe } from '@angular/common';
-import { Pipe, PipeTransform } from '@angular/core';
-import { NgxConfigDate, NgxDateObjMap, NgxDateFormat, supportedLanguageCodes, fieldConfigDate, dateConfigMap } from '../models';
+import {DatePipe} from '@angular/common';
+import {Pipe, PipeTransform} from '@angular/core';
+import {NgxConfigDate, NgxDateObjMap, NgxDateFormat, supportedLanguageCodes, fieldConfigDate, dateConfigMap} from '../models';
 
-@Pipe({ name: 'ngxdate', pure: false })
+@Pipe({name: 'ngxdate', pure: false})
 export class NgxDatePipe implements PipeTransform {
-
   constructor() {
   }
 

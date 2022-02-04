@@ -1,16 +1,15 @@
-import { Component, Input, Output, TemplateRef } from '@angular/core';
-import { NgxTimelineItem, NgxTimelineItemPosition } from '../../models/NgxTimelineEvent';
-import { DatePipe } from '@angular/common';
-import { BehaviorSubject } from 'rxjs';
-import { supportedLanguageCodes } from '../../models';
+import {Component, Input, Output, TemplateRef} from '@angular/core';
+import {NgxTimelineItem, NgxTimelineItemPosition} from '../../models/NgxTimelineEvent';
+import {DatePipe} from '@angular/common';
+import {BehaviorSubject} from 'rxjs';
+import {supportedLanguageCodes} from '../../models';
 
 @Component({
   selector: 'ngx-timeline-event',
   templateUrl: './ngx-timeline-event.component.html',
-  styleUrls: ['./ngx-timeline-event.component.scss']
+  styleUrls: ['./ngx-timeline-event.component.scss'],
 })
 export class NgxTimelineEventComponent {
-
   /**
    * Event to be displayed
    */
@@ -59,8 +58,7 @@ export class NgxTimelineEventComponent {
     return {day, month, year};
   }
 
-  protected getLangCode(): string  {
+  protected getLangCode(): string {
     return this.langCode && supportedLanguageCodes.includes(this.langCode) ? this.langCode : supportedLanguageCodes[0];
   }
-
 }

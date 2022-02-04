@@ -1,9 +1,9 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { NgxTimelineEventComponent } from './ngx-timeline-event.component';
-import { NgxTimelineItemPosition } from '../../models';
+import {NgxTimelineEventComponent} from './ngx-timeline-event.component';
+import {NgxTimelineItemPosition} from '../../models';
 import localeIt from '@angular/common/locales/it';
-import { registerLocaleData } from '@angular/common';
+import {registerLocaleData} from '@angular/common';
 
 registerLocaleData(localeIt);
 
@@ -11,21 +11,21 @@ const year = 2021;
 const monthIndex = 7;
 const day = 19;
 const event = {
-  type: "event",
+  type: 'event',
   position: NgxTimelineItemPosition.ON_LEFT,
   periodInfo: {
     periodKey: '08/2021',
     year: year,
     month: monthIndex + 1,
     day: day,
-    firstDate: new Date(year, monthIndex, day)
+    firstDate: new Date(year, monthIndex, day),
   },
   eventInfo: {
     timestamp: new Date(year, monthIndex, day),
     title: 'event title',
     description: 'event description',
-    id: '1'
-  }
+    id: '1',
+  },
 };
 describe('NgxTimelineEventComponent', () => {
   let component: NgxTimelineEventComponent;
@@ -33,9 +33,9 @@ describe('NgxTimelineEventComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NgxTimelineEventComponent ]
+      declarations: [NgxTimelineEventComponent],
     })
-    .compileComponents();
+        .compileComponents();
   });
 
   beforeEach(() => {
@@ -85,5 +85,4 @@ describe('NgxTimelineEventComponent', () => {
       expect(res).toEqual({day: '19', month: 'Aug', year: 2021});
     });
   });
-
 });

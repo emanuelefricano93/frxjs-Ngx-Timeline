@@ -1,8 +1,9 @@
 <div class="event-wrapper-container" (click)="clickEmitter.next(event)">
   <div *ngIf="colSidePosition===ngxTimelineItemPosition.ON_RIGHT" class="arrow left"></div>
   <div class="event" [ngClass]="{'enableAnimation': enableAnimation}">
-    <ng-container *ngTemplateOutlet="innerEventCustomTemplate || innerEventContainer; context: {event: event}">
-    </ng-container>
+    <ng-container *ngTemplateOutlet="innerEventCustomTemplate || innerEventContainer; context: {event: event}"
+    >
+  </ng-container>
   </div>
   <div *ngIf="colSidePosition===ngxTimelineItemPosition.ON_LEFT" class="arrow right"></div>
 </div>

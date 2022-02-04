@@ -1,7 +1,7 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { NgxTimelineComponent } from './ngx-timeline.component';
-import { NgxDateFormat, NgxTimelineEventGroup } from '../models';
+import {NgxTimelineComponent} from './ngx-timeline.component';
+import {NgxDateFormat, NgxTimelineEventGroup} from '../models';
 
 describe('NgxTimelineComponent', () => {
   let component: NgxTimelineComponent;
@@ -9,9 +9,9 @@ describe('NgxTimelineComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NgxTimelineComponent ]
+      declarations: [NgxTimelineComponent],
     })
-    .compileComponents();
+        .compileComponents();
   });
 
   beforeEach(() => {
@@ -45,14 +45,13 @@ describe('NgxTimelineComponent', () => {
     });
 
     [{groupEvent: NgxTimelineEventGroup.YEAR, formatDate: NgxDateFormat.YEAR},
-      {groupEvent: NgxTimelineEventGroup.DAY_MONTH_YEAR, formatDate: NgxDateFormat.DAY_MONTH_YEAR}
-    ].forEach(elem => {
+      {groupEvent: NgxTimelineEventGroup.DAY_MONTH_YEAR, formatDate: NgxDateFormat.DAY_MONTH_YEAR},
+    ].forEach((elem) => {
       it(`when groupEvent ${elem.groupEvent} is provided`, () => {
-        component.groupEvent =  elem.groupEvent;
+        component.groupEvent = elem.groupEvent;
         expect(component.getPeriodKeyDateFormat()).toEqual(elem.formatDate);
       });
     });
-
   });
 
 
@@ -65,7 +64,7 @@ describe('NgxTimelineComponent', () => {
       spies.push(spyOn<any>(component, 'setPeriods'));
       spies.push(spyOn<any>(component, 'setItems'));
       component['groupEvents'](null);
-      spies.forEach(spy => expect(spy).not.toHaveBeenCalled());
+      spies.forEach((spy) => expect(spy).not.toHaveBeenCalled());
     });
     it('when events', () => {
       const spies = [];
@@ -75,7 +74,7 @@ describe('NgxTimelineComponent', () => {
       spies.push(spyOn<any>(component, 'setPeriods'));
       spies.push(spyOn<any>(component, 'setItems'));
       component['groupEvents']([]);
-      spies.forEach(spy => expect(spy).toHaveBeenCalled());
+      spies.forEach((spy) => expect(spy).toHaveBeenCalled());
     });
   });
 
@@ -121,15 +120,15 @@ describe('NgxTimelineComponent', () => {
       const date = new Date(2021, 7, 10);
       const date2 = new Date(2021, 8, 10);
       const date3= new Date(2021, 8, 11);
-      const event = {timestamp: date}
+      const event = {timestamp: date};
       const event2 = {timestamp: date2};
       const event3 = {timestamp: date3};
       component.groups['2021/7'] = [event];
       component.groups['2021/8'] = [event2, event3];
       component['setPeriods']();
       expect(component.periods.length).toEqual(2);
-      expect(component.periods[0]).toEqual({periodInfo: {year: 2021, month: 7, day: NaN, periodKey: '2021/7', firstDate: date }})
-      expect(component.periods[1]).toEqual({periodInfo: {year: 2021, month: 8, day: NaN, periodKey: '2021/8', firstDate: date2 }})
+      expect(component.periods[0]).toEqual({periodInfo: {year: 2021, month: 7, day: NaN, periodKey: '2021/7', firstDate: date}});
+      expect(component.periods[1]).toEqual({periodInfo: {year: 2021, month: 8, day: NaN, periodKey: '2021/8', firstDate: date2}});
     });
   });
 
@@ -156,5 +155,4 @@ describe('NgxTimelineComponent', () => {
       expect(component['getPeriodKeyFromEvent'](event2)).toBe('2021/8/9');
     });
   });
-
 });

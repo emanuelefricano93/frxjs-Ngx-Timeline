@@ -1,4 +1,4 @@
-export let supportedLanguageCodes = ['en', 'it', 'fr', 'de', 'es'];
+export const supportedLanguageCodes = ['en', 'it', 'fr', 'de', 'es'];
 
 export interface NgxConfigDate {
   code: string;
@@ -13,14 +13,14 @@ export interface NgxDateObjMap {
   [key: string]: NgxConfigDate;
 }
 
-export let dateConfigMap: NgxDateObjMap = {
+export const dateConfigMap: NgxDateObjMap = {
   en: {
     code: 'en-US',
     fullDate: 'MM/dd/yyyy h:mm a',
     dayMonthYear: 'dd MMMM yyyy',
     monthYear: 'MMMM yyyy',
     year: 'yyyy',
-    hoursMinutes: 'hh:mm a'
+    hoursMinutes: 'hh:mm a',
   },
   it: {
     code: 'it-IT',
@@ -28,7 +28,7 @@ export let dateConfigMap: NgxDateObjMap = {
     dayMonthYear: 'dd MMMM yyyy',
     monthYear: 'MMMM yyyy',
     year: 'yyyy',
-    hoursMinutes: 'HH:mm'
+    hoursMinutes: 'HH:mm',
   },
   fr: {
     code: 'fr-FR',
@@ -36,7 +36,7 @@ export let dateConfigMap: NgxDateObjMap = {
     dayMonthYear: 'dd MMMM yyyy',
     monthYear: 'MMMM yyyy',
     year: 'yyyy',
-    hoursMinutes: 'HH:mm'
+    hoursMinutes: 'HH:mm',
   },
   de: {
     code: 'de',
@@ -44,7 +44,7 @@ export let dateConfigMap: NgxDateObjMap = {
     dayMonthYear: 'dd MMMM yyyy',
     monthYear: 'MMMM yyyy',
     year: 'yyyy',
-    hoursMinutes: 'HH:mm'
+    hoursMinutes: 'HH:mm',
   },
   es: {
     code: 'es',
@@ -52,25 +52,25 @@ export let dateConfigMap: NgxDateObjMap = {
     dayMonthYear: 'dd MMMM yyyy',
     monthYear: 'MMMM yyyy',
     year: 'yyyy',
-    hoursMinutes: 'HH:mm'
-  }
+    hoursMinutes: 'HH:mm',
+  },
 };
 
 export enum NgxDateFormat {
-  DAY_MONTH_YEAR  = 'DAY_MONTH_YEAR',
-  FULL_DATE  = 'FULL_DATE',
-  MONTH_YEAR  = 'MONTH_YEAR',
+  DAY_MONTH_YEAR = 'DAY_MONTH_YEAR',
+  FULL_DATE = 'FULL_DATE',
+  MONTH_YEAR = 'MONTH_YEAR',
   HOURS_MINUTES = 'HOURS_MINUTES',
-  YEAR  = 'YEAR'
+  YEAR = 'YEAR'
 }
 
-export let fieldConfigDate = {
+export const fieldConfigDate = {
   MONTH_YEAR: 'monthYear',
   YEAR: 'year',
   HOURS_MINUTES: 'hoursMinutes',
   FULL_DATE: 'fullDate',
-  DAY_MONTH_YEAR: 'dayMonthYear'
-}
+  DAY_MONTH_YEAR: 'dayMonthYear',
+};
 
 /**
  * Enum used to set the group event logic
@@ -81,13 +81,13 @@ export enum NgxTimelineEventGroup {
   DAY_MONTH_YEAR = 'DAY_MONTH_YEAR'
 }
 
-export let fieldsToAddEventGroup = {
+export const fieldsToAddEventGroup = {
   YEAR: ['getFullYear'],
   MONTH_YEAR: ['getFullYear', 'getMonth'],
-  DAY_MONTH_YEAR: ['getFullYear', 'getMonth', 'getDate']
+  DAY_MONTH_YEAR: ['getFullYear', 'getMonth', 'getDate'],
 };
 
-export let periodKeyDateFormat = {
+export const periodKeyDateFormat = {
   YEAR: NgxDateFormat.YEAR,
   MONTH_YEAR: NgxDateFormat.MONTH_YEAR,
   DAY_MONTH_YEAR: NgxDateFormat.DAY_MONTH_YEAR,
@@ -103,8 +103,8 @@ export enum NgxTimelineEventChangeSideInGroup {
   ON_DIFFERENT_MONTH = 'ON_DIFFERENT_MONTH'
 }
 
-export let fieldsToCheckEventChangeSideInGroup = {
+export const fieldsToCheckEventChangeSideInGroup = {
   ON_DIFFERENT_MONTH: ['getFullYear', 'getMonth'],
   ON_DIFFERENT_DAY: ['getFullYear', 'getMonth', 'getDate'],
-  ON_DIFFERENT_HMS: ['getFullYear', 'getMonth', 'getDate', 'getHours', 'getMinutes', 'getSeconds']
+  ON_DIFFERENT_HMS: ['getFullYear', 'getMonth', 'getDate', 'getHours', 'getMinutes', 'getSeconds'],
 };
