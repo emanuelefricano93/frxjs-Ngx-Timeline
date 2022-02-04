@@ -1,6 +1,6 @@
 {
   "name": "@frxjs/ngx-timeline",
-  "version": "1.2.0",
+  "version": "1.6.1",
   "keywords": [
     "angular",
     "timeline"
@@ -27,6 +27,10 @@
     "link": "cd dist/ngx-timeline && npm link",
     "link-lib": "npm link @frxjs/ngx-timeline",
     "prepare-github-pages": "ng build demo-app --configuration production --baseHref=https://emanuelefricano93.github.io/frxjs-Ngx-Timeline/",
+    "demo": "echo \"Hello $npm_config_first $npm_config_last\"",
+    "new-version": "npm version --git-tag-version=false",
+    "version": "echo 'starting postversion script'",
+    "postversion": "LAST_VERSION=$(npm pkg get version | sed 's/\"//g') && echo $LAST_VERSION && cd projects/ngx-timeline && sed -i.bak \"s/\\\"version\\\": \\\"[0-9]\\.[0-9]\\.[0-9]\\\"/\\\"version\\\": \\\"$LAST_VERSION\\\"/g\" package.json && rm package.json.bak && git commit -am \"Release $LAST_VERSION\" && git tag v$LAST_VERSION",
     "publish": "ng build --configuration production && cd dist/ngx-timeline && npm publish --access public"
   },
   "private": false,
