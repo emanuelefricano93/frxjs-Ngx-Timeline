@@ -31,6 +31,10 @@ export class NgxTimelineComponent implements OnInit, OnChanges {
    */
   @Input() enableAnimation = true;
   /**
+   * Boolean used to reverse sort order (default older first)
+   */
+  @Input() reverseOrder = false;
+  /**
    * Logic to be applied in order to group events
    */
   @Input() groupEvent?: NgxTimelineEventGroup = NgxTimelineEventGroup.MONTH_YEAR;
@@ -104,7 +108,10 @@ export class NgxTimelineComponent implements OnInit, OnChanges {
   }
 
   protected sortEvents(events: NgxTimelineEvent[]): void {
-    events.sort((a, b) => a.timestamp.getTime() - b.timestamp.getTime());
+    events.sort((a, b) => {
+      const aTime = a.timestamp.getTime();
+      const bTime = b.timestamp.getTime();
+      return this.reverseOrder ? bTime - aTime : aTime - bTime;});
   }
 
   protected setGroups(events: NgxTimelineEvent[]): void {

@@ -38,6 +38,14 @@ export class AppComponent {
       ]
     },
     {
+      label: 'Reverse Order',
+      formControlName: 'reverseOrder',
+      options: [
+        {name: 'Normal Time Order (older first)', value: false},
+        {name: 'Reverse Time Order (newer first)', value: true}
+      ]
+    },
+    {
       label: 'Custom class',
       formControlName: 'customClass',
       options: [

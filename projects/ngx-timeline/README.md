@@ -41,6 +41,7 @@ Input name                    | Explanation                                     
 events                        | list of events to be displayed                              | yes       | NgxTimelineEvent                          | no default    
 langCode                      | language code use to format dates                           | no        | <ul><li>'en'</li><li>'it'</li><li>'fr'</li><li>'de'</li><li>'es'</li></ul>             | 'en'          
 enableAnimation               | Boolean used to enable or disable the animations            | no        | boolean                                   | true   
+reverseOrder                  | Boolean used to reverse sort order (default older first)    | no        | boolean                                   | false   
 groupEvent                    | Logic to be applied in order to group events                | no        | enum NgxTimelineEventGroup                | NgxTimelineEventGroup.MONTH_YEAR
 changeSideInGroup             | Logic to be applied in order to put evetns on LEFT or RIGHT | no        | enum NgxTimelineEventChangeSideInGroup    | NgxTimelineEventChangeSideInGroup.ON_DIFFERENT_DAY    
 periodCustomTemplate          | Custom Template displayed before a group of events          | no        | TemplateRef<any>                          | no default 

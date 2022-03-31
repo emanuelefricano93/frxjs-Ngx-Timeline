@@ -4,10 +4,7 @@ The main goal of this angular library is to give you the possibility to integrat
 <br/>
 Version 1.2.0 is compatible with angular 13.
 <br/>
-
-Go [here](https://emanuelefricano93.github.io/frxjs-Ngx-Timeline/) and discover all possible configurations for the timeline .
-<br/>
-
+Go [here](https://emanuelefricano93.github.io/frxjs-Ngx-Timeline/) and discover all possible configurations for the timeline 
 
 ![image](https://user-images.githubusercontent.com/26500344/130092921-8338496a-31df-46fa-b75f-40989eb53d33.png)
 <p align = "center">
@@ -44,6 +41,7 @@ Input name                    | Explanation                                     
 events                        | list of events to be displayed                              | yes       | NgxTimelineEvent                          | no default    
 langCode                      | language code use to format dates                           | no        | <ul><li>'en'</li><li>'it'</li><li>'fr'</li><li>'de'</li><li>'es'</li></ul>             | 'en'          
 enableAnimation               | Boolean used to enable or disable the animations            | no        | boolean                                   | true   
+reverseOrder                  | Boolean used to reverse sort order (default older first)    | no        | boolean                                   | false   
 groupEvent                    | Logic to be applied in order to group events                | no        | enum NgxTimelineEventGroup                | NgxTimelineEventGroup.MONTH_YEAR
 changeSideInGroup             | Logic to be applied in order to put evetns on LEFT or RIGHT | no        | enum NgxTimelineEventChangeSideInGroup    | NgxTimelineEventChangeSideInGroup.ON_DIFFERENT_DAY    
 periodCustomTemplate          | Custom Template displayed before a group of events          | no        | TemplateRef<any>                          | no default 
@@ -136,6 +134,6 @@ To start the contribution:
 
 Every time you will change the code in your lib, any update will trigger the re-load of the app.
 When your code will be ready, create a Pull Request and put the link in a comment under the issue you opened before.
-Now it's time to enjoy and start to code.
+Now is time to enjoy and start to code.
 
 Thanks in advance for your contribution
