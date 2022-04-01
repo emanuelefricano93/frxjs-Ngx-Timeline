@@ -13,10 +13,10 @@
 
       <div class="col col-center desktop" [ngClass]="item.periodInfo ? 'col-period' : 'col-event'">
         <div class="center-inner" *ngIf="item.periodInfo">
-          <ng-container *ngTemplateOutlet="periodCustomTemplate || periodTemplate; context: {period: item.periodInfo, index: index}"></ng-container>
+          <ng-container *ngTemplateOutlet="periodCustomTemplate || periodTemplate; context: {period: item.periodInfo, index: index, event: item}"></ng-container>
         </div>
         <div class="center-inner no-period-key" *ngIf="!item.periodInfo">
-          <ng-container *ngTemplateOutlet="centerLinesIconTemplate; context: {index: index}"></ng-container>
+          <ng-container *ngTemplateOutlet="centerLinesIconTemplate; context: {event: item, index: index}"></ng-container>
         </div>
       </div>
 
@@ -40,10 +40,10 @@
 
       <div class="col col-center mobile" [ngClass]="item.periodInfo ? 'col-period' : 'col-event'">
         <div class="center-inner" *ngIf="item.periodInfo;">
-            <ng-container *ngTemplateOutlet="periodCustomTemplate || periodTemplate; context: {period: item.periodInfo, index: index}"></ng-container>
+            <ng-container *ngTemplateOutlet="periodCustomTemplate || periodTemplate; context: {period: item.periodInfo, index: index, event: item}"></ng-container>
         </div>
         <div class="center-inner no-period-key" *ngIf="!item.periodInfo;">
-          <ng-container *ngTemplateOutlet="centerLinesIconTemplate;context: {index: index}"></ng-container>
+          <ng-container *ngTemplateOutlet="centerLinesIconTemplate; context: {event: item, index: index}"></ng-container>
         </div>
       </div>
 
@@ -57,13 +57,13 @@
 </div>
 
 
-<ng-template #centerLinesIconTemplate let-index=index>
+<ng-template #centerLinesIconTemplate let-index=index let-event=event>
   <div class="line"></div>
-  <ng-container *ngTemplateOutlet="centerIconCustomTemplate || centerIconTemplate"></ng-container>
+  <ng-container *ngTemplateOutlet="centerIconCustomTemplate || centerIconTemplate; context: {index:index, event:event}"></ng-container>
   <div [ngClass]="{'transparent last-line': index === items.length - 1}" class="line"></div>
 </ng-template>
 
-<ng-template #centerIconTemplate>
+<ng-template #centerIconTemplate let-index=index let-event=event>
   <div class="center-icon-container">
     <div class="icon"></div>
   </div>
@@ -75,7 +75,7 @@
   </span>
 </ng-template>
 
-<ng-template #periodTemplate let-period=period let-index=index>
+<ng-template #periodTemplate let-period=period let-index=index let-event=event>
   <div [ngClass]="{'transparent first-line': !index}" class="line"></div>
   <div class="period-container">
     <div class="period-inner-container">

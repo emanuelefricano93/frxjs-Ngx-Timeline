@@ -85,7 +85,7 @@ enum NgxTimelineEventChangeSideInGroup {
   
 ### Examples with contexts of custom templates
 ```html
-  <ng-template #periodCustomTemplate let-period=period let-index=index>
+  <ng-template #periodCustomTemplate let-period=period let-index=index let-event=event>
     <div [ngClass]="{'transparent first-line': !index}" class="line"></div>
     <div class="period-container">
       <p>
@@ -96,7 +96,7 @@ enum NgxTimelineEventChangeSideInGroup {
   </ng-template>
 ```  
 ```html
-  <ng-template #centerIconCustomTemplate>
+  <ng-template #centerIconCustomTemplate let-index=index let-event=event>
     <div class="icon-container">
       <img src="assets/image.png"/>
     </div>

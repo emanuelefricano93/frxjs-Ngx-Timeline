@@ -61,9 +61,10 @@
     <div class="line"></div>
   </ng-template>
 
-  <ng-template #centerIconCustomTemplate>
+  <ng-template #centerIconCustomTemplate let-event=event let-index=index>
     <div class="icon-container">
       <img src="assets/inter.png"/>
+      <!-- {{event | json}} {{index | json}} -->
     </div>
   </ng-template>
 
