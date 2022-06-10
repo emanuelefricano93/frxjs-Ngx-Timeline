@@ -89,6 +89,18 @@ describe('NgxTimelineComponent', () => {
     });
   });
 
+  describe('should sortEvents in reverse order', ()=> {
+    it('when events', () => {
+      const event = {timestamp: new Date(2021, 11, 10)};
+      const event2 = {timestamp: new Date(2021, 8, 10)};
+      const events = [event, event2];
+      component.reverseOrder = true;
+      component['sortEvents'](events);
+      expect(events[0]).toEqual(event);
+      expect(events[1]).toEqual(event2);
+    });
+  });
+
   describe('should setGroups', ()=> {
     it('when events', () => {
       const event = {timestamp: new Date(2021, 11, 10)};
