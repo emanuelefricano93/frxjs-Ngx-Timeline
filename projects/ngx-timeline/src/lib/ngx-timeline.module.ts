@@ -8,11 +8,15 @@ import localeIt from '@angular/common/locales/it';
 import localeFr from '@angular/common/locales/fr';
 import localeDe from '@angular/common/locales/de';
 import localeEs from '@angular/common/locales/es';
+import localeSl from '@angular/common/locales/sl';
+import localePt from '@angular/common/locales/pt';
 
 registerLocaleData(localeIt);
 registerLocaleData(localeFr);
 registerLocaleData(localeDe);
 registerLocaleData(localeEs);
+registerLocaleData(localeSl);
+registerLocaleData(localePt);
 
 @NgModule({
   declarations: [NgxTimelineComponent, NgxTimelineEventComponent, NgxDatePipe],

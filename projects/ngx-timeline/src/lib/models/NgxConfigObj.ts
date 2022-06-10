@@ -1,4 +1,4 @@
-export const supportedLanguageCodes = ['en', 'it', 'fr', 'de', 'es'];
+export const supportedLanguageCodes = ['en', 'it', 'fr', 'de', 'es', 'sl', 'pt'];
 
 export interface NgxConfigDate {
   code: string;
@@ -54,6 +54,22 @@ export const dateConfigMap: NgxDateObjMap = {
     year: 'yyyy',
     hoursMinutes: 'HH:mm',
   },
+  sl: {
+    code: 'sl-SL',
+    fullDate: 'dd/MM/yyyy H:mm',
+    dayMonthYear: 'dd MMMM yyyy',
+    monthYear: 'MMMM yyyy',
+    year: 'yyyy',
+    hoursMinutes: 'HH:mm',
+  },
+  pt: {
+    code: 'pt',
+    fullDate: 'dd/MM/yyyy H:mm',
+    dayMonthYear: 'dd MMMM yyyy',
+    monthYear: 'MMMM yyyy',
+    year: 'yyyy',
+    hoursMinutes: 'HH:mm',
+  }
 };
 
 export enum NgxDateFormat {
