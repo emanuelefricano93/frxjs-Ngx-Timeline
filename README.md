@@ -39,7 +39,7 @@ After installing the library and including NgxTimelineModule in your imports mod
 Input name                    | Explanation                                                 | Mandatory | Type/Supported Values                     | Default value
 ---                           | ---                                                         | ---       | ---                                       | ---           
 events                        | list of events to be displayed                              | yes       | NgxTimelineEvent                          | no default    
-langCode                      | language code use to format dates                           | no        | <ul><li>'en'</li><li>'it'</li><li>'fr'</li><li>'de'</li><li>'es'</li><li>'sl'</li><li>'pt'</li></ul>             | 'en'          
+langCode                      | language code use to format dates                           | no        | <ul><li>'en'</li><li>'it'</li><li>'fr'</li><li>'de'</li><li>'es'</li><li>'sl'</li><li>'tr'</li><li>'pt'</li></ul>             | 'en'          
 enableAnimation               | Boolean used to enable or disable the animations            | no        | boolean                                   | true   
 reverseOrder                  | Boolean used to reverse sort order (default older first)    | no        | boolean                                   | false   
 groupEvent                    | Logic to be applied in order to group events                | no        | enum NgxTimelineEventGroup                | NgxTimelineEventGroup.MONTH_YEAR

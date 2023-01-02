@@ -28,6 +28,7 @@ export class AppComponent {
         {name: 'Spanish', value: 'es'},
         {name: 'Italian', value: 'it'},
         {name: 'Slovenian', value: 'sl'},
+        {name: 'Turkish', value: 'tr'},
         {name: 'Portuguese', value: 'pt'}
       ]
     },
