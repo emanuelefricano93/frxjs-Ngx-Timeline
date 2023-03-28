@@ -138,3 +138,12 @@ When your code will be ready, create a Pull Request and put the link in a commen
 Now is time to enjoy and start to code.
 
 Thanks in advance for your contribution
+
+## How to deploy new version (for mantainers only)
+After test the fix or the new feature with 100% test coverage_
+- npm run lint:fix
+- npm run prepare-github-pages
+- npm run new-version patch
+- git push --tags
+- git push
+- npm run publish
