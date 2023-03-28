@@ -1,7 +1,7 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {NgxTimelineComponent} from './ngx-timeline.component';
-import {NgxDateFormat, NgxTimelineEventGroup} from '../models';
+import {NgxDateFormat, NgxTimelineEventGroup, NgxTimelineItemPosition} from '../models';
 
 describe('NgxTimelineComponent', () => {
   let component: NgxTimelineComponent;
@@ -74,6 +74,21 @@ describe('NgxTimelineComponent', () => {
       spies.push(spyOn<any>(component, 'setPeriods'));
       spies.push(spyOn<any>(component, 'setItems'));
       component['groupEvents']([]);
+      spies.forEach((spy) => expect(spy).toHaveBeenCalled());
+    });
+    it('when events with itemPosition', () => {
+      const spies = [];
+      spies.push(spyOn<any>(component, 'clear'));
+      spies.push(spyOn<any>(component, 'sortEvents'));
+      spies.push(spyOn<any>(component, 'setGroups').and.callThrough());
+      spies.push(spyOn<any>(component, 'setPeriods').and.callThrough());
+      spies.push(spyOn<any>(component, 'setItems').and.callThrough());
+      const event = {timestamp: new Date(2021, 11, 10)};
+      const event2 = {timestamp: new Date(2021, 11, 11), itemPosition: NgxTimelineItemPosition.ON_LEFT};
+      const event3 = {timestamp: new Date(2021, 11, 12), itemPosition: NgxTimelineItemPosition.ON_RIGHT};
+      const events = [event, event2, event3];
+      component['groupEvents'](events);
+      console.log(component.periods);
       spies.forEach((spy) => expect(spy).toHaveBeenCalled());
     });
   });

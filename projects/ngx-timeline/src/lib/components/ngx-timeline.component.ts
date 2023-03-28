@@ -142,8 +142,10 @@ export class NgxTimelineComponent implements OnInit, OnChanges {
   protected addPeriodEvents(periodInfo: NgxTimelinePeriodInfo, onLeft: boolean): void {
     this.groups[periodInfo.periodKey].forEach((event, index) => {
       const prevEvent = this.groups[periodInfo.periodKey][index - 1];
-      if (index > 0 && this.compareEvents(prevEvent, event)) {
-        onLeft = !onLeft;
+      if (event.itemPosition) {
+        onLeft = event.itemPosition && event.itemPosition === NgxTimelineItemPosition.ON_LEFT;
+      } else if (index > 0 && this.compareEvents(prevEvent, event)) {
+          onLeft = !onLeft;
       }
       this.pushEventOnItems(event, onLeft);
     });

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NgxTimelineEvent, NgxTimelineEventGroup, NgxTimelineEventChangeSideInGroup, NgxDateFormat } from 'ngx-timeline';
+import { NgxTimelineEvent, NgxTimelineEventGroup, NgxTimelineEventChangeSideInGroup, NgxDateFormat, NgxTimelineItemPosition } from 'ngx-timeline';
 import { BehaviorSubject } from 'rxjs';
 import { FormGroup, FormControl } from '@angular/forms';
 
@@ -146,7 +146,7 @@ export class AppComponent {
       { id: 1, description: 'This is the description of the event 1', timestamp: tomorrow, title: 'title 1' },
       { id: 2, description: 'This is the description of the event 2', timestamp: today, title: 'title 2' },
       { id: 3, description: 'This is the description of the event 3', timestamp: tomorrow, title: 'title 3' },
-      { id: 4, description: 'This is the description of the event 4', timestamp: nextMonth, title: 'title 4' },
+      { id: 4, description: 'This is the description of the event 4', timestamp: nextMonth, title: 'title 4', itemPosition: NgxTimelineItemPosition.ON_RIGHT },
     ];
   }
 
