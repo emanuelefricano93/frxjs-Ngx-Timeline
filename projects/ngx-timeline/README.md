@@ -140,7 +140,7 @@ Now is time to enjoy and start to code.
 Thanks in advance for your contribution
 
 ## How to deploy new version (for mantainers only)
-After test the fix or the new feature with 100% test coverage_
+After testing the fix or the new feature with 100% test coverage:
 - npm run lint:fix
 - npm run prepare-github-pages
 - npm run new-version patch
