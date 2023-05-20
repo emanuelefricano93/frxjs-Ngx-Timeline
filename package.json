@@ -1,6 +1,6 @@
 {
   "name": "@frxjs/ngx-timeline",
-  "version": "1.2.7",
+  "version": "2.0.0",
   "keywords": [
     "angular",
     "timeline"
@@ -16,9 +16,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build-lib": "ng build ngx-timeline",
+    "build-app": "ng build demo-app",
     "build:prod": "ng build --configuration production",
-    "watch-lib": "ng build --watch",
+    "watch-lib": "ng build ngx-timeline --watch",
     "start-dev": "npm run link && npm run link-lib && npm run start",
     "test": "ng test",
     "lint": "npx eslint 'projects/ngx-timeline/src/lib/**/*.ts'",
@@ -26,7 +27,7 @@
     "e2e": "ng e2e",
     "link": "cd dist/ngx-timeline && npm link",
     "link-lib": "npm link @frxjs/ngx-timeline",
-    "prepare-github-pages": "ng build demo-app --configuration production --baseHref=https://emanuelefricano93.github.io/frxjs-Ngx-Timeline/",
+    "prepare-github-pages": "ng build demo-app --configuration production --base-href https://emanuelefricano93.github.io/frxjs-Ngx-Timeline/",
     "demo": "echo \"Hello $npm_config_first $npm_config_last\"",
     "new-version": "npm version --git-tag-version=false",
     "version": "echo 'starting postversion script'",
