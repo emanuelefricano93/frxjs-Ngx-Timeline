@@ -46,7 +46,7 @@
     "@angular/router": "^15.2.9",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
-    "zone.js": "~0.11.4"
+    "zone.js": "~0.13.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^15.2.8",
@@ -74,6 +74,6 @@
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
-    "typescript": "~4.8.4"
+    "typescript": "~4.9.3"
   }
 }
