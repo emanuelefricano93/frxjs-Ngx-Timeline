@@ -31,7 +31,7 @@
     "demo": "echo \"Hello $npm_config_first $npm_config_last\"",
     "new-version": "npm version --git-tag-version=false",
     "version": "echo 'starting postversion script'",
-    "postversion": "LAST_VERSION=$(npm pkg get version | sed 's/\"//g') && echo $LAST_VERSION && cd projects/ngx-timeline && sed -i.bak \"s/\\\"version\\\": \\\"[0-9]\\.[0-9]\\.[0-9]\\\"/\\\"version\\\": \\\"$LAST_VERSION\\\"/g\" package.json && rm package.json.bak && git commit -am \"Release $LAST_VERSION\" && git tag v$LAST_VERSION",
+    "postversion": "sh scripts/postversion.sh",
     "publish": "ng build ngx-timeline --configuration production && cd dist/ngx-timeline && npm publish --access public"
   },
   "private": false,
