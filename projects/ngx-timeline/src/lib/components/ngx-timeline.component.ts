@@ -101,8 +101,7 @@ export class NgxTimelineComponent implements OnInit, OnChanges {
     if (events) {
       this.clear();
       this.sortEvents(events);
-      this.setGroups(events);
-      this.setPeriods();
+      this.setGroupsAndPeriods(events);
       this.setItems();
     }
   }
@@ -114,13 +113,15 @@ export class NgxTimelineComponent implements OnInit, OnChanges {
       return this.reverseOrder ? bTime - aTime : aTime - bTime;});
   }
 
-  protected setGroups(events: NgxTimelineEvent[]): void {
+  protected setGroupsAndPeriods(events: NgxTimelineEvent[]): void {
+    this.periods = [];
     events.forEach((event) => {
       // conversion from string to actual Date
       event.timestamp = new Date(event.timestamp);
       const periodKey = this.getPeriodKeyFromEvent(event);
       if (!this.groups[periodKey]) {
         this.groups[periodKey] = [];
+        this.periods.push(this.getPeriodInfoFromPeriodKey(periodKey, event))
       }
       this.groups[periodKey].push(event);
     });
@@ -171,21 +172,19 @@ export class NgxTimelineComponent implements OnInit, OnChanges {
     return fields.reduce((res, field) => res = res || prevEvent.timestamp[field]() !== event.timestamp[field](), !!false);
   }
 
-  protected setPeriods(): void {
-    this.periods = Object.keys(this.groups).map((periodKey) => {
+  protected getPeriodInfoFromPeriodKey(periodKey: string, firstGroupEvent: NgxTimelineEvent): { periodInfo: NgxTimelinePeriodInfo } {
       const split = periodKey.split(this.separator);
-      return this.getPeriodInfo(split, periodKey);
-    });
+      return this.getPeriodInfo(split, periodKey, firstGroupEvent);
   }
 
-  private getPeriodInfo(split: string[], periodKey: string): { periodInfo: NgxTimelinePeriodInfo } {
+  private getPeriodInfo(split: string[], periodKey: string, firstGroupEvent: NgxTimelineEvent): { periodInfo: NgxTimelinePeriodInfo } {
     return {
       periodInfo: {
         year: Number(split[0]),
         month: Number(split[1]),
         day: Number(split[2]),
         periodKey,
-        firstDate: this.groups[periodKey][0].timestamp as Date,
+        firstDate: firstGroupEvent.timestamp as Date,
       },
     };
   }

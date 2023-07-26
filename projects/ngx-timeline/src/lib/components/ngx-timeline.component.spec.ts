@@ -60,8 +60,7 @@ describe('NgxTimelineComponent', () => {
       const spies = [];
       spies.push(spyOn<any>(component, 'clear'));
       spies.push(spyOn<any>(component, 'sortEvents'));
-      spies.push(spyOn<any>(component, 'setGroups'));
-      spies.push(spyOn<any>(component, 'setPeriods'));
+      spies.push(spyOn<any>(component, 'setGroupsAndPeriods'));
       spies.push(spyOn<any>(component, 'setItems'));
       component['groupEvents'](null);
       spies.forEach((spy) => expect(spy).not.toHaveBeenCalled());
@@ -70,8 +69,7 @@ describe('NgxTimelineComponent', () => {
       const spies = [];
       spies.push(spyOn<any>(component, 'clear'));
       spies.push(spyOn<any>(component, 'sortEvents'));
-      spies.push(spyOn<any>(component, 'setGroups'));
-      spies.push(spyOn<any>(component, 'setPeriods'));
+      spies.push(spyOn<any>(component, 'setGroupsAndPeriods'));
       spies.push(spyOn<any>(component, 'setItems'));
       component['groupEvents']([]);
       spies.forEach((spy) => expect(spy).toHaveBeenCalled());
@@ -80,8 +78,7 @@ describe('NgxTimelineComponent', () => {
       const spies = [];
       spies.push(spyOn<any>(component, 'clear'));
       spies.push(spyOn<any>(component, 'sortEvents'));
-      spies.push(spyOn<any>(component, 'setGroups').and.callThrough());
-      spies.push(spyOn<any>(component, 'setPeriods').and.callThrough());
+      spies.push(spyOn<any>(component, 'setGroupsAndPeriods').and.callThrough());
       spies.push(spyOn<any>(component, 'setItems').and.callThrough());
       const event = {timestamp: new Date(2021, 11, 10)};
       const event2 = {timestamp: new Date(2021, 11, 11), itemPosition: NgxTimelineItemPosition.ON_LEFT};
@@ -116,14 +113,20 @@ describe('NgxTimelineComponent', () => {
     });
   });
 
-  describe('should setGroups', ()=> {
+  describe('should setGroupsAndPeriodsAndPeriods', ()=> {
     it('when events', () => {
+      const date = new Date(2021, 11, 10);
+      const date2 = new Date(2021, 8, 10);
       const event = {timestamp: new Date(2021, 11, 10)};
       const event2 = {timestamp: new Date(2021, 8, 10)};
       const event3 = {timestamp: new Date(2021, 8, 11)};
       const events = [event, event2, event3];
-      component['setGroups'](events);
+      component['setGroupsAndPeriods'](events);
       expect(Object.keys(component.groups).length).toEqual(2);
+      expect(component.periods.length).toEqual(2);
+      expect(component.periods[0]).toEqual({periodInfo: {year: 2021, month: 11, day: NaN, periodKey: '2021/11', firstDate: date}});
+      expect(component.periods[1]).toEqual({periodInfo: {year: 2021, month: 8, day: NaN, periodKey: '2021/8', firstDate: date2}});
+
     });
   });
 
@@ -139,23 +142,6 @@ describe('NgxTimelineComponent', () => {
       component.groups['2021/8'] = [event2, event3];
       component['setItems']();
       expect(component.items.length).toEqual(5);
-    });
-  });
-
-  describe('should setPeriods', ()=> {
-    it('when events', () => {
-      const date = new Date(2021, 7, 10);
-      const date2 = new Date(2021, 8, 10);
-      const date3= new Date(2021, 8, 11);
-      const event = {timestamp: date};
-      const event2 = {timestamp: date2};
-      const event3 = {timestamp: date3};
-      component.groups['2021/7'] = [event];
-      component.groups['2021/8'] = [event2, event3];
-      component['setPeriods']();
-      expect(component.periods.length).toEqual(2);
-      expect(component.periods[0]).toEqual({periodInfo: {year: 2021, month: 7, day: NaN, periodKey: '2021/7', firstDate: date}});
-      expect(component.periods[1]).toEqual({periodInfo: {year: 2021, month: 8, day: NaN, periodKey: '2021/8', firstDate: date2}});
     });
   });
 
