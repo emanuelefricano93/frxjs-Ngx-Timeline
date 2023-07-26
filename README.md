@@ -2,7 +2,7 @@
 
 The main goal of this angular library is to give you the possibility to integrate a timeline in your app.
 <br/>
-Version 2.2.0 is compatible with angular 16.
+Version 2.2.2 is compatible with angular 16.
 <br/>
 Go [here](https://emanuelefricano93.github.io/frxjs-Ngx-Timeline/) and discover all possible configurations for the timeline 
 
