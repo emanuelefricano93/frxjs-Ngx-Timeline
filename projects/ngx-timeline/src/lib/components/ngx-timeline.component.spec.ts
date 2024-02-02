@@ -25,9 +25,11 @@ describe('NgxTimelineComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call the groupEvents when ngOnChanges', () => {
+  it('should call the groupEvents when ngDoCheck and iterable diff find some changes', () => {
+    component.events = [];
     const spy = spyOn<any>(component, 'groupEvents');
-    component.ngOnChanges({});
+    component.events.push({});
+    fixture.detectChanges();
     expect(spy).toHaveBeenCalled();
   });
 

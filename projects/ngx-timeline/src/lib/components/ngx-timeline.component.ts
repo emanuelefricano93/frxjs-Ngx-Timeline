@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, TemplateRef, OnChanges, SimpleChanges, Output} from '@angular/core';
+import {Component, OnInit, Input, TemplateRef, OnChanges, SimpleChanges, Output, IterableDiffers, IterableDiffer, DoCheck, inject} from '@angular/core';
 import {
   NgxTimelineEvent,
   NgxTimelineItem,
@@ -17,7 +17,7 @@ import {BehaviorSubject} from 'rxjs';
   templateUrl: './ngx-timeline.component.html',
   styleUrls: ['./ngx-timeline.scss'],
 })
-export class NgxTimelineComponent implements OnInit, OnChanges {
+export class NgxTimelineComponent implements OnInit, DoCheck {
   /**
    * List of events to be displayed
    */
@@ -74,17 +74,19 @@ export class NgxTimelineComponent implements OnInit, OnChanges {
   ngxTimelineItemPosition = NgxTimelineItemPosition;
   ngxDateFormat = NgxDateFormat;
 
+  private differs: IterableDiffers = inject(IterableDiffers);
+  private iterableDiffer: IterableDiffer<any> = this.differs.find([]).create();
   private readonly separator = '/';
-
-  constructor() {}
-
 
   ngOnInit(): void {
     this.groupEvents(this.events);
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    this.groupEvents(this.events);
+  ngDoCheck() {
+    const changes = this.iterableDiffer.diff(this.events);
+    if (changes) {
+      this.groupEvents(this.events);
+    }
   }
 
   getPeriodKeyDateFormat(): string {
