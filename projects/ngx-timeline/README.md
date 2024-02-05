@@ -4,7 +4,7 @@ The main goal of this angular library is to give you the possibility to integrat
 <br/>
 Version 17.0.0 is compatible with angular 17.
 <br/>
-Go [here](https://emanuelefricano93.github.io/frxjs-Ngx-Timeline/) and discover all possible configurations for the timeline
+Go [here](https://emanuelefricano93.github.io/frxjs-Ngx-Timeline/) and discover all possible configurations for the timeline 
 
 ![image](https://user-images.githubusercontent.com/26500344/130092921-8338496a-31df-46fa-b75f-40989eb53d33.png)
 <p align = "center">
@@ -43,7 +43,7 @@ langCode                      | language code use to format dates               
 enableAnimation               | Boolean used to enable or disable the animations            | no        | boolean                                                                                                                                     | true   
 reverseOrder                  | Boolean used to reverse sort order (default older first)    | no        | boolean                                                                                                                                     | false   
 groupEvent                    | Logic to be applied in order to group events                | no        | enum NgxTimelineEventGroup                                                                                                                  | NgxTimelineEventGroup.MONTH_YEAR
-changeSideInGroup             | Logic to be applied in order to put evetns on LEFT or RIGHT | no        | enum NgxTimelineEventChangeSideInGroup                                                                                                      | NgxTimelineEventChangeSideInGroup.ON_DIFFERENT_DAY    
+changeSide                    | Logic to be applied in order to put evetns on LEFT or RIGHT | no        | enum NgxTimelineEventChangeSide                                                                                                      | NgxTimelineEventChangeSide.ON_DIFFERENT_DAY_IN_GROUP    
 periodCustomTemplate          | Custom Template displayed before a group of events          | no        | TemplateRef<any>                                                                                                                            | no default 
 eventCustomTemplate           | Custom Template displayed to show a single event            | no        | TemplateRef<any>                                                                                                                            | no default 
 centerIconCustomTemplate      | Custom Template displayed to show an separator icon         | no        | TemplateRef<any>                                                                                                                            | no default 
@@ -75,15 +75,16 @@ enum NgxTimelineEventGroup {
 }
 ```
 ```typescript
-enum NgxTimelineEventChangeSideInGroup {
+enum NgxTimelineEventChangeSide {
   ALL = 'ALL',
-  ON_DIFFERENT_HMS = 'ON_DIFFERENT_HMS',
-  ON_DIFFERENT_DAY = 'ON_DIFFERENT_DAY',
-  ON_DIFFERENT_MONTH = 'ON_DIFFERENT_MONTH'
+  ALL_IN_GROUP = 'ALL_IN_GROUP',
+  ON_DIFFERENT_DAY_IN_GROUP = 'ON_DIFFERENT_DAY_IN_GROUP',
+  ON_DIFFERENT_HMS_IN_GROUP = 'ON_DIFFERENT_HMS_IN_GROUP',
+  ON_DIFFERENT_MONTH_IN_GROUP = 'ON_DIFFERENT_MONTH_IN_GROUP'
 }
 ```
 <br/>
-
+  
 ### Examples with contexts of custom templates
 ```html
   <ng-template #periodCustomTemplate let-period=period let-index=index let-event=event>
@@ -125,7 +126,7 @@ enum NgxTimelineEventChangeSideInGroup {
   </ng-template>
 ```    
 <br/><br/>
-
+  
 ## How to contribute
 First of all, in order to track everything, open an issue describing the problem or a missing functionality you would like to add to the lib.
 

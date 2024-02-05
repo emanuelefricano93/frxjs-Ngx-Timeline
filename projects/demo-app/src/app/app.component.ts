@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NgxTimelineEvent, NgxTimelineEventGroup, NgxTimelineEventChangeSideInGroup, NgxDateFormat, NgxTimelineItemPosition } from 'ngx-timeline';
+import { NgxTimelineEvent, NgxTimelineEventGroup, NgxTimelineEventChangeSide, NgxDateFormat, NgxTimelineItemPosition } from 'ngx-timeline';
 import { BehaviorSubject } from 'rxjs';
 import { UntypedFormGroup, UntypedFormControl } from '@angular/forms';
 
@@ -68,13 +68,14 @@ export class AppComponent {
       ]
     },
     {
-      label: 'Change event side in group',
-      formControlName: 'changeSideInGroup',
+      label: 'Change event side',
+      formControlName: 'changeSide',
       options: [
-        {name: 'On different day', value: NgxTimelineEventChangeSideInGroup.ON_DIFFERENT_DAY},
-        {name: 'All', value: NgxTimelineEventChangeSideInGroup.ALL},
-        {name: 'On different hours, minutes and seconds', value: NgxTimelineEventChangeSideInGroup.ON_DIFFERENT_HMS},
-        {name: 'On different month', value: NgxTimelineEventChangeSideInGroup.ON_DIFFERENT_MONTH}
+        {name: 'All', value: NgxTimelineEventChangeSide.ALL},
+        {name: 'All in group', value: NgxTimelineEventChangeSide.ALL_IN_GROUP},
+        {name: 'On different day in group', value: NgxTimelineEventChangeSide.ON_DIFFERENT_DAY_IN_GROUP},
+        {name: 'On different hours, minutes and seconds in group', value: NgxTimelineEventChangeSide.ON_DIFFERENT_HMS_IN_GROUP},
+        {name: 'On different month in group', value: NgxTimelineEventChangeSide.ON_DIFFERENT_MONTH_IN_GROUP}
       ]
     },
     {
@@ -137,6 +138,9 @@ export class AppComponent {
     const today = new Date();
     const tomorrow = new Date();
     tomorrow.setDate(today.getDate() + 1);
+    const tomorrowPlusOneHour = new Date();
+    tomorrowPlusOneHour.setDate(today.getDate() + 1);
+    tomorrowPlusOneHour.setHours(today.getHours() + 1);
     const nextMonth = new Date();
     nextMonth.setMonth(today.getMonth() + 1);
     const nextYear = new Date();

@@ -43,7 +43,7 @@ langCode                      | language code use to format dates               
 enableAnimation               | Boolean used to enable or disable the animations            | no        | boolean                                                                                                                                     | true   
 reverseOrder                  | Boolean used to reverse sort order (default older first)    | no        | boolean                                                                                                                                     | false   
 groupEvent                    | Logic to be applied in order to group events                | no        | enum NgxTimelineEventGroup                                                                                                                  | NgxTimelineEventGroup.MONTH_YEAR
-changeSideInGroup             | Logic to be applied in order to put evetns on LEFT or RIGHT | no        | enum NgxTimelineEventChangeSideInGroup                                                                                                      | NgxTimelineEventChangeSideInGroup.ON_DIFFERENT_DAY    
+changeSide                    | Logic to be applied in order to put evetns on LEFT or RIGHT | no        | enum NgxTimelineEventChangeSide                                                                                                      | NgxTimelineEventChangeSide.ON_DIFFERENT_DAY_IN_GROUP    
 periodCustomTemplate          | Custom Template displayed before a group of events          | no        | TemplateRef<any>                                                                                                                            | no default 
 eventCustomTemplate           | Custom Template displayed to show a single event            | no        | TemplateRef<any>                                                                                                                            | no default 
 centerIconCustomTemplate      | Custom Template displayed to show an separator icon         | no        | TemplateRef<any>                                                                                                                            | no default 
@@ -75,11 +75,12 @@ enum NgxTimelineEventGroup {
 }
 ```
 ```typescript
-enum NgxTimelineEventChangeSideInGroup {
+enum NgxTimelineEventChangeSide {
   ALL = 'ALL',
-  ON_DIFFERENT_HMS = 'ON_DIFFERENT_HMS',
-  ON_DIFFERENT_DAY = 'ON_DIFFERENT_DAY',
-  ON_DIFFERENT_MONTH = 'ON_DIFFERENT_MONTH'
+  ALL_IN_GROUP = 'ALL_IN_GROUP',
+  ON_DIFFERENT_DAY_IN_GROUP = 'ON_DIFFERENT_DAY_IN_GROUP',
+  ON_DIFFERENT_HMS_IN_GROUP = 'ON_DIFFERENT_HMS_IN_GROUP',
+  ON_DIFFERENT_MONTH_IN_GROUP = 'ON_DIFFERENT_MONTH_IN_GROUP'
 }
 ```
 <br/>

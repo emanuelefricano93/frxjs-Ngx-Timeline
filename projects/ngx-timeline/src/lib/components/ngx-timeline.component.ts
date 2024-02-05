@@ -6,9 +6,9 @@ import {
   NgxTimelinePeriodInfo,
   NgxDateFormat,
   NgxTimelineEventGroup,
-  NgxTimelineEventChangeSideInGroup,
+  NgxTimelineEventChangeSide,
   periodKeyDateFormat,
-  fieldsToCheckEventChangeSideInGroup,
+  fieldsToCheckEventChangeSideInGroup as fieldsToCheckEventChangeSide,
   fieldsToAddEventGroup} from '../models';
 import {BehaviorSubject} from 'rxjs';
 
@@ -17,7 +17,7 @@ import {BehaviorSubject} from 'rxjs';
   templateUrl: './ngx-timeline.component.html',
   styleUrls: ['./ngx-timeline.scss'],
 })
-export class NgxTimelineComponent implements OnInit, DoCheck {
+export class NgxTimelineComponent implements OnInit, OnChanges, DoCheck {
   /**
    * List of events to be displayed
    */
@@ -41,7 +41,7 @@ export class NgxTimelineComponent implements OnInit, DoCheck {
   /**
    * Logic to be applied in order to put evetns on LEFT or RIGHT
    */
-  @Input() changeSideInGroup?: NgxTimelineEventChangeSideInGroup = NgxTimelineEventChangeSideInGroup.ON_DIFFERENT_DAY;
+  @Input() changeSide?: NgxTimelineEventChangeSide = NgxTimelineEventChangeSide.ON_DIFFERENT_DAY_IN_GROUP;
   /**
    * Custom Template displayed before a group of events
    */
@@ -82,7 +82,13 @@ export class NgxTimelineComponent implements OnInit, DoCheck {
     this.groupEvents(this.events);
   }
 
+  ngOnChanges() {
+    this.groupEvents(this.events);
+    console.log('ngOnChanges');
+  }
+
   ngDoCheck() {
+    console.log('ngDoCheck');
     const changes = this.iterableDiffer.diff(this.events);
     if (changes) {
       this.groupEvents(this.events);
@@ -130,19 +136,23 @@ export class NgxTimelineComponent implements OnInit, DoCheck {
   }
 
   protected setItems(): void {
+    let isLastItemOnLeft = false;
     this.periods.forEach((p) => {
       // insert first the period
       this.items.push(p);
       // in each period putting items on left
-      const onLeft = true;
+      let onLeft = true;
+      if (this.changeSide === NgxTimelineEventChangeSide.ALL) {
+        onLeft = !isLastItemOnLeft;
+      }
       const periodInfo = p.periodInfo;
       // insert then all the events in this period
-      this.addPeriodEvents(periodInfo, onLeft);
+      isLastItemOnLeft = this.addPeriodEvents(periodInfo, onLeft);
       // onLeft = this.addEventItemsAndGetIfOnLeft(periodInfo, onLeft);
     });
   }
 
-  protected addPeriodEvents(periodInfo: NgxTimelinePeriodInfo, onLeft: boolean): void {
+  protected addPeriodEvents(periodInfo: NgxTimelinePeriodInfo, onLeft: boolean): boolean {
     this.groups[periodInfo.periodKey].forEach((event, index) => {
       const prevEvent = this.groups[periodInfo.periodKey][index - 1];
       if (event.itemPosition) {
@@ -152,7 +162,7 @@ export class NgxTimelineComponent implements OnInit, DoCheck {
       }
       this.pushEventOnItems(event, onLeft);
     });
-    // return onLeft;
+    return onLeft;
   }
 
   protected pushEventOnItems(event: NgxTimelineEvent, onLeft: boolean): void {
@@ -166,8 +176,8 @@ export class NgxTimelineComponent implements OnInit, DoCheck {
    * Compare the events inside the same group
    */
   protected compareEvents(prevEvent: NgxTimelineEvent, event: NgxTimelineEvent): boolean {
-    return this.changeSideInGroup === NgxTimelineEventChangeSideInGroup.ALL ||
-      this.compareEventsField(prevEvent, event, ...fieldsToCheckEventChangeSideInGroup[this.changeSideInGroup]);
+    return this.shouldChangeEventsInPeriod() ||
+      this.compareEventsField(prevEvent, event, ...fieldsToCheckEventChangeSide[this.changeSide]);
   }
 
   protected compareEventsField(prevEvent: NgxTimelineEvent, event: NgxTimelineEvent, ...fields: string[]): boolean {
@@ -189,6 +199,10 @@ export class NgxTimelineComponent implements OnInit, DoCheck {
         firstDate: firstGroupEvent.timestamp as Date,
       },
     };
+  }
+
+  private shouldChangeEventsInPeriod() {
+    return [NgxTimelineEventChangeSide.ALL_IN_GROUP, NgxTimelineEventChangeSide.ALL].indexOf(this.changeSide) != -1;
   }
 
   protected getPeriodKeyFromEvent(event: NgxTimelineEvent): string {

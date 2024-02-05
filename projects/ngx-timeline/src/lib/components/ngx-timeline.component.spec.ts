@@ -1,7 +1,7 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {NgxTimelineComponent} from './ngx-timeline.component';
-import {NgxDateFormat, NgxTimelineEventGroup, NgxTimelineItemPosition} from '../models';
+import {NgxDateFormat, NgxTimelineEventChangeSide, NgxTimelineEventGroup, NgxTimelineItemPosition} from '../models';
 
 describe('NgxTimelineComponent', () => {
   let component: NgxTimelineComponent;
@@ -23,6 +23,12 @@ describe('NgxTimelineComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should call the groupEvents when ngOnChanges', () => {
+    const spy = spyOn<any>(component, 'groupEvents');
+    component.ngOnChanges();
+    expect(spy).toHaveBeenCalled();
   });
 
   it('should call the groupEvents when ngDoCheck and iterable diff find some changes', () => {
@@ -87,7 +93,6 @@ describe('NgxTimelineComponent', () => {
       const event3 = {timestamp: new Date(2021, 11, 12), itemPosition: NgxTimelineItemPosition.ON_RIGHT};
       const events = [event, event2, event3];
       component['groupEvents'](events);
-      console.log(component.periods);
       spies.forEach((spy) => expect(spy).toHaveBeenCalled());
     });
   });
@@ -144,6 +149,22 @@ describe('NgxTimelineComponent', () => {
       component.groups['2021/8'] = [event2, event3];
       component['setItems']();
       expect(component.items.length).toEqual(5);
+    });
+    it('when events and changeSide is set to NgxTimelineEventChangeSide.ALL', () => {
+      const period = {periodInfo: {periodKey: '2021/7'}};
+      const period2 = {periodInfo: {periodKey: '2021/8'}};
+      component.periods = [period, period2];
+      const event = {timestamp: new Date(2021, 7, 10)};
+      const event2 = {timestamp: new Date(2021, 8, 10)};
+      const event3 = {timestamp: new Date(2021, 8, 11)};
+      component.groups['2021/7'] = [event];
+      component.groups['2021/8'] = [event2, event3];
+      component.changeSide = NgxTimelineEventChangeSide.ALL;
+      component['setItems']();
+      expect(component.items.length).toEqual(5);
+      expect(component.items[1].position).toEqual(NgxTimelineItemPosition.ON_LEFT);
+      expect(component.items[3].position).toEqual(NgxTimelineItemPosition.ON_RIGHT);
+      expect(component.items[4].position).toEqual(NgxTimelineItemPosition.ON_LEFT);
     });
   });
 

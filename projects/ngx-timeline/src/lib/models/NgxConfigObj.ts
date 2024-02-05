@@ -136,15 +136,16 @@ export const periodKeyDateFormat = {
 /**
  * Enum used to set the change side event logic
  */
-export enum NgxTimelineEventChangeSideInGroup {
+export enum NgxTimelineEventChangeSide {
   ALL = 'ALL',
-  ON_DIFFERENT_HMS = 'ON_DIFFERENT_HMS',
-  ON_DIFFERENT_DAY = 'ON_DIFFERENT_DAY',
-  ON_DIFFERENT_MONTH = 'ON_DIFFERENT_MONTH'
+  ALL_IN_GROUP = 'ALL_IN_GROUP',
+  ON_DIFFERENT_DAY_IN_GROUP = 'ON_DIFFERENT_DAY_IN_GROUP',
+  ON_DIFFERENT_HMS_IN_GROUP = 'ON_DIFFERENT_HMS_IN_GROUP',
+  ON_DIFFERENT_MONTH_IN_GROUP = 'ON_DIFFERENT_MONTH_IN_GROUP'
 }
 
 export const fieldsToCheckEventChangeSideInGroup = {
-  ON_DIFFERENT_MONTH: ['getFullYear', 'getMonth'],
-  ON_DIFFERENT_DAY: ['getFullYear', 'getMonth', 'getDate'],
-  ON_DIFFERENT_HMS: ['getFullYear', 'getMonth', 'getDate', 'getHours', 'getMinutes', 'getSeconds'],
+  ON_DIFFERENT_DAY_IN_GROUP: ['getFullYear', 'getMonth', 'getDate'],
+  ON_DIFFERENT_MONTH_IN_GROUP: ['getFullYear', 'getMonth'],
+  ON_DIFFERENT_HMS_IN_GROUP: ['getFullYear', 'getMonth', 'getDate', 'getHours', 'getMinutes', 'getSeconds'],
 };
