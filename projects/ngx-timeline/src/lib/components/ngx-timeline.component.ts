@@ -63,6 +63,10 @@ export class NgxTimelineComponent implements OnInit, OnChanges, DoCheck {
    */
   @Input() innerEventCustomTemplate: TemplateRef<any>;
   /**
+   * Inner custom template used to display the event description
+   */
+  @Input() eventDescriptionCustomTemplate?: TemplateRef<any>;
+  /**
    * Output click event emitter
    */
   @Output()

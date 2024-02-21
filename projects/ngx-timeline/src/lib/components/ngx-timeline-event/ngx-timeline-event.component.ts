@@ -27,6 +27,10 @@ export class NgxTimelineEventComponent {
    */
   @Input() innerEventCustomTemplate?: TemplateRef<any>;
   /**
+   * Inner custom template used to display the event description
+   */
+  @Input() eventDescriptionCustomTemplate?: TemplateRef<any>;
+  /**
    * Boolean used to enable or disable the animations
    */
   @Input() enableAnimation = true;

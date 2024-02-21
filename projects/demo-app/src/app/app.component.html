@@ -43,6 +43,7 @@
       [changeSide]="form.get('changeSide').value"
       [eventCustomTemplate]="form.get('eventCustomTemplate').value ? eventCustomTemplate : null"
       [innerEventCustomTemplate]="form.get('innerEventCustomTemplate').value ? innerEventCustomTemplate : null"
+      [eventDescriptionCustomTemplate]="form.get('eventDescriptionCustomTemplate').value ? eventDescriptionCustomTemplate : null"
       [centerIconCustomTemplate]="form.get('centerIconCustomTemplate').value ? centerIconCustomTemplate : null"
       [dateInstantCustomTemplate]="form.get('dateInstantCustomTemplate').value ? dateInstantCustomTemplate : null"
       [periodCustomTemplate]="form.get('periodCustomTemplate').value ? periodCustomTemplate : null"
@@ -72,6 +73,10 @@
     <div class="event" (click)="handleClick(event)">
       {{event | json}}
     </div>
+  </ng-template>
+
+  <ng-template #eventDescriptionCustomTemplate let-event=event>
+    <p class="event-info-description">{{event?.eventInfo?.description}}</p>
   </ng-template>
 
   <ng-template #eventCustomTemplate let-event=event let-colSidePosition=colSidePosition>

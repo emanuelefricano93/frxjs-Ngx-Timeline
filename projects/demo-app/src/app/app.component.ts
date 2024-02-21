@@ -103,6 +103,14 @@ export class AppComponent {
       ]
     },
     {
+      label: 'Event description custom template',
+      formControlName: 'eventDescriptionCustomTemplate',
+      options: [
+        {name: 'No Custom template', value: false},
+        {name: 'Custom Description Event Template', value: true}
+      ]
+    },
+    {
       label: 'Center icon custom template',
       formControlName: 'centerIconCustomTemplate',
       options: [

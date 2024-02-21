@@ -15,7 +15,7 @@
         <div class="title-container">{{event?.eventInfo?.title | titlecase}}</div>
       </div>
       <div class="event-info-body">
-        <p class="event-info-description">{{event?.eventInfo?.description}}</p>
+        <ng-container *ngTemplateOutlet="eventDescriptionCustomTemplate || eventDescriptionContainer; context: {event: event}"></ng-container>
       </div>
     </div>
 
@@ -35,4 +35,9 @@
       </div>
     </div>
   </div>
+</ng-template>
+
+
+<ng-template #eventDescriptionContainer let-event=event>
+  <p class="event-info-description">{{event?.eventInfo?.description}}</p>
 </ng-template>
