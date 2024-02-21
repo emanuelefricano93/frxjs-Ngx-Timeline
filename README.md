@@ -49,6 +49,7 @@ eventCustomTemplate           | Custom Template displayed to show a single event
 centerIconCustomTemplate      | Custom Template displayed to show an separator icon         | no        | TemplateRef<any>                                                                                                                            | no default 
 dateInstantCustomTemplate     | Custom Template displayed to show the side date             | no        | TemplateRef<any>                                                                                                                            | no default 
 innerEventCustomTemplate      | Custom Template displayed to show the inner event           | no        | TemplateRef<any>                                                                                                                            | no default 
+eventDescriptionCustomTemplate| Custom Template displayed to show the description           | no        | TemplateRef<any>                                                                                                                            | no default 
 <br/>
 
 ### Output
