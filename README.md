@@ -113,6 +113,11 @@ enum NgxTimelineEventChangeSide {
   </ng-template>
 ```
 ```html
+  <ng-template #eventDescriptionCustomTemplate let-event=event>
+    <p class="event-info-description">{{event?.eventInfo?.description}}</p>
+  </ng-template>
+```
+```html
   <ng-template #eventCustomTemplate let-event=event let-colSidePosition=colSidePosition>
     <div class="event" (click)="handleClick(event)">
       {{event | json}}
