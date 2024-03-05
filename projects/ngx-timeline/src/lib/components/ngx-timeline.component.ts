@@ -88,11 +88,9 @@ export class NgxTimelineComponent implements OnInit, OnChanges, DoCheck {
 
   ngOnChanges() {
     this.groupEvents(this.events);
-    console.log('ngOnChanges');
   }
 
   ngDoCheck() {
-    console.log('ngDoCheck');
     const changes = this.iterableDiffer.diff(this.events);
     if (changes) {
       this.groupEvents(this.events);
