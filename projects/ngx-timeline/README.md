@@ -43,7 +43,7 @@ langCode                      | language code use to format dates               
 enableAnimation               | Boolean used to enable or disable the animations            | no        | boolean                                                                                                                                     | true   
 reverseOrder                  | Boolean used to reverse sort order (default older first)    | no        | boolean                                                                                                                                     | false   
 groupEvent                    | Logic to be applied in order to group events                | no        | enum NgxTimelineEventGroup                                                                                                                  | NgxTimelineEventGroup.MONTH_YEAR
-changeSide                    | Logic to be applied in order to put evetns on LEFT or RIGHT | no        | enum NgxTimelineEventChangeSide                                                                                                      | NgxTimelineEventChangeSide.ON_DIFFERENT_DAY_IN_GROUP    
+changeSide                    | Logic to be applied in order to put events on LEFT or RIGHT | no        | enum NgxTimelineEventChangeSide                                                                                                      | NgxTimelineEventChangeSide.ON_DIFFERENT_DAY_IN_GROUP    
 periodCustomTemplate          | Custom Template displayed before a group of events          | no        | TemplateRef<any>                                                                                                                            | no default 
 eventCustomTemplate           | Custom Template displayed to show a single event            | no        | TemplateRef<any>                                                                                                                            | no default 
 centerIconCustomTemplate      | Custom Template displayed to show an separator icon         | no        | TemplateRef<any>                                                                                                                            | no default 
@@ -137,7 +137,7 @@ enum NgxTimelineEventChangeSide {
 First of all, in order to track everything, open an issue describing the problem or a missing functionality you would like to add to the lib.
 
 To start the contribution:
-- `npm run watch-lib` (you are builduing the lib with --watch options)
+- `npm run watch-lib` (you are building the lib with --watch options)
 - `npm run start-dev` (you are linking the lib and starting the demo app )
 
 Every time you will change the code in your lib, any update will trigger the re-load of the app.
@@ -146,7 +146,7 @@ Now is time to enjoy and start to code.
 
 Thanks in advance for your contribution
 
-## How to deploy new version (for mantainers only)
+## How to deploy new version (for maintainers only)
 After testing the fix or the new feature with 100% test coverage:
 - npm run lint:fix
 - npm run prepare-github-pages

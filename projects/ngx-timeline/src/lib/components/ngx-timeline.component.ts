@@ -39,7 +39,7 @@ export class NgxTimelineComponent implements OnInit, OnChanges, DoCheck {
    */
   @Input() groupEvent?: NgxTimelineEventGroup = NgxTimelineEventGroup.MONTH_YEAR;
   /**
-   * Logic to be applied in order to put evetns on LEFT or RIGHT
+   * Logic to be applied in order to put events on LEFT or RIGHT
    */
   @Input() changeSide?: NgxTimelineEventChangeSide = NgxTimelineEventChangeSide.ON_DIFFERENT_DAY_IN_GROUP;
   /**
