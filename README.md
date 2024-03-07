@@ -1,16 +1,16 @@
 # NgxTimeline ![check-code-coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)
 
 The main goal of this angular library is to give you the possibility to integrate a timeline in your app.
-<br/>
+<br>
 Version 17.0.5 is compatible with angular 17.
-<br/>
+<br>
 Go [here](https://emanuelefricano93.github.io/frxjs-Ngx-Timeline/) and discover all possible configurations for the timeline 
 
 ![image](https://user-images.githubusercontent.com/26500344/130092921-8338496a-31df-46fa-b75f-40989eb53d33.png)
 <p align = "center">
 Fig.1 - Preview of <a href="https://emanuelefricano93.github.io/frxjs-Ngx-Timeline/">Timeline example configuration page</a>
 </p>
-<br/><br/>
+<br><br>
 
 
 ## Installation
@@ -18,7 +18,7 @@ Running the following command to install the library
 ```
 npm install @frxjs/ngx-timeline
 ```
-<br/><br/>
+<br><br>
 
 
 
@@ -31,7 +31,7 @@ After installing the library and including NgxTimelineModule in your imports mod
 <ngx-timeline [events]="events" [langCode]="it"></ngx-timeline>
 <ngx-timeline [events]="events" [langCode]="it" [enableAnimation]="false"></ngx-timeline>
 ```
-<br/><br/>
+<br><br>
 
 ## Configuration
 
@@ -50,13 +50,13 @@ centerIconCustomTemplate      | Custom Template displayed to show an separator i
 dateInstantCustomTemplate     | Custom Template displayed to show the side date             | no        | TemplateRef<any>                                                                                                                            | no default 
 innerEventCustomTemplate      | Custom Template displayed to show the inner event           | no        | TemplateRef<any>                                                                                                                            | no default 
 eventDescriptionCustomTemplate| Custom Template displayed to show the description           | no        | TemplateRef<any>                                                                                                                            | no default 
-<br/>
+<br>
 
 ### Output
 Output name                   | Explanation                                                 | Mandatory | Type/Supported Values                     | Default value
 ---                           | ---                                                         | ---       | ---                                       | ---           
 clickEmitter                  |  Output click event emitter                                 | no        | BehaviorSubject<NgxTimelineItem>          | no default 
-<br/>
+<br>
 
 ### Types and Enums
 ```typescript
@@ -84,7 +84,7 @@ enum NgxTimelineEventChangeSide {
   ON_DIFFERENT_MONTH_IN_GROUP = 'ON_DIFFERENT_MONTH_IN_GROUP'
 }
 ```
-<br/>
+<br>
   
 ### Examples with contexts of custom templates
 ```html
@@ -101,7 +101,7 @@ enum NgxTimelineEventChangeSide {
 ```html
   <ng-template #centerIconCustomTemplate let-index=index let-event=event>
     <div class="icon-container">
-      <img src="assets/image.png"/>
+      <img src="assets/image.png">
     </div>
   </ng-template>
 ```
@@ -131,7 +131,7 @@ enum NgxTimelineEventChangeSide {
     </span>
   </ng-template>
 ```    
-<br/><br/>
+<br><br>
   
 ## How to contribute
 First of all, in order to track everything, open an issue describing the problem or a missing functionality you would like to add to the lib.
