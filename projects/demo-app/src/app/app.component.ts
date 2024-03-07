@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { NgxTimelineEvent, NgxTimelineEventGroup, NgxTimelineEventChangeSide, NgxDateFormat, NgxTimelineItemPosition } from 'ngx-timeline';
-import { BehaviorSubject } from 'rxjs';
+import { NgxTimelineEvent, NgxTimelineEventGroup, NgxTimelineEventChangeSide, NgxDateFormat } from 'ngx-timeline';
 import { UntypedFormGroup, UntypedFormControl } from '@angular/forms';
 
 @Component({
@@ -11,9 +10,6 @@ import { UntypedFormGroup, UntypedFormControl } from '@angular/forms';
 export class AppComponent {
   title = 'demo-app';
   events: NgxTimelineEvent[];
-  events$: BehaviorSubject<NgxTimelineEvent[]> = new BehaviorSubject(null);
-  color = 0;
-  backgroundColor = 'red';
   form: UntypedFormGroup;
   ngxDateFormat = NgxDateFormat;
 
