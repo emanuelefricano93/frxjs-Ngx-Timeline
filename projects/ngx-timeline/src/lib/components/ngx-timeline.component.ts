@@ -15,7 +15,7 @@ import {BehaviorSubject} from 'rxjs';
 @Component({
   selector: 'ngx-timeline',
   templateUrl: './ngx-timeline.component.html',
-  styleUrls: ['./ngx-timeline.scss'],
+  styleUrls: ['./ngx-timeline.component.scss'],
 })
 export class NgxTimelineComponent implements OnInit, OnChanges, DoCheck {
   /**
