@@ -26,10 +26,10 @@ npm install @frxjs/ngx-timeline
 
 After installing the library and including NgxTimelineModule in your imports module you could add one of following examples to your template in order to display your timeline
 
-```
+```html
 <ngx-timeline [events]="events"></ngx-timeline>
-<ngx-timeline [events]="events" [langCode]="it"></ngx-timeline>
-<ngx-timeline [events]="events" [langCode]="it" [enableAnimation]="false"></ngx-timeline>
+<ngx-timeline [events]="events" [langCode]="'it'"></ngx-timeline>
+<ngx-timeline [events]="events" [langCode]="'it'" [enableAnimation]="false"></ngx-timeline>
 ```
 <br><br>
 
