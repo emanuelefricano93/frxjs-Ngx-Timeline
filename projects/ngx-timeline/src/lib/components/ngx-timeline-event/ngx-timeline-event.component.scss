@@ -9,6 +9,12 @@
     flex-direction: column;
     padding: 0 3rem;
 
+    .event-container {
+      &.reverse {
+        flex-direction: row;
+      }
+    }
+
     .event {
       margin: 0;
     }
