@@ -2,7 +2,7 @@ import {Component, Input, Output, TemplateRef} from '@angular/core';
 import {NgxTimelineItem, NgxTimelineItemPosition} from '../../models/NgxTimelineEvent';
 import {DatePipe} from '@angular/common';
 import {BehaviorSubject} from 'rxjs';
-import {supportedLanguageCodes} from '../../models';
+import {NgxTimelineOrientation, supportedLanguageCodes} from '../../models';
 
 @Component({
   selector: 'ngx-timeline-event',
@@ -35,11 +35,16 @@ export class NgxTimelineEventComponent {
    */
   @Input() enableAnimation = true;
   /**
+   * Orientation of the timeline
+   */
+  @Input() orientation: NgxTimelineOrientation = NgxTimelineOrientation.VERTICAL;
+  /**
    * Output click event emitter
    */
   @Output() clickEmitter: BehaviorSubject<NgxTimelineItem> = new BehaviorSubject(null);
 
   ngxTimelineItemPosition = NgxTimelineItemPosition;
+  ngxTimelineOrientation = NgxTimelineOrientation;
 
   private readonly monthAbbr = 'MMM';
   private readonly dayFormat = 'dd';

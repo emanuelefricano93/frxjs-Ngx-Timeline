@@ -1,4 +1,4 @@
-<div class="event-wrapper-container" (click)="clickEmitter.next(event)">
+<div class="event-wrapper-container" (click)="clickEmitter.next(event)" [ngClass]="{'horizontal': orientation === ngxTimelineOrientation.HORIZONTAL}">
   <div *ngIf="colSidePosition===ngxTimelineItemPosition.ON_RIGHT" class="arrow left"></div>
   <div class="event" [ngClass]="{'enableAnimation': enableAnimation}">
     <ng-container *ngTemplateOutlet="innerEventCustomTemplate || innerEventContainer; context: {event: event}"

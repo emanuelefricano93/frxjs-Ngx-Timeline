@@ -3,6 +3,7 @@ import {
   NgxTimelineEvent,
   NgxTimelineItem,
   NgxTimelineItemPosition,
+  NgxTimelineOrientation,
   NgxTimelinePeriodInfo,
   NgxDateFormat,
   NgxTimelineEventGroup,
@@ -34,6 +35,10 @@ export class NgxTimelineComponent implements OnInit, OnChanges, DoCheck {
    * Boolean used to reverse sort order (default older first)
    */
   @Input() reverseOrder = false;
+  /**
+   * Orientation of the timeline
+   */
+  @Input() orientation: NgxTimelineOrientation = NgxTimelineOrientation.VERTICAL;
   /**
    * Logic to be applied in order to group events
    */
@@ -76,6 +81,7 @@ export class NgxTimelineComponent implements OnInit, OnChanges, DoCheck {
   periods: NgxTimelineItem[] = [];
   items: NgxTimelineItem[] = [];
   ngxTimelineItemPosition = NgxTimelineItemPosition;
+  ngxTimelineOrientation = NgxTimelineOrientation;
   ngxDateFormat = NgxDateFormat;
 
   private differs: IterableDiffers = inject(IterableDiffers);

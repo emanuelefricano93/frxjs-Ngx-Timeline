@@ -32,23 +32,27 @@
       </div>
     </form>
 
-    <!-- ngx-timeline -->
-    <ngx-timeline
-      [events]="events"
-      [ngClass]="form.get('customClass').value ? 'inter' : ''"
-      [langCode]="form.get('langCode').value"
-      [enableAnimation]="form.get('enableAnimation').value"
-      [reverseOrder]="form.get('reverseOrder').value"
-      [groupEvent]="form.get('groupEvent').value"
-      [changeSide]="form.get('changeSide').value"
-      [eventCustomTemplate]="form.get('eventCustomTemplate').value ? eventCustomTemplate : null"
-      [innerEventCustomTemplate]="form.get('innerEventCustomTemplate').value ? innerEventCustomTemplate : null"
-      [eventDescriptionCustomTemplate]="form.get('eventDescriptionCustomTemplate').value ? eventDescriptionCustomTemplate : null"
-      [centerIconCustomTemplate]="form.get('centerIconCustomTemplate').value ? centerIconCustomTemplate : null"
-      [dateInstantCustomTemplate]="form.get('dateInstantCustomTemplate').value ? dateInstantCustomTemplate : null"
-      [periodCustomTemplate]="form.get('periodCustomTemplate').value ? periodCustomTemplate : null"
-      (clickEmitter)="form.get('clickEmitter').value ? handleClick($event) : null"
-    ></ngx-timeline>
+    <div class="ngx-timeline-container">
+      <!-- ngx-timeline -->
+      <ngx-timeline
+        [events]="events"
+        [ngClass]="form.get('customClass').value ? 'inter' : ''"
+        [langCode]="form.get('langCode').value"
+        [enableAnimation]="form.get('enableAnimation').value"
+        [reverseOrder]="form.get('reverseOrder').value"
+        [groupEvent]="form.get('groupEvent').value"
+        [changeSide]="form.get('changeSide').value"
+        [orientation]="form.get('orientation').value"
+        [eventCustomTemplate]="form.get('eventCustomTemplate').value ? eventCustomTemplate : null"
+        [innerEventCustomTemplate]="form.get('innerEventCustomTemplate').value ? innerEventCustomTemplate : null"
+        [eventDescriptionCustomTemplate]="form.get('eventDescriptionCustomTemplate').value ? eventDescriptionCustomTemplate : null"
+        [centerIconCustomTemplate]="form.get('centerIconCustomTemplate').value ? centerIconCustomTemplate : null"
+        [dateInstantCustomTemplate]="form.get('dateInstantCustomTemplate').value ? dateInstantCustomTemplate : null"
+        [periodCustomTemplate]="form.get('periodCustomTemplate').value ? periodCustomTemplate : null"
+        (clickEmitter)="form.get('clickEmitter').value ? handleClick($event) : null"
+      ></ngx-timeline>
+    </div>
+
   </div>
 
   <!-- CUSTOM TEMPLATES -->

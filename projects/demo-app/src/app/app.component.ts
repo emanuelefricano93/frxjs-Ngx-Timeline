@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NgxTimelineEvent, NgxTimelineEventGroup, NgxTimelineEventChangeSide, NgxDateFormat } from 'ngx-timeline';
+import { NgxTimelineEvent, NgxTimelineEventGroup, NgxTimelineEventChangeSide, NgxDateFormat, NgxTimelineOrientation } from 'ngx-timeline';
 import { UntypedFormGroup, UntypedFormControl } from '@angular/forms';
 
 @Component({
@@ -72,6 +72,14 @@ export class AppComponent {
         {name: 'On different day in group', value: NgxTimelineEventChangeSide.ON_DIFFERENT_DAY_IN_GROUP},
         {name: 'On different hours, minutes and seconds in group', value: NgxTimelineEventChangeSide.ON_DIFFERENT_HMS_IN_GROUP},
         {name: 'On different month in group', value: NgxTimelineEventChangeSide.ON_DIFFERENT_MONTH_IN_GROUP}
+      ]
+    },
+    {
+      label: 'Orientation',
+      formControlName: 'orientation',
+      options: [
+        {name: 'Vertical', value: NgxTimelineOrientation.VERTICAL},
+        {name: 'Horizontal', value: NgxTimelineOrientation.HORIZONTAL}
       ]
     },
     {

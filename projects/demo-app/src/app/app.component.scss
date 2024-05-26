@@ -334,7 +334,6 @@ svg#clouds {
   form {
     display: flex;
     align-items: flex-start;
-    flex: 0 0 20%;
     height: 100vh;
 
     label {
@@ -342,10 +341,15 @@ svg#clouds {
     }
   }
 
-  ngx-timeline {
+  .ngx-timeline-container {
     max-width: 900px;
     display: flex;
     flex: 0 0 80%;
+    overflow-x: auto;
+
+    ngx-timeline {
+      width: 100%;
+    }
   }
 
 }
@@ -415,9 +419,15 @@ svg#clouds {
       }
     }
 
-    ngx-timeline {
-      min-width: 80vw;
+    .ngx-timeline-container {
+      overflow-x: auto;
+      max-width: 100%;
+  
+      ngx-timeline {
+        min-width: 80vw;
+      }
     }
+
 
   }
 }

@@ -1,5 +1,5 @@
 <div class="main-container">
-  <div class="items-container">
+  <div class="items-container" [ngClass]="{'horizontal': orientation === ngxTimelineOrientation.HORIZONTAL}">
     <div *ngFor="let item of items; let index = index;" class="row">
       <!-- DESKTOP -->
       <div class="col col-left desktop" [ngClass]="item.periodInfo ? 'col-period' : 'col-event'">
@@ -89,6 +89,7 @@
   <ngx-timeline-event
     [event]="event"
     [langCode]="langCode"
+    [orientation]="orientation"
     [enableAnimation]="enableAnimation"
     [innerEventCustomTemplate]="innerEventCustomTemplate"
     [eventDescriptionCustomTemplate]="eventDescriptionCustomTemplate"

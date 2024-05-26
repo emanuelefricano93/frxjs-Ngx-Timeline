@@ -43,6 +43,7 @@ langCode                      | language code use to format dates               
 enableAnimation               | Boolean used to enable or disable the animations            | no        | boolean                                                                                                                                     | true   
 reverseOrder                  | Boolean used to reverse sort order (default older first)    | no        | boolean                                                                                                                                     | false   
 groupEvent                    | Logic to be applied in order to group events                | no        | enum NgxTimelineEventGroup                                                                                                                  | NgxTimelineEventGroup.MONTH_YEAR
+orientation                   | Orientation of the timeline                                 | no        | enum NgxTimelineOrientation                                                                                                                  | NgxTimelineOrientation.VERTICAL
 changeSide                    | Logic to be applied in order to put events on LEFT or RIGHT | no        | enum NgxTimelineEventChangeSide                                                                                                      | NgxTimelineEventChangeSide.ON_DIFFERENT_DAY_IN_GROUP    
 periodCustomTemplate          | Custom Template displayed before a group of events          | no        | TemplateRef<any>                                                                                                                            | no default 
 eventCustomTemplate           | Custom Template displayed to show a single event            | no        | TemplateRef<any>                                                                                                                            | no default 
@@ -73,6 +74,12 @@ enum NgxTimelineEventGroup {
   YEAR = 'YEAR',
   MONTH_YEAR = 'MONTH_YEAR',
   DAY_MONTH_YEAR = 'DAY_MONTH_YEAR'
+}
+```
+```typescript
+export enum NgxTimelineOrientation {
+  HORIZONTAL = 'HORIZONTAL',
+  VERTICAL = 'VERTICAL',
 }
 ```
 ```typescript

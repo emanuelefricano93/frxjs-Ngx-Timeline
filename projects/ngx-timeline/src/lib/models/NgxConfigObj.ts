@@ -121,6 +121,14 @@ export enum NgxTimelineEventGroup {
   DAY_MONTH_YEAR = 'DAY_MONTH_YEAR'
 }
 
+/**
+ * Enum used to set the group event logic
+ */
+export enum NgxTimelineOrientation {
+  HORIZONTAL = 'HORIZONTAL',
+  VERTICAL = 'VERTICAL',
+}
+
 export const fieldsToAddEventGroup = {
   YEAR: ['getFullYear'],
   MONTH_YEAR: ['getFullYear', 'getMonth'],

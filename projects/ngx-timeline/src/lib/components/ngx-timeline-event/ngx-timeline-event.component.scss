@@ -3,6 +3,31 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
+
+  &.horizontal {
+    display: flex;
+    flex-direction: column;
+    padding: 0 3rem;
+
+    .event {
+      margin: 0;
+    }
+
+    .arrow {
+      &.right {
+        border-left: .5rem solid transparent;
+        border-right: .5rem solid transparent;
+        border-top: .5rem solid white;
+        border-bottom: none;
+      }
+      &.left {
+        border-left: .5rem solid transparent;
+        border-right: .5rem solid transparent;
+        border-bottom: .5rem solid white;
+        border-top: none;
+      }
+    }
+  }
 }
 
 .arrow {
