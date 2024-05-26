@@ -193,6 +193,7 @@ $background-orange: orange;
   }
 
   .items-container {
+    min-width: max(20rem, 95%);
     &.horizontal {
       .event-outer-container {
         margin: 0 0.5rem;

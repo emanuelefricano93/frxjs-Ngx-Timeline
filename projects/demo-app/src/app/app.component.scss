@@ -420,12 +420,8 @@ svg#clouds {
     }
 
     .ngx-timeline-container {
-      overflow-x: auto;
       max-width: 100%;
-  
-      ngx-timeline {
-        min-width: 80vw;
-      }
+      width: 80vw;
     }
 
 
