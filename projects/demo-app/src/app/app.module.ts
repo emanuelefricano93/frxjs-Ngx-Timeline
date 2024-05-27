@@ -4,15 +4,17 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { NgxTimelineModule } from 'ngx-timeline';
+import { TestComponent } from './test/test/test.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    NgxTimelineModule
+    NgxTimelineModule,
+    TestComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
