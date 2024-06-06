@@ -189,7 +189,7 @@ export class NgxTimelineComponent implements OnInit, OnChanges, DoCheck {
   }
 
   protected compareEventsField(prevEvent: NgxTimelineEvent, event: NgxTimelineEvent, ...fields: string[]): boolean {
-    return fields.reduce((res, field) => res = res || prevEvent.timestamp[field]() !== event.timestamp[field](), !!false);
+    return fields.reduce((res, field) => res = res || prevEvent.timestamp[field]() !== event.timestamp[field](), false);
   }
 
   protected getPeriodInfoFromPeriodKey(periodKey: string, firstGroupEvent: NgxTimelineEvent): { periodInfo: NgxTimelinePeriodInfo } {
