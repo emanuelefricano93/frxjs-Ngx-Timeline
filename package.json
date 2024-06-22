@@ -31,7 +31,9 @@
     "new-version": "npm version --git-tag-version=false",
     "version": "echo 'starting postversion script'",
     "postversion": "sh scripts/postversion.sh",
-    "publish": "sh scripts/publish.sh"
+    "publish": "sh scripts/publish.sh",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
   },
   "private": false,
   "dependencies": {
@@ -56,13 +58,14 @@
     "@angular-eslint/template-parser": "^17.0.0",
     "@angular/cli": "^17.0.0",
     "@angular/compiler-cli": "^17.0.3",
+    "@cypress/schematic": "^2.5.2",
     "@types/jasmine": "~5.1.2",
     "@types/node": "^20.9.0",
     "@typescript-eslint/eslint-plugin": "^6.11.0",
     "@typescript-eslint/parser": "^6.11.0",
     "eslint": "^8.57.0",
-    "eslint-plugin-import": "^2.29.1",
     "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-import": "^2.29.1",
     "jasmine-core": "~5.1.1",
     "jasmine-spec-reporter": "~7.0.0",
     "karma": "~6.4.2",
@@ -71,10 +74,10 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "^2.1.0",
     "ng-packagr": "^17.0.0",
-    "protractor": "^7.0.0",
     "ts-node": "~10.9.1",
     "tslint": "~6.1.3",
-    "typescript": "~5.2.0"
+    "typescript": "~5.2.0",
+    "cypress": "latest"
   },
   "optionalDependencies": {
     "@nx/nx-darwin-arm64": "16.5.1",
