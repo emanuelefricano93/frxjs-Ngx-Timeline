@@ -1,4 +1,6 @@
-import {Component, OnInit, Input, TemplateRef, OnChanges, SimpleChanges, Output, IterableDiffers, IterableDiffer, DoCheck, inject} from '@angular/core';
+import {Component, OnInit, Input, TemplateRef, OnChanges, Output, IterableDiffers, IterableDiffer, DoCheck, inject} from '@angular/core';
+import {BehaviorSubject} from 'rxjs';
+
 import {
   NgxTimelineEvent,
   NgxTimelineItem,
@@ -11,7 +13,7 @@ import {
   periodKeyDateFormat,
   fieldsToCheckEventChangeSideInGroup as fieldsToCheckEventChangeSide,
   fieldsToAddEventGroup} from '../models';
-import {BehaviorSubject} from 'rxjs';
+  
 
 @Component({
   selector: 'ngx-timeline',

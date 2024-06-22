@@ -1,8 +1,9 @@
-import {Component, Input, Output, TemplateRef} from '@angular/core';
-import {NgxTimelineItem, NgxTimelineItemPosition} from '../../models/NgxTimelineEvent';
 import {DatePipe} from '@angular/common';
+import {Component, Input, Output, TemplateRef} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
+
 import {NgxTimelineOrientation, supportedLanguageCodes} from '../../models';
+import {NgxTimelineItem, NgxTimelineItemPosition} from '../../models/NgxTimelineEvent';
 
 @Component({
   selector: 'ngx-timeline-event',

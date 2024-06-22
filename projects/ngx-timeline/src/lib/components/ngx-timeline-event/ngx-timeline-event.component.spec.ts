@@ -1,9 +1,9 @@
+import {registerLocaleData} from '@angular/common';
+import localeIt from '@angular/common/locales/it';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {NgxTimelineEventComponent} from './ngx-timeline-event.component';
 import {NgxTimelineItemPosition} from '../../models';
-import localeIt from '@angular/common/locales/it';
-import {registerLocaleData} from '@angular/common';
 
 registerLocaleData(localeIt);
 
