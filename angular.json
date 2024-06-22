@@ -100,12 +100,15 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "docs",
+            "outputPath": {
+              "base": "docs"
+            },
             "index": "projects/demo-app/src/index.html",
-            "main": "projects/demo-app/src/main.ts",
-            "polyfills": "projects/demo-app/src/polyfills.ts",
+            "polyfills": [
+              "projects/demo-app/src/polyfills.ts"
+            ],
             "tsConfig": "projects/demo-app/tsconfig.app.json",
             "assets": [
               "projects/demo-app/src/favicon.ico",
@@ -115,12 +118,11 @@
               "projects/demo-app/src/styles.scss"
             ],
             "scripts": [],
-            "vendorChunk": true,
             "extractLicenses": false,
-            "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
-            "namedChunks": true
+            "namedChunks": true,
+            "browser": "projects/demo-app/src/main.ts"
           },
           "configurations": {
             "production": {
@@ -135,8 +137,6 @@
               "sourceMap": false,
               "namedChunks": false,
               "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
