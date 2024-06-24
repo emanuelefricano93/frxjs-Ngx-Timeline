@@ -2,7 +2,7 @@ import {DatePipe} from '@angular/common';
 import {Component, Input, Output, TemplateRef} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 
-import {NgxTimelineOrientation, supportedLanguageCodes} from '../../models';
+import {defaultSupportedLanguageCode, NgxTimelineOrientation, SupportedLanguageCode} from '../../models';
 import {NgxTimelineItem, NgxTimelineItemPosition} from '../../models/NgxTimelineEvent';
 
 @Component({
@@ -22,7 +22,7 @@ export class NgxTimelineEventComponent {
   /**
    * Language code used to format the dates
    */
-  @Input() langCode?: string;
+  @Input() langCode: SupportedLanguageCode = defaultSupportedLanguageCode;
   /**
    * Inner custom template used to display the event detail
    */
@@ -68,7 +68,7 @@ export class NgxTimelineEventComponent {
     return {day, month, year};
   }
 
-  protected getLangCode(): string {
-    return this.langCode && supportedLanguageCodes.includes(this.langCode) ? this.langCode : supportedLanguageCodes[0];
+  protected getLangCode(): SupportedLanguageCode {
+    return this.langCode;
   }
 }

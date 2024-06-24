@@ -79,10 +79,5 @@ describe('NgxTimelineEventComponent', () => {
       const res = component.getDateObj();
       expect(res).toEqual({day: '19', month: 'ago', year: 2021});
     });
-    it('should getDateObj with unsupported langCode', () => {
-      component.langCode = 'xx';
-      const res = component.getDateObj();
-      expect(res).toEqual({day: '19', month: 'Aug', year: 2021});
-    });
   });
 });
