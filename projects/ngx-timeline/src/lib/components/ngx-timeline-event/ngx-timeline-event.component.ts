@@ -14,11 +14,11 @@ export class NgxTimelineEventComponent {
   /**
    * Event to be displayed
    */
-  @Input() event: NgxTimelineItem;
+  @Input() event!: NgxTimelineItem;
   /**
    * Event position respect to the vertical line (LEFT or RIGHT)
    */
-  @Input() colSidePosition: NgxTimelineItemPosition;
+  @Input() colSidePosition?: NgxTimelineItemPosition;
   /**
    * Language code used to format the dates
    */
