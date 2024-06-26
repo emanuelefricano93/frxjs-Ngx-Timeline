@@ -1,4 +1,6 @@
-export const supportedLanguageCodes = ['en', 'it', 'fr', 'de', 'es', 'sl', 'tr', 'pl', 'pt', 'ru'];
+export const supportedLanguageCodes = ['en', 'it', 'fr', 'de', 'es', 'sl', 'tr', 'pl', 'pt', 'ru'] as const;
+export type SupportedLanguageCode = typeof supportedLanguageCodes[number];
+export const defaultSupportedLanguageCode: SupportedLanguageCode = supportedLanguageCodes[0];
 
 export interface NgxConfigDate {
   code: string;
@@ -9,9 +11,9 @@ export interface NgxConfigDate {
   year: string;
 }
 
-export interface NgxDateObjMap {
-  [key: string]: NgxConfigDate;
-}
+export type NgxDateObjMap = {
+  [key in SupportedLanguageCode]: NgxConfigDate;
+};
 
 export const dateConfigMap: NgxDateObjMap = {
   en: {

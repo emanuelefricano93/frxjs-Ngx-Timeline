@@ -12,8 +12,9 @@ import {
   NgxTimelineEventChangeSide,
   periodKeyDateFormat,
   fieldsToCheckEventChangeSideInGroup as fieldsToCheckEventChangeSide,
-  fieldsToAddEventGroup} from '../models';
-  
+  fieldsToAddEventGroup, SupportedLanguageCode, defaultSupportedLanguageCode,
+} from '../models';
+
 
 @Component({
   selector: 'ngx-timeline',
@@ -28,7 +29,7 @@ export class NgxTimelineComponent implements OnInit, OnChanges, DoCheck {
   /**
    * Language code used to show the date formatted
    */
-  @Input() langCode?: string;
+  @Input() langCode: SupportedLanguageCode = defaultSupportedLanguageCode;
   /**
    * Boolean used to enable or disable the animations
    */
