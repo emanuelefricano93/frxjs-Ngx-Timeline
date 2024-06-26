@@ -24,7 +24,7 @@ export class NgxTimelineComponent implements OnInit, OnChanges, DoCheck {
   /**
    * List of events to be displayed
    */
-  @Input() events: NgxTimelineEvent[];
+  @Input() events!: NgxTimelineEvent[];
   /**
    * Language code used to show the date formatted
    */
@@ -44,31 +44,31 @@ export class NgxTimelineComponent implements OnInit, OnChanges, DoCheck {
   /**
    * Logic to be applied in order to group events
    */
-  @Input() groupEvent?: NgxTimelineEventGroup = NgxTimelineEventGroup.MONTH_YEAR;
+  @Input() groupEvent: NgxTimelineEventGroup = NgxTimelineEventGroup.MONTH_YEAR;
   /**
    * Logic to be applied in order to put events on LEFT or RIGHT
    */
-  @Input() changeSide?: NgxTimelineEventChangeSide = NgxTimelineEventChangeSide.ON_DIFFERENT_DAY_IN_GROUP;
+  @Input() changeSide: NgxTimelineEventChangeSide = NgxTimelineEventChangeSide.ON_DIFFERENT_DAY_IN_GROUP;
   /**
    * Custom Template displayed before a group of events
    */
-  @Input() periodCustomTemplate: TemplateRef<any>;
+  @Input() periodCustomTemplate?: TemplateRef<any>;
   /**
    * Custom Template displayed to show a single event
    */
-  @Input() eventCustomTemplate: TemplateRef<any>;
+  @Input() eventCustomTemplate?: TemplateRef<any>;
   /**
    * Custom Template displayed to show an separator icon
    */
-  @Input() centerIconCustomTemplate: TemplateRef<any>;
+  @Input() centerIconCustomTemplate?: TemplateRef<any>;
   /**
    * Custom Template displayed to show the side date
    */
-  @Input() dateInstantCustomTemplate: TemplateRef<any>;
+  @Input() dateInstantCustomTemplate?: TemplateRef<any>;
   /**
    * Custom Template displayed to show the inner event
    */
-  @Input() innerEventCustomTemplate: TemplateRef<any>;
+  @Input() innerEventCustomTemplate?: TemplateRef<any>;
   /**
    * Inner custom template used to display the event description
    */
