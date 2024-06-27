@@ -24,8 +24,7 @@
       "ngx-timeline": [
         "dist/ngx-timeline/ngx-timeline",
         "dist/ngx-timeline"
-      ],
-      "@angular/*": ["node_modules/@angular/*"]
+      ]
     },
     "useDefineForClassFields": false
   },

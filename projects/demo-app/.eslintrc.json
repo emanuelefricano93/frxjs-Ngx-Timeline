@@ -7,7 +7,7 @@
     "import/resolver": {
       "typescript": {
         "project": [
-          "projects/ngx-timeline/tsconfig.(lib|spec).json"
+          "projects/demo-app/tsconfig.(app|spec).json"
         ]
       }
     }
@@ -19,7 +19,7 @@
       ],
       "parserOptions": {
         "project": [
-          "projects/ngx-timeline/tsconfig.(lib|spec).json"
+          "projects/demo-app/tsconfig.(app|spec).json"
         ]
       },
       "rules": {
@@ -27,7 +27,7 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "ngx",
+            "prefix": "app",
             "style": "camelCase"
           }
         ],
@@ -35,10 +35,11 @@
           "error",
           {
             "type": "element",
-            "prefix": "ngx",
+            "prefix": "app",
             "style": "kebab-case"
           }
-        ]
+        ],
+       "import/no-unresolved": "off"
       }
     }
   ]

@@ -3,11 +3,6 @@
   "ignorePatterns": [
     "projects/**/*"
   ],
-  "settings": {
-    "import/resolver": {
-      "typescript": {} // this loads <rootdir>/tsconfig.json to eslint
-    }
-  },
   "overrides": [
     {
       "files": [
@@ -15,38 +10,26 @@
       ],
       "parserOptions": {
         "project": [
-          "tsconfig.json",
-          "e2e/tsconfig.json"
+          "tsconfig.json"
         ],
         "createDefaultProgram": true
       },
       "extends": [
         "plugin:@angular-eslint/recommended",
         "plugin:@angular-eslint/template/process-inline-templates",
-        "plugin:import/errors",
-        "plugin:import/warnings",
-        "plugin:import/typescript"
+        // "plugin:@angular-eslint/all", // more pedantic tests =)
+        // "plugin:@typescript-eslint/recommended",
+        // "plugin:@typescript-eslint/recommended-type-checked",
+        // "plugin:@typescript-eslint/stylistic",
+        // "plugin:@typescript-eslint/stylistic-type-checked",
+        // "plugin:@stylistic/recommended-extends",
+        "plugin:import/recommended"
       ],
       "plugins": [
         "import"
       ],
       "rules": {
-        "@angular-eslint/component-selector": [
-          "error",
-          {
-            "prefix": "ngx",
-            "style": "kebab-case",
-            "type": "element"
-          }
-        ],
-        "@angular-eslint/directive-selector": [
-          "error",
-          {
-            "prefix": "ngx",
-            "style": "camelCase",
-            "type": "attribute"
-          }
-        ],
+        "quotes": ["error", "single"],
         "import/order": [
           "error",
           {
@@ -68,6 +51,7 @@
         "*.html"
       ],
       "extends": [
+        // "plugin:@angular-eslint/template/accessibility",
         "plugin:@angular-eslint/template/recommended"
       ],
       "rules": {
