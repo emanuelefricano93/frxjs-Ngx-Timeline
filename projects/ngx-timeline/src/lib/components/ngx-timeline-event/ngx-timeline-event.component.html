@@ -1,11 +1,13 @@
 <div class="event-wrapper-container" (click)="clickEmitter.next(event)" [ngClass]="{'horizontal': orientation === ngxTimelineOrientation.HORIZONTAL}">
-  <div *ngIf="colSidePosition===ngxTimelineItemPosition.ON_RIGHT" class="arrow left"></div>
+  @if (colSidePosition===ngxTimelineItemPosition.ON_RIGHT) {
+    <div class="arrow left"></div>
+  }
   <div class="event" [ngClass]="{'enableAnimation': enableAnimation}">
-    <ng-container *ngTemplateOutlet="innerEventCustomTemplate || innerEventContainer; context: {event: event}"
-    >
-  </ng-container>
+    <ng-container *ngTemplateOutlet="innerEventCustomTemplate || innerEventContainer; context: {event: event}"></ng-container>
   </div>
-  <div *ngIf="colSidePosition===ngxTimelineItemPosition.ON_LEFT" class="arrow right"></div>
+  @if (colSidePosition === ngxTimelineItemPosition.ON_LEFT) {
+    <div class="arrow right"></div>
+  }
 </div>
 
 <ng-template #innerEventContainer let-event=event>
@@ -23,17 +25,19 @@
       <hr>
     </div>
 
-    <div class="event-date-container" *ngIf="getDateObj() as dateObj">
-      <div>
-        <p>{{dateObj?.month}}</p>
+    @if (getDateObj(); as dateObj) {
+      <div class="event-date-container">
+        <div>
+          <p>{{dateObj?.month}}</p>
+        </div>
+        <div>
+          <p class="day">{{dateObj?.day}}</p>
+        </div>
+        <div>
+          <p>{{dateObj?.year}}</p>
+        </div>
       </div>
-      <div>
-        <p class="day">{{dateObj?.day}}</p>
-      </div>
-      <div>
-        <p>{{dateObj?.year}}</p>
-      </div>
-    </div>
+    }
   </div>
 </ng-template>
 
