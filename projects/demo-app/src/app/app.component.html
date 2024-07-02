@@ -23,12 +23,16 @@
     <!-- ALL CONFIGURATIONS -->
     <form [formGroup]="form">
       <div class="form-container">
-        <div class="form-select" *ngFor="let configuration of configurations">
-          <label>{{configuration.label}}</label>
-          <select formControlName="{{configuration.formControlName}}">
-            <option *ngFor="let option of configuration.options" [ngValue]="option.value">{{ option.name }}</option>
-          </select>
-        </div>
+        @for (configuration of configurations; track configuration) {
+          <div class="form-select">
+            <label>{{ configuration.label }}</label>
+            <select formControlName="{{configuration.formControlName}}">
+              @for (option of configuration.options; track option) {
+                <option [ngValue]="option.value">{{ option.name }}</option>
+              }
+            </select>
+          </div>
+        }
       </div>
     </form>
 
