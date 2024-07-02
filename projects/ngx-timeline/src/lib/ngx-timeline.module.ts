@@ -10,8 +10,7 @@ import localeSl from '@angular/common/locales/sl';
 import localeTr from '@angular/common/locales/tr';
 import {NgModule} from '@angular/core';
 
-import {NgxTimelineEventComponent,NgxTimelineComponent}
-  from './components';
+import {NgxTimelineEventComponent, NgxTimelineComponent} from './components';
 import {NgxDatePipe} from './pipes';
 
 registerLocaleData(localeIt);
@@ -25,8 +24,8 @@ registerLocaleData(localePt);
 registerLocaleData(localeRu);
 
 @NgModule({
-  declarations: [NgxTimelineComponent, NgxTimelineEventComponent, NgxDatePipe],
-  imports: [CommonModule],
+  declarations: [],
+  imports: [CommonModule, NgxTimelineComponent, NgxTimelineEventComponent, NgxDatePipe],
   exports: [NgxTimelineComponent, NgxDatePipe],
 })
 export class NgxTimelineModule { }

@@ -1,6 +1,8 @@
-import {Component, OnInit, Input, TemplateRef, OnChanges, Output, IterableDiffers, IterableDiffer, DoCheck, inject} from '@angular/core';
+import {NgClass, NgTemplateOutlet} from '@angular/common';
+import {Component, DoCheck, inject, Input, IterableDiffer, IterableDiffers, OnChanges, OnInit, Output, TemplateRef} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 
+import {NgxTimelineEventComponent} from './ngx-timeline-event/ngx-timeline-event.component';
 import {
   NgxTimelineEvent,
   NgxTimelineItem,
@@ -14,12 +16,20 @@ import {
   fieldsToCheckEventChangeSideInGroup as fieldsToCheckEventChangeSide,
   fieldsToAddEventGroup, SupportedLanguageCode, defaultSupportedLanguageCode,
 } from '../models';
+import {NgxDatePipe} from '../pipes';
 
 
 @Component({
   selector: 'ngx-timeline',
+  standalone: true,
   templateUrl: './ngx-timeline.component.html',
-  styleUrls: ['./ngx-timeline.component.scss'],
+  styleUrl: './ngx-timeline.component.scss',
+  imports: [
+    NgClass,
+    NgTemplateOutlet,
+    NgxDatePipe,
+    NgxTimelineEventComponent,
+  ],
 })
 export class NgxTimelineComponent implements OnInit, OnChanges, DoCheck {
   /**

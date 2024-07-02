@@ -33,9 +33,8 @@ describe('NgxTimelineEventComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [NgxTimelineEventComponent],
-    })
-        .compileComponents();
+      imports: [NgxTimelineEventComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

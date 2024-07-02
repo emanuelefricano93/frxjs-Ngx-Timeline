@@ -1,4 +1,4 @@
-import {DatePipe} from '@angular/common';
+import {DatePipe, NgClass, NgTemplateOutlet, TitleCasePipe} from '@angular/common';
 import {Component, Input, Output, TemplateRef} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 
@@ -7,8 +7,14 @@ import {NgxTimelineItem, NgxTimelineItemPosition} from '../../models/NgxTimeline
 
 @Component({
   selector: 'ngx-timeline-event',
+  standalone: true,
   templateUrl: './ngx-timeline-event.component.html',
-  styleUrls: ['./ngx-timeline-event.component.scss'],
+  styleUrl: './ngx-timeline-event.component.scss',
+  imports: [
+    NgClass,
+    NgTemplateOutlet,
+    TitleCasePipe,
+  ],
 })
 export class NgxTimelineEventComponent {
   /**
