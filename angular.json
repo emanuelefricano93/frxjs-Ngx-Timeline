@@ -90,11 +90,6 @@
     },
     "demo-app": {
       "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
-        }
-      },
       "root": "projects/demo-app",
       "sourceRoot": "projects/demo-app/src",
       "prefix": "app",
@@ -127,12 +122,6 @@
           },
           "configurations": {
             "production": {
-              "fileReplacements": [
-                {
-                  "replace": "projects/demo-app/src/environments/environment.ts",
-                  "with": "projects/demo-app/src/environments/environment.prod.ts"
-                }
-              ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -189,15 +178,11 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/demo-app/tsconfig.app.json",
-              "projects/demo-app/tsconfig.spec.json",
-              "projects/demo-app/cypress/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "projects/demo-app/src/**/*.ts",
+              "projects/demo-app/src/**/*.html"
             ]
           }
         },
@@ -258,5 +243,16 @@
       "@angular-eslint/schematics",
       "@schematics/angular"
     ]
+  },
+  "schematics": {
+    "@schematics/angular:component": {
+      "style": "scss"
+    },
+    "@angular-eslint/schematics:application": {
+      "setParserOptionsProject": true
+    },
+    "@angular-eslint/schematics:library": {
+      "setParserOptionsProject": true
+    }
   }
 }
