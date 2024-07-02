@@ -1,12 +1,19 @@
-import { Component } from '@angular/core';
-import { UntypedFormGroup, UntypedFormControl } from '@angular/forms';
-
-import { NgxTimelineEvent, NgxTimelineEventGroup, NgxTimelineEventChangeSide, NgxDateFormat, NgxTimelineOrientation } from 'ngx-timeline';
+import {JsonPipe, NgClass} from '@angular/common';
+import {Component} from '@angular/core';
+import {UntypedFormGroup, UntypedFormControl, ReactiveFormsModule} from '@angular/forms';
+import {NgxDateFormat, NgxTimelineEvent, NgxTimelineEventChangeSide, NgxTimelineEventGroup, NgxTimelineModule, NgxTimelineOrientation} from 'ngx-timeline';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrl: './app.component.scss',
+  imports: [
+    JsonPipe,
+    NgClass,
+    NgxTimelineModule,
+    ReactiveFormsModule,
+  ],
 })
 export class AppComponent {
   title = 'demo-app';
