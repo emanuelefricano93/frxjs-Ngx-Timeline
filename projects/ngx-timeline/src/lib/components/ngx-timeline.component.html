@@ -18,7 +18,7 @@
         <div class="col col-center desktop" [ngClass]="item.periodInfo ? 'col-period' : 'col-event'">
           @if (item.periodInfo) {
             <div class="center-inner">
-              <ng-container *ngTemplateOutlet="periodCustomTemplate || periodTemplate; context: {period: item.periodInfo, index: index, event: item}"></ng-container>
+              <ng-container *ngTemplateOutlet="periodContainerTemplate; context: {period: item.periodInfo, index: index, event: item}"></ng-container>
             </div>
           }
           @if (!item.periodInfo) {
@@ -52,7 +52,7 @@
         <div class="col col-center mobile" [ngClass]="item.periodInfo ? 'col-period' : 'col-event'">
           @if (item.periodInfo; ) {
             <div class="center-inner">
-              <ng-container *ngTemplateOutlet="periodCustomTemplate || periodTemplate; context: {period: item.periodInfo, index: index, event: item}"></ng-container>
+              <ng-container *ngTemplateOutlet="periodContainerTemplate; context: {period: item.periodInfo, index: index, event: item}"></ng-container>
             </div>
           }
           @if (!item.periodInfo; ) {
@@ -92,15 +92,18 @@
   </span>
 </ng-template>
 
-<ng-template #periodTemplate let-period=period let-index=index let-event=event>
-  <div [ngClass]="{'transparent first-line': !index}" class="line"></div>
+<ng-template #periodContainerTemplate let-period=period let-index=index let-event=event>
   <div class="period-container">
-    <div class="period-inner-container">
-      <span>{{period?.firstDate | ngxdate : getPeriodKeyDateFormat() : langCode}}</span>
-    </div>
+    <ng-container *ngTemplateOutlet="periodCustomTemplate || periodTemplate; context: {period: period, index:index, event:event}"></ng-container>
   </div>
-  <div class="line"></div>
 </ng-template>
+
+<ng-template #periodTemplate let-period=period>
+  <div class="period-inner-container">
+    <span>{{period?.firstDate | ngxdate : getPeriodKeyDateFormat() : langCode}}</span>
+  </div>
+</ng-template>
+
 
 <ng-template #eventTemplate let-event=event let-colSidePosition=colSidePosition>
   <ngx-timeline-event

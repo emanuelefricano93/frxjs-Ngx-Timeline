@@ -288,7 +288,7 @@ svg#clouds {
   }
 }
 
-.period-container {
+.period-inner-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -363,7 +363,6 @@ svg#clouds {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
   height: 10px;
   width: 10px;
   background: white;
@@ -383,11 +382,8 @@ svg#clouds {
 }
 
 ::ng-deep ngx-timeline.inter {
-  .period-container {
+  .period-inner-container {
     background: blue !important;
-    .period-inner-container {
-      background: blue !important;
-    }
   }
   .line:not(.first-line):not(.last-line) {
     background-color: lightgrey !important;

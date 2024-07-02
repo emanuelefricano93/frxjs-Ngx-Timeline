@@ -49,7 +49,6 @@ $background-orange: orange;
     .center-inner {
       display: flex;
       flex-direction: row;
-      min-width: 250px;
 
       .line {
         max-width: 50%;
@@ -93,7 +92,9 @@ $background-orange: orange;
 }
 
 .col-center {
-  min-height: 6rem;
+  &:not(.col-period) {
+    min-height: 10rem;
+  }
   padding: 0;
   flex: $flex-display-col-center;
 }
@@ -107,9 +108,7 @@ $background-orange: orange;
   height: 100%;
 
   .line {
-    min-height: 50%;
-    max-height: 50%;
-    height: 50%;
+    flex: 50 50 0;
     background: $background-line;
     width: 0.1rem;
 
@@ -120,12 +119,11 @@ $background-orange: orange;
 }
 
 .period-container {
-  background: $background-orange;
-  color: white;
-  margin: 0;
-  padding: 0.2rem 0.5rem;
-
   .period-inner-container {
+    color: white;
+    border-radius: 2px;
+    padding: 0.2rem 0.5rem;
+    background: $background-orange;
     width: max-content;
     padding: 0.2rem 0.5rem;
     z-index: 10;
@@ -205,13 +203,6 @@ $background-orange: orange;
       .col-center {
         min-height: 2rem;
       }
-
-      .period-container {
-        padding: 0;
-        .period-inner-container {
-          position: relative;
-        }
-      }
     }
   }
 
@@ -229,7 +220,7 @@ $background-orange: orange;
     }
 
     &.col-period {
-      flex: 17 17 0;
+      flex: 14 14 0;
     }
     &.col-event {
       flex: 17 17 0;
@@ -251,13 +242,11 @@ $background-orange: orange;
   }
 
   .col-center {
-    min-height: 6rem;
     justify-content: center;
     margin: 0;
 
     &.col-period {
       flex: 5 5 0;
-      min-height: 3rem;
     }
     &.col-event {
       flex: 5 5 0;
@@ -269,23 +258,11 @@ $background-orange: orange;
   }
 
   .period-container {
-    min-height: 20%;
-    height: 20%;
-    max-height: 20%;
-    background: transparent;
+    height: fit-content;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 6px;
-
-    .period-inner-container {
-      position: absolute;
-      background: $background-orange;
-      color: white;
-      width: max-content;
-      padding: 0.2rem 0.5rem;
-      z-index: 10;
-    }
+    position: relative;
   }
 
   .center-icon-container {

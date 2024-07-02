@@ -61,13 +61,9 @@
 
   <!-- CUSTOM TEMPLATES -->
   <ng-template #periodCustomTemplate let-period=period let-index=index>
-    <div [ngClass]="{'transparent first-line': !index}" class="line"></div>
-    <div class="period-container">
-      <p>
+      <div class="period-inner-container">
         {{index}} - {{period?.firstDate | ngxdate }}
-      </p>
-    </div>
-    <div class="line"></div>
+      </div>
   </ng-template>
 
   <ng-template #centerIconCustomTemplate let-event=event let-index=index>
