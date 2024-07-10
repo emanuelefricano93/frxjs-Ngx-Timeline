@@ -9,9 +9,8 @@ describe('NgxTimelineComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [NgxTimelineComponent],
-    })
-        .compileComponents();
+      imports: [NgxTimelineComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

@@ -3,7 +3,11 @@ import {Pipe, PipeTransform} from '@angular/core';
 
 import {dateConfigMap, defaultSupportedLanguageCode, fieldConfigDate, NgxConfigDate, SupportedLanguageCode} from '../models';
 
-@Pipe({name: 'ngxdate', pure: false})
+@Pipe({
+  name: 'ngxdate',
+  standalone: true,
+  pure: false,
+})
 export class NgxDatePipe implements PipeTransform {
   constructor() {
   }
