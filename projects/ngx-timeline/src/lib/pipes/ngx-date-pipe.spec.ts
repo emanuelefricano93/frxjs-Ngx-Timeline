@@ -1,5 +1,5 @@
-import { NgxDateFormat } from "../models";
-import { NgxDatePipe } from "./ngx-date-pipe";
+import { NgxDatePipe } from './ngx-date-pipe';
+import { NgxDateFormat } from '../models';
 
 describe('TitleCasePipe', () => {
   // This pipe is a pure, stateless function so no need for BeforeEach

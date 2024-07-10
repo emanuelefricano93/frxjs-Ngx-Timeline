@@ -36,7 +36,7 @@
       </div>
     </form>
 
-    <div class="ngx-timeline-container">
+    <div class="ngx-timeline-container" [ngClass]="{'custom-theme': form.get('customTheme').value}">
       <!-- ngx-timeline -->
       <ngx-timeline
         [events]="events"

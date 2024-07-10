@@ -1,12 +1,9 @@
-$flex-display-col: 49 49 0;
-$flex-display-col-center: 2 2 0;
-$background-line: #464646;
-$background-orange: orange;
+@import "./../../../style.scss";
 
 .main-container {
   display: flex;
   justify-content: center;
-  width: 100%
+  width: 100%;
 }
 
 .items-container {
@@ -82,13 +79,13 @@ $background-orange: orange;
 .col-left {
   align-items: flex-end;
   padding: 0;
-  flex: $flex-display-col;
+  flex: var(--ngx-timeline-flex-display-col);
 }
 
 .col-right {
   align-items: flex-start;
   padding: 0;
-  flex: $flex-display-col;
+  flex: var(--ngx-timeline-flex-display-col);
 }
 
 .col-center {
@@ -96,7 +93,7 @@ $background-orange: orange;
     min-height: 10rem;
   }
   padding: 0;
-  flex: $flex-display-col-center;
+  flex: var(--ngx-timeline-flex-display-col-center);
 }
 
 .center-inner {
@@ -109,7 +106,7 @@ $background-orange: orange;
 
   .line {
     flex: 50 50 0;
-    background: $background-line;
+    background: var(--ngx-timeline-line-background);
     width: 0.1rem;
 
     &.transparent {
@@ -122,7 +119,7 @@ $background-orange: orange;
   .period-inner-container {
     color: white;
     border-radius: 2px;
-    background: $background-orange;
+    background: var(--ngx-timeline-period-inner-container);
     width: max-content;
     padding: 0.2rem 0.5rem;
     z-index: 10;
@@ -142,7 +139,7 @@ $background-orange: orange;
     height: 1rem;
     width: 1rem;
     border-radius: 50%;
-    background: $background-orange;
+    background: var(--ngx-timeline-icon);
     margin: 0;
     position: absolute;
   }

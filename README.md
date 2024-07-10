@@ -2,7 +2,7 @@
 
 The main goal of this angular library is to give you the possibility to integrate a timeline in your app.
 <br>
-Version 18.0.2 is compatible with angular 17.
+Version 18.0.3 is compatible with angular 17.
 <br>
 Go [here](https://emanuelefricano93.github.io/frxjs-Ngx-Timeline/) and discover all possible configurations for the timeline 
 
@@ -92,7 +92,18 @@ enum NgxTimelineEventChangeSide {
 }
 ```
 <br>
-  
+
+### Custom Theme supported
+
+This is an example of custom-theme that can be applied for istance via an ng-class directive to the container of the library. In this way you are redefine some variables that are defined and used inside the library and it is easier to override some properties 
+```scss
+.custom-theme {
+    --ngx-timeline-icon: black;
+    --ngx-timeline-period-inner-container: black;
+    --ngx-timeline-line-background: black;
+}
+```
+
 ### Examples with contexts of custom templates
 ```html
   <ng-template #periodCustomTemplate let-period=period let-index=index let-event=event>

@@ -1,6 +1,7 @@
 import {JsonPipe, NgClass} from '@angular/common';
 import {Component} from '@angular/core';
 import {UntypedFormGroup, UntypedFormControl, ReactiveFormsModule} from '@angular/forms';
+
 import {NgxDateFormat, NgxTimelineEvent, NgxTimelineEventChangeSide, NgxTimelineEventGroup, NgxTimelineModule, NgxTimelineOrientation} from 'ngx-timeline';
 
 @Component({
@@ -144,6 +145,14 @@ export class AppComponent {
       options: [
         {name: 'No emitter', value: false},
         {name: 'Handle click (open console)', value: true}
+      ]
+    },
+    {
+      label: 'Custom Theme',
+      formControlName: 'customTheme',
+      options: [
+        {name: 'No custom theme', value: false},
+        {name: 'Custom theme', value: true}
       ]
     }
   ];

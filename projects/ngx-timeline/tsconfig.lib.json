@@ -18,7 +18,9 @@
     "enableResourceInlining": true
   },
   "include": [
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "cypress/**/*.ts",
+    "cypress.config.ts"
   ],
   "exclude": [
     "src/test.ts",

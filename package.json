@@ -1,6 +1,6 @@
 {
   "name": "@frxjs/ngx-timeline",
-  "version": "18.0.2",
+  "version": "18.0.3",
   "keywords": [
     "angular",
     "timeline"
@@ -19,7 +19,7 @@
     "build-lib": "ng build ngx-timeline",
     "build-app": "ng build demo-app",
     "build:prod": "ng build ngx-timeline --configuration production",
-    "watch-lib": "ng build ngx-timeline --watch",
+    "watch-lib": "ng build ngx-timeline --watch --configuration production",
     "start-dev": "npm run link && npm run link-lib && npm run start",
     "test": "ng test",
     "lint": "ng lint",

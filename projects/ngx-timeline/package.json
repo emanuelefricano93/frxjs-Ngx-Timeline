@@ -1,6 +1,6 @@
 {
   "name": "@frxjs/ngx-timeline",
-  "version": "18.0.2",
+  "version": "18.0.3",
   "keywords": ["angular", "timeline"],
   "author": {
     "name": "Emanuele Fricano",
@@ -17,5 +17,10 @@
   },
   "dependencies": {
     "tslib": "^2.0.0"
+  },
+  "exports": {
+    "./src/lib/styles/global-style.scss": {
+      "sass": "./src/lib/styles/global-style.scss"
+    }
   }
 }
