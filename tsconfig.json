@@ -33,5 +33,9 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": false
-  }
+  },
+  "include": [
+    "projects/ngx-timeline/src/**/*.ts" ,
+    "projects/demo-app/src/**/*.ts" ,
+  ]
 }
