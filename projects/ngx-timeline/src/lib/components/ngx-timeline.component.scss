@@ -209,7 +209,7 @@
     align-items: flex-start;
 
     .hour {
-      font-size: 12px;
+      font-size: clamp(10px, 2.5vw, 12px);
       padding: 0;
       margin-right: 0.3rem;
     }

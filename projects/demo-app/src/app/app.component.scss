@@ -305,6 +305,10 @@ svg#clouds {
 /* Responsive Styles */
 @media screen and (max-width: 767px) {
 
+  .content {
+    padding: 0 5px;
+  }
+
   .card-container > *:not(.circle-link) ,
   .terminal {
     width: 100%;
@@ -417,7 +421,6 @@ svg#clouds {
 
     .ngx-timeline-container {
       max-width: 100%;
-      width: 80vw;
     }
 
 
