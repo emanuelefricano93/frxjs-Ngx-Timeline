@@ -355,7 +355,11 @@ svg#clouds {
       width: 100%;
     }
   }
-
+  
+  .ngx-timeline-container-virtual {
+    @extend .ngx-timeline-container;
+    height: 80vh;
+  }
 }
 
 .event {

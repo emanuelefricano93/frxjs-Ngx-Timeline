@@ -30,10 +30,13 @@
       </div>
     </form>
 
-    <div class="ngx-timeline-container" [ngClass]="{'custom-theme': form.get('customTheme').value}">
+    <div class="ngx-timeline-container" [ngClass]="{
+        'custom-theme': form.get('customTheme').value, 
+        'ngx-timeline-container-virtual': form.get('virtualScrolling').value
+      }">
       <!-- ngx-timeline -->
       <ngx-timeline
-        [events]="events"
+        [events]="events()"
         [ngClass]="form.get('customClass').value ? 'inter' : ''"
         [langCode]="form.get('langCode').value"
         [enableAnimation]="form.get('enableAnimation').value"
@@ -41,6 +44,10 @@
         [groupEvent]="form.get('groupEvent').value"
         [changeSide]="form.get('changeSide').value"
         [orientation]="form.get('orientation').value"
+        [virtualScroll]="form.get('virtualScrolling').value"
+        [virtualScrollItemSize]="virtualScrollItemSize()"
+        [virtualScrollMaxBufferPx]="virtualScrollMaxBufferPx()"
+        [virtualScrollMinBufferPx]="virtualScrollMinBufferPx()"
         [eventCustomTemplate]="form.get('eventCustomTemplate').value ? eventCustomTemplate : null"
         [innerEventCustomTemplate]="form.get('innerEventCustomTemplate').value ? innerEventCustomTemplate : null"
         [eventDescriptionCustomTemplate]="form.get('eventDescriptionCustomTemplate').value ? eventDescriptionCustomTemplate : null"

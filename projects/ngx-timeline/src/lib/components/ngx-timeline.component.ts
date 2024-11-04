@@ -94,7 +94,7 @@ export class NgxTimelineComponent implements OnInit, OnChanges, DoCheck {
   /**
    * The size of the items in the list (in pixels).
    */
-  @Input() virtualScrollItemSize?: number;
+  @Input() virtualScrollItemSize?: number = 100;
   /**
    * The number of pixels worth of buffer to render for when rendering new items. Defaults to 200px.
    */ 
