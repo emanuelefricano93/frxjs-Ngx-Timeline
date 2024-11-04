@@ -5,6 +5,7 @@
       [ngClass]="{
         horizontal: orientation === ngxTimelineOrientation.HORIZONTAL,
       }"
+      [orientation]="orientation.toLowerCase()"
       [itemSize]="virtualScrollItemSize"
       [maxBufferPx]="virtualScrollMaxBufferPx"
       [minBufferPx]="virtualScrollMinBufferPx"
