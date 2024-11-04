@@ -6,6 +6,21 @@
   width: 100%;
 }
 
+.virtual-scroll-container {
+  @extend .main-container;
+
+  height: 100%;
+  > .horizontal {
+    ::ng-deep .cdk-virtual-scroll-content-wrapper  {
+      width: max-content;
+      display: flex;
+      flex-direction: row;
+    }
+
+    min-height: 0;
+  }
+}
+
 .items-container {
   padding: 1rem 0;
   min-width: max(20rem, 100%);
