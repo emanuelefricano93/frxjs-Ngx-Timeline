@@ -105,11 +105,11 @@ export class NgxTimelineComponent implements OnInit, OnChanges, DoCheck {
     this.groupEvents(this.events);
   }
 
-  ngOnChanges() {
+  ngOnChanges(): void {
     this.groupEvents(this.events);
   }
 
-  ngDoCheck() {
+  ngDoCheck(): void {
     const changes = this.iterableDiffer.diff(this.events);
     if (changes) {
       this.groupEvents(this.events);
@@ -222,7 +222,7 @@ export class NgxTimelineComponent implements OnInit, OnChanges, DoCheck {
     };
   }
 
-  private shouldChangeEventsInPeriod() {
+  private shouldChangeEventsInPeriod(): boolean {
     return [NgxTimelineEventChangeSide.ALL_IN_GROUP, NgxTimelineEventChangeSide.ALL].indexOf(this.changeSide) != -1;
   }
 
