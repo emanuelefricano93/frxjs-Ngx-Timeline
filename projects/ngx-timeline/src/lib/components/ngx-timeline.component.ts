@@ -2,7 +2,6 @@ import {NgClass, NgTemplateOutlet} from '@angular/common';
 import {Component, DoCheck, inject, Input, IterableDiffer, IterableDiffers, OnChanges, OnInit, Output, TemplateRef} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 
-import {NgxTimelineEventComponent} from './ngx-timeline-event/ngx-timeline-event.component';
 import {
   NgxTimelineEvent,
   NgxTimelineItem,
@@ -17,6 +16,7 @@ import {
   fieldsToAddEventGroup, SupportedLanguageCode, defaultSupportedLanguageCode,
 } from '../models';
 import {NgxDatePipe} from '../pipes';
+import {NgxTimelineEventComponent} from './ngx-timeline-event/ngx-timeline-event.component';
 
 
 @Component({
