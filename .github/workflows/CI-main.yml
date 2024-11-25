@@ -42,6 +42,9 @@ jobs:
       - name: Run test
         run: node --max_old_space_size=4096 node_modules/@angular/cli/bin/ng test
 
+      - name: Run lint
+        run: npm run lint
+
   #if the version will be updated in package.json to 1.2.3 with the commit message Release 1.2.3 this job action will perform a new tag before publishing
   # npm-publish:
   #   name: npm-publish
