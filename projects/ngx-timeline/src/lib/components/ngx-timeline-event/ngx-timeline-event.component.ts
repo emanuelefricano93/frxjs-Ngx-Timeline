@@ -6,15 +6,15 @@ import {defaultSupportedLanguageCode, NgxTimelineOrientation, SupportedLanguageC
 import {NgxTimelineItem, NgxTimelineItemPosition} from '../../models/NgxTimelineEvent';
 
 @Component({
-  selector: 'ngx-timeline-event',
-  standalone: true,
-  templateUrl: './ngx-timeline-event.component.html',
-  styleUrl: './ngx-timeline-event.component.scss',
-  imports: [
-    NgClass,
-    NgTemplateOutlet,
-    TitleCasePipe,
-  ],
+    selector: 'ngx-timeline-event',
+    templateUrl: './ngx-timeline-event.component.html',
+    styleUrl: './ngx-timeline-event.component.scss',
+    standalone: true,
+    imports: [
+        NgClass,
+        NgTemplateOutlet,
+        TitleCasePipe,
+    ]
 })
 export class NgxTimelineEventComponent {
   /**

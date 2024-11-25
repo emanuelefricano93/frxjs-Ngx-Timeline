@@ -20,16 +20,16 @@ import {NgxDatePipe} from '../pipes';
 
 
 @Component({
-  selector: 'ngx-timeline',
-  standalone: true,
-  templateUrl: './ngx-timeline.component.html',
-  styleUrl: './ngx-timeline.component.scss',
-  imports: [
-    NgClass,
-    NgTemplateOutlet,
-    NgxDatePipe,
-    NgxTimelineEventComponent,
-  ],
+    selector: 'ngx-timeline',
+    templateUrl: './ngx-timeline.component.html',
+    styleUrl: './ngx-timeline.component.scss',
+    standalone: true,
+    imports: [
+        NgClass,
+        NgTemplateOutlet,
+        NgxDatePipe,
+        NgxTimelineEventComponent,
+    ]
 })
 export class NgxTimelineComponent implements OnInit, OnChanges, DoCheck {
   /**

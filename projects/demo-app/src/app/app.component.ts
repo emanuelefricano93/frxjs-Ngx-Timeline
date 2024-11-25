@@ -5,16 +5,16 @@ import {UntypedFormGroup, UntypedFormControl, ReactiveFormsModule} from '@angula
 import {NgxDateFormat, NgxTimelineEvent, NgxTimelineEventChangeSide, NgxTimelineEventGroup, NgxTimelineModule, NgxTimelineOrientation} from 'ngx-timeline';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
-  imports: [
-    JsonPipe,
-    NgClass,
-    NgxTimelineModule,
-    ReactiveFormsModule,
-  ],
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.scss',
+    standalone: true,
+    imports: [
+        JsonPipe,
+        NgClass,
+        NgxTimelineModule,
+        ReactiveFormsModule,
+    ]
 })
 export class AppComponent {
   title = 'demo-app';
