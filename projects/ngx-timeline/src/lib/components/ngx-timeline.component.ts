@@ -2,7 +2,6 @@ import {NgClass, NgTemplateOutlet} from '@angular/common';
 import {Component, DoCheck, inject, Input, IterableDiffer, IterableDiffers, OnChanges, OnInit, Output, TemplateRef} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 
-import {NgxTimelineEventComponent} from './ngx-timeline-event/ngx-timeline-event.component';
 import {
   NgxTimelineEvent,
   NgxTimelineItem,
@@ -17,6 +16,7 @@ import {
   fieldsToAddEventGroup, SupportedLanguageCode, defaultSupportedLanguageCode,
 } from '../models';
 import {NgxDatePipe} from '../pipes';
+import {NgxTimelineEventComponent} from './ngx-timeline-event/ngx-timeline-event.component';
 
 
 @Component({
@@ -105,11 +105,11 @@ export class NgxTimelineComponent implements OnInit, OnChanges, DoCheck {
     this.groupEvents(this.events);
   }
 
-  ngOnChanges() {
+  ngOnChanges(): void {
     this.groupEvents(this.events);
   }
 
-  ngDoCheck() {
+  ngDoCheck(): void {
     const changes = this.iterableDiffer.diff(this.events);
     if (changes) {
       this.groupEvents(this.events);
@@ -222,7 +222,7 @@ export class NgxTimelineComponent implements OnInit, OnChanges, DoCheck {
     };
   }
 
-  private shouldChangeEventsInPeriod() {
+  private shouldChangeEventsInPeriod(): boolean {
     return [NgxTimelineEventChangeSide.ALL_IN_GROUP, NgxTimelineEventChangeSide.ALL].indexOf(this.changeSide) != -1;
   }
 
