@@ -5,7 +5,6 @@ import {dateConfigMap, defaultSupportedLanguageCode, fieldConfigDate, NgxConfigD
 
 @Pipe({
   name: 'ngxdate',
-  standalone: true,
   pure: false,
 })
 export class NgxDatePipe implements PipeTransform {
