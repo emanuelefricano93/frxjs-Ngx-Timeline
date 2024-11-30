@@ -9,7 +9,6 @@ import {NgxTimelineItem, NgxTimelineItemPosition} from '../../models/NgxTimeline
     selector: 'ngx-timeline-event',
     templateUrl: './ngx-timeline-event.component.html',
     styleUrl: './ngx-timeline-event.component.scss',
-    standalone: true,
     imports: [
         NgClass,
         NgTemplateOutlet,
