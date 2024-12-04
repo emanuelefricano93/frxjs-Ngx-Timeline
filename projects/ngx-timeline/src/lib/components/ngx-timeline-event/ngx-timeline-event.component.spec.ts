@@ -50,6 +50,7 @@ describe('NgxTimelineEventComponent', () => {
 
   describe('should getDateObj', () => {
     it('without event', () => {
+      // @ts-expect-error test
       component.event = null;
       const res = component.getDateObj();
       expect(res).toEqual({day: undefined, month: undefined, year: undefined});
@@ -60,7 +61,7 @@ describe('NgxTimelineEventComponent', () => {
       expect(res).toEqual({day: undefined, month: undefined, year: undefined});
     });
     it('without event info timestamp', () => {
-      component.event = {eventInfo: null};
+      component.event = {eventInfo: undefined};
       const res = component.getDateObj();
       expect(res).toEqual({day: undefined, month: undefined, year: undefined});
     });

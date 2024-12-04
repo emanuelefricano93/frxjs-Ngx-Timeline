@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {NgxTimelineComponent} from './ngx-timeline.component';
@@ -16,7 +17,7 @@ describe('NgxTimelineComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(NgxTimelineComponent);
     component = fixture.componentInstance;
-    component.events = null;
+    component.events = [];
     fixture.detectChanges();
   });
 
@@ -33,7 +34,7 @@ describe('NgxTimelineComponent', () => {
   it('should call the groupEvents when ngDoCheck and iterable diff find some changes', () => {
     component.events = [];
     const spy = spyOn<any>(component, 'groupEvents');
-    component.events.push({});
+    component.events.push({timestamp: new Date()});
     fixture.detectChanges();
     expect(spy).toHaveBeenCalled();
   });
@@ -63,16 +64,17 @@ describe('NgxTimelineComponent', () => {
 
 
   describe('should groupEvents', ()=> {
-    it('when no events', () => {
+    it('when null as events (legacy)', () => {
       const spies = [];
       spies.push(spyOn<any>(component, 'clear'));
       spies.push(spyOn<any>(component, 'sortEvents'));
       spies.push(spyOn<any>(component, 'setGroupsAndPeriods'));
       spies.push(spyOn<any>(component, 'setItems'));
+      // @ts-expect-error legacy non-strict test
       component['groupEvents'](null);
       spies.forEach((spy) => expect(spy).not.toHaveBeenCalled());
     });
-    it('when events', () => {
+    it('when no events', () => {
       const spies = [];
       spies.push(spyOn<any>(component, 'clear'));
       spies.push(spyOn<any>(component, 'sortEvents'));

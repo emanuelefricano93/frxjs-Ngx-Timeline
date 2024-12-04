@@ -1,4 +1,4 @@
-<div class="event-wrapper-container" (click)="clickEmitter.next(event)" [ngClass]="{'horizontal': orientation === ngxTimelineOrientation.HORIZONTAL}">
+<div class="event-wrapper-container" (click)="clickEmitter.emit(event)" [ngClass]="{'horizontal': orientation === ngxTimelineOrientation.HORIZONTAL}">
   @if (colSidePosition===ngxTimelineItemPosition.ON_RIGHT) {
     <div class="arrow left"></div>
   }

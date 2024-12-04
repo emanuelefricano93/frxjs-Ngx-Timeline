@@ -50,12 +50,12 @@
           }
         </div>
         <div class="col col-center mobile" [ngClass]="item.periodInfo ? 'col-period' : 'col-event'">
-          @if (item.periodInfo; ) {
+          @if (item.periodInfo) {
             <div class="center-inner">
               <ng-container *ngTemplateOutlet="periodContainerTemplate; context: {period: item.periodInfo, index: index, event: item}"></ng-container>
             </div>
           }
-          @if (!item.periodInfo; ) {
+          @if (!item.periodInfo) {
             <div class="center-inner no-period-key">
               <ng-container *ngTemplateOutlet="centerLinesIconTemplate; context: {event: item, index: index}"></ng-container>
             </div>
@@ -114,7 +114,7 @@
     [innerEventCustomTemplate]="innerEventCustomTemplate"
     [eventDescriptionCustomTemplate]="eventDescriptionCustomTemplate"
     [colSidePosition]="colSidePosition"
-    (clickEmitter)="clickEmitter.next($event)">
+    (clickEmitter)="clickEmitter.emit($event)">
   </ngx-timeline-event>
 </ng-template>
 
