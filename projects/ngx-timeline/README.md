@@ -51,9 +51,9 @@ After installing the library and including NgxTimelineModule in your imports mod
 
 ### Output
 
-| Output name  | Explanation                | Mandatory | Type/Supported Values           | Default value |
-|--------------|----------------------------|-----------|---------------------------------|---------------|
-| clickEmitter | Output click event emitter | no        | `EventEmitter<NgxTimelineItem>` | no default    |
+| Output name  | Explanation                | Mandatory | Type/Supported Values               | Default value |
+|--------------|----------------------------|-----------|-------------------------------------|---------------|
+| clickEmitter | Output click event emitter | no        | `OutputEmitterRef<NgxTimelineItem>` | no default    |
 
 ### Types and Enums
 ```typescript

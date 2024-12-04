@@ -1,5 +1,5 @@
 import {NgClass, NgTemplateOutlet} from '@angular/common';
-import {Component, DoCheck, EventEmitter, inject, Input, IterableDiffer, IterableDiffers, OnChanges, Output, TemplateRef} from '@angular/core';
+import {Component, DoCheck, inject, IterableDiffer, IterableDiffers, OnChanges, TemplateRef, input, output} from '@angular/core';
 
 import {
   NgxTimelineEvent,
@@ -32,59 +32,59 @@ export class NgxTimelineComponent implements OnChanges, DoCheck {
   /**
    * List of events to be displayed.
    */
-  @Input() events!: NgxTimelineEvent[];
+  readonly events = input.required<NgxTimelineEvent[]>();
   /**
    * Language code used to show the date formatted.
    */
-  @Input() langCode: SupportedLanguageCode = defaultSupportedLanguageCode;
+  readonly langCode = input<SupportedLanguageCode>(defaultSupportedLanguageCode);
   /**
    * Boolean used to enable or disable the animations.
    */
-  @Input() enableAnimation = true;
+  readonly enableAnimation = input<boolean>(true);
   /**
    * Boolean used to reverse sort order (default older first).
    */
-  @Input() reverseOrder = false;
+  readonly reverseOrder = input<boolean>(false);
   /**
    * Orientation of the timeline.
    */
-  @Input() orientation: NgxTimelineOrientation = NgxTimelineOrientation.VERTICAL;
+  readonly orientation = input<NgxTimelineOrientation>(NgxTimelineOrientation.VERTICAL);
   /**
    * Logic to be applied in order to group events.
    */
-  @Input() groupEvent: NgxTimelineEventGroup = NgxTimelineEventGroup.MONTH_YEAR;
+  readonly groupEvent = input<NgxTimelineEventGroup>(NgxTimelineEventGroup.MONTH_YEAR);
   /**
    * Logic to be applied in order to put events on LEFT or RIGHT.
    */
-  @Input() changeSide: NgxTimelineEventChangeSide = NgxTimelineEventChangeSide.ON_DIFFERENT_DAY_IN_GROUP;
+  readonly changeSide = input<NgxTimelineEventChangeSide>(NgxTimelineEventChangeSide.ON_DIFFERENT_DAY_IN_GROUP);
   /**
    * Custom Template displayed before a group of events.
    */
-  @Input() periodCustomTemplate?: TemplateRef<unknown>;
+  readonly periodCustomTemplate = input<TemplateRef<unknown>>();
   /**
    * Custom Template displayed to show a single event.
    */
-  @Input() eventCustomTemplate?: TemplateRef<unknown>;
+  readonly eventCustomTemplate = input<TemplateRef<unknown>>();
   /**
    * Custom Template displayed to show a separator icon.
    */
-  @Input() centerIconCustomTemplate?: TemplateRef<unknown>;
+  readonly centerIconCustomTemplate = input<TemplateRef<unknown>>();
   /**
    * Custom Template displayed to show the side date.
    */
-  @Input() dateInstantCustomTemplate?: TemplateRef<unknown>;
+  readonly dateInstantCustomTemplate = input<TemplateRef<unknown>>();
   /**
    * Custom Template displayed to show the inner event.
    */
-  @Input() innerEventCustomTemplate?: TemplateRef<unknown>;
+  readonly innerEventCustomTemplate = input<TemplateRef<unknown>>();
   /**
    * Inner custom template used to display the event description.
    */
-  @Input() eventDescriptionCustomTemplate?: TemplateRef<unknown>;
+  readonly eventDescriptionCustomTemplate = input<TemplateRef<unknown>>();
   /**
    * Output click event emitter.
    */
-  @Output() readonly clickEmitter = new EventEmitter<NgxTimelineItem>();
+  readonly clickEmitter = output<NgxTimelineItem>();
 
   groups: Record<string, NgxTimelineEvent[]> = {};
   periods: NgxTimelineItem[] = [];
@@ -98,18 +98,18 @@ export class NgxTimelineComponent implements OnChanges, DoCheck {
   private readonly separator = '/';
 
   ngOnChanges(): void {
-    this.groupEvents(this.events);
+    this.groupEvents(this.events());
   }
 
   ngDoCheck(): void {
-    const changes = this.iterableDiffer.diff(this.events);
+    const changes = this.iterableDiffer.diff(this.events());
     if (changes) {
-      this.groupEvents(this.events);
+      this.groupEvents(this.events());
     }
   }
 
   getPeriodKeyDateFormat(): string {
-    return periodKeyDateFormat[this.groupEvent];
+    return periodKeyDateFormat[this.groupEvent()];
   }
 
   protected clear(): void {
@@ -131,7 +131,7 @@ export class NgxTimelineComponent implements OnChanges, DoCheck {
     events.sort((a, b) => {
       const aTime: number = a.timestamp.getTime();
       const bTime: number = b.timestamp.getTime();
-      return this.reverseOrder ? bTime - aTime : aTime - bTime;
+      return this.reverseOrder() ? bTime - aTime : aTime - bTime;
     });
   }
 
@@ -156,7 +156,7 @@ export class NgxTimelineComponent implements OnChanges, DoCheck {
       this.items.push(p);
       // in each period putting items on left
       let onLeft = true;
-      if (this.changeSide === NgxTimelineEventChangeSide.ALL) {
+      if (this.changeSide() === NgxTimelineEventChangeSide.ALL) {
         onLeft = !isLastItemOnLeft;
       }
       const periodInfo: NgxTimelinePeriodInfo | undefined = p.periodInfo;
@@ -197,7 +197,7 @@ export class NgxTimelineComponent implements OnChanges, DoCheck {
    */
   protected compareEvents(prevEvent: NgxTimelineEvent, event: NgxTimelineEvent): boolean {
     return this.shouldChangeEventsInPeriod() ||
-      this.compareEventsField(prevEvent, event, ...(fieldsToCheckEventChangeSide[this.changeSide] ?? []));
+      this.compareEventsField(prevEvent, event, ...(fieldsToCheckEventChangeSide[this.changeSide()] ?? []));
   }
 
   protected compareEventsField(prevEvent: NgxTimelineEvent, event: NgxTimelineEvent, ...fields: string[]): boolean {
@@ -220,10 +220,10 @@ export class NgxTimelineComponent implements OnChanges, DoCheck {
   }
 
   private shouldChangeEventsInPeriod(): boolean {
-    return [NgxTimelineEventChangeSide.ALL_IN_GROUP, NgxTimelineEventChangeSide.ALL].indexOf(this.changeSide) !== -1;
+    return [NgxTimelineEventChangeSide.ALL_IN_GROUP, NgxTimelineEventChangeSide.ALL].includes(this.changeSide());
   }
 
   protected getPeriodKeyFromEvent(event: NgxTimelineEvent): string {
-    return fieldsToAddEventGroup[this.groupEvent].map((field) => (event.timestamp[field as keyof Date] as () => number)()).join(this.separator);
+    return fieldsToAddEventGroup[this.groupEvent()].map((field) => (event.timestamp[field as keyof Date] as () => number)()).join(this.separator);
   }
 }

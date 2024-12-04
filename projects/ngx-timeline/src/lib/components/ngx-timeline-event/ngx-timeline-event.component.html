@@ -1,23 +1,23 @@
-<div class="event-wrapper-container" (click)="clickEmitter.emit(event)" [ngClass]="{'horizontal': orientation === ngxTimelineOrientation.HORIZONTAL}">
-  @if (colSidePosition===ngxTimelineItemPosition.ON_RIGHT) {
+<div class="event-wrapper-container" (click)="clickEmitter.emit(event())" [ngClass]="{'horizontal': orientation() === ngxTimelineOrientation.HORIZONTAL}">
+  @if (colSidePosition()===ngxTimelineItemPosition.ON_RIGHT) {
     <div class="arrow left"></div>
   }
-  <div class="event" [ngClass]="{'enableAnimation': enableAnimation}">
-    <ng-container *ngTemplateOutlet="innerEventCustomTemplate || innerEventContainer; context: {event: event}"></ng-container>
+  <div class="event" [ngClass]="{'enableAnimation': enableAnimation()}">
+    <ng-container *ngTemplateOutlet="innerEventCustomTemplate() || innerEventContainer; context: {event: event()}"></ng-container>
   </div>
-  @if (colSidePosition === ngxTimelineItemPosition.ON_LEFT) {
+  @if (colSidePosition() === ngxTimelineItemPosition.ON_LEFT) {
     <div class="arrow right"></div>
   }
 </div>
 
 <ng-template #innerEventContainer let-event=event>
-  <div class="event-container" [ngClass]="{'reverse': colSidePosition === ngxTimelineItemPosition.ON_LEFT}">
+  <div class="event-container" [ngClass]="{'reverse': colSidePosition() === ngxTimelineItemPosition.ON_LEFT}">
     <div class="event-info-container">
       <div class="event-info-header">
         <div class="title-container">{{event?.eventInfo?.title | titlecase}}</div>
       </div>
       <div class="event-info-body">
-        <ng-container *ngTemplateOutlet="eventDescriptionCustomTemplate || eventDescriptionContainer; context: {event: event}"></ng-container>
+        <ng-container *ngTemplateOutlet="eventDescriptionCustomTemplate() || eventDescriptionContainer; context: {event: event}"></ng-container>
       </div>
     </div>
 
