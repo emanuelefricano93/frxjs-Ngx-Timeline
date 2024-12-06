@@ -95,7 +95,7 @@ enum NgxTimelineEventChangeSide {
 
 ### Custom Theme supported
 
-This is an example of custom-theme that can be applied for istance via an ng-class directive to the container of the library. In this way you are redefine some variables that are defined and used inside the library and it is easier to override some properties 
+This is an example of custom-theme that can be applied for instance via an ng-class directive to the container of the library. In this way you are redefine some variables that are defined and used inside the library and it is easier to override some properties 
 ```scss
 .custom-theme {
     --ngx-timeline-icon: black;
