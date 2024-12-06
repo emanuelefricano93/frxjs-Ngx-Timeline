@@ -11,11 +11,7 @@ export interface NgxConfigDate {
   year: string;
 }
 
-export type NgxDateObjMap = {
-  [key in SupportedLanguageCode]: NgxConfigDate;
-};
-
-export const dateConfigMap: NgxDateObjMap = {
+export const dateConfigMap: Record<SupportedLanguageCode, NgxConfigDate> = {
   en: {
     code: 'en-US',
     fullDate: 'MM/dd/yyyy h:mm a',
@@ -95,23 +91,23 @@ export const dateConfigMap: NgxDateObjMap = {
     monthYear: 'MMMM yyyy',
     year: 'yyyy',
     hoursMinutes: 'HH:mm',
-  }
+  },
 };
 
 export enum NgxDateFormat {
   DAY_MONTH_YEAR = 'DAY_MONTH_YEAR',
   FULL_DATE = 'FULL_DATE',
-  MONTH_YEAR = 'MONTH_YEAR',
   HOURS_MINUTES = 'HOURS_MINUTES',
+  MONTH_YEAR = 'MONTH_YEAR',
   YEAR = 'YEAR'
 }
 
-export const fieldConfigDate = {
+export const fieldConfigDate: Record<NgxDateFormat, keyof NgxConfigDate> = {
+  DAY_MONTH_YEAR: 'dayMonthYear',
+  FULL_DATE: 'fullDate',
+  HOURS_MINUTES: 'hoursMinutes',
   MONTH_YEAR: 'monthYear',
   YEAR: 'year',
-  HOURS_MINUTES: 'hoursMinutes',
-  FULL_DATE: 'fullDate',
-  DAY_MONTH_YEAR: 'dayMonthYear',
 };
 
 /**
@@ -123,28 +119,28 @@ export enum NgxTimelineEventGroup {
   DAY_MONTH_YEAR = 'DAY_MONTH_YEAR'
 }
 
-/**
- * Enum used to set the group event logic
- */
-export enum NgxTimelineOrientation {
-  HORIZONTAL = 'HORIZONTAL',
-  VERTICAL = 'VERTICAL',
-}
-
-export const fieldsToAddEventGroup = {
+export const fieldsToAddEventGroup: Record<NgxTimelineEventGroup, string[]> = {
   YEAR: ['getFullYear'],
   MONTH_YEAR: ['getFullYear', 'getMonth'],
   DAY_MONTH_YEAR: ['getFullYear', 'getMonth', 'getDate'],
 };
 
-export const periodKeyDateFormat = {
+export const periodKeyDateFormat: Record<NgxTimelineEventGroup, NgxDateFormat> = {
   YEAR: NgxDateFormat.YEAR,
   MONTH_YEAR: NgxDateFormat.MONTH_YEAR,
   DAY_MONTH_YEAR: NgxDateFormat.DAY_MONTH_YEAR,
 };
 
 /**
- * Enum used to set the change side event logic
+ * Enum used to set the group event logic.
+ */
+export enum NgxTimelineOrientation {
+  HORIZONTAL = 'HORIZONTAL',
+  VERTICAL = 'VERTICAL',
+}
+
+/**
+ * Enum used to set the change side event logic.
  */
 export enum NgxTimelineEventChangeSide {
   ALL = 'ALL',
@@ -154,7 +150,7 @@ export enum NgxTimelineEventChangeSide {
   ON_DIFFERENT_MONTH_IN_GROUP = 'ON_DIFFERENT_MONTH_IN_GROUP'
 }
 
-export const fieldsToCheckEventChangeSideInGroup = {
+export const fieldsToCheckEventChangeSideInGroup: Partial<Record<NgxTimelineEventChangeSide, string[]>> = {
   ON_DIFFERENT_DAY_IN_GROUP: ['getFullYear', 'getMonth', 'getDate'],
   ON_DIFFERENT_MONTH_IN_GROUP: ['getFullYear', 'getMonth'],
   ON_DIFFERENT_HMS_IN_GROUP: ['getFullYear', 'getMonth', 'getDate', 'getHours', 'getMinutes', 'getSeconds'],

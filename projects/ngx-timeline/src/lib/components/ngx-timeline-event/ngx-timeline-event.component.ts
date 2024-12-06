@@ -1,53 +1,52 @@
 import {DatePipe, NgClass, NgTemplateOutlet, TitleCasePipe} from '@angular/common';
-import {Component, Input, Output, TemplateRef} from '@angular/core';
-import {BehaviorSubject} from 'rxjs';
+import {Component, output, TemplateRef, input} from '@angular/core';
 
 import {defaultSupportedLanguageCode, NgxTimelineOrientation, SupportedLanguageCode} from '../../models';
 import {NgxTimelineItem, NgxTimelineItemPosition} from '../../models/NgxTimelineEvent';
 
 @Component({
-    selector: 'ngx-timeline-event',
-    templateUrl: './ngx-timeline-event.component.html',
-    styleUrl: './ngx-timeline-event.component.scss',
-    imports: [
-        NgClass,
-        NgTemplateOutlet,
-        TitleCasePipe,
-    ]
+  selector: 'ngx-timeline-event',
+  templateUrl: './ngx-timeline-event.component.html',
+  styleUrl: './ngx-timeline-event.component.scss',
+  imports: [
+    NgClass,
+    NgTemplateOutlet,
+    TitleCasePipe,
+  ],
 })
 export class NgxTimelineEventComponent {
   /**
-   * Event to be displayed
+   * Event to be displayed.
    */
-  @Input() event!: NgxTimelineItem;
+  readonly event = input.required<NgxTimelineItem>();
   /**
-   * Event position respect to the vertical line (LEFT or RIGHT)
+   * Event position respect to the vertical line (LEFT or RIGHT).
    */
-  @Input() colSidePosition?: NgxTimelineItemPosition;
+  readonly colSidePosition = input<NgxTimelineItemPosition>();
   /**
-   * Language code used to format the dates
+   * Language code used to format the dates.
    */
-  @Input() langCode: SupportedLanguageCode = defaultSupportedLanguageCode;
+  readonly langCode = input<SupportedLanguageCode>(defaultSupportedLanguageCode);
   /**
-   * Inner custom template used to display the event detail
+   * Inner custom template used to display the event detail.
    */
-  @Input() innerEventCustomTemplate?: TemplateRef<any>;
+  readonly innerEventCustomTemplate = input<TemplateRef<unknown>>();
   /**
-   * Inner custom template used to display the event description
+   * Inner custom template used to display the event description.
    */
-  @Input() eventDescriptionCustomTemplate?: TemplateRef<any>;
+  readonly eventDescriptionCustomTemplate = input<TemplateRef<unknown>>();
   /**
-   * Boolean used to enable or disable the animations
+   * Boolean used to enable or disable the animations.
    */
-  @Input() enableAnimation = true;
+  readonly enableAnimation = input(true);
   /**
-   * Orientation of the timeline
+   * Orientation of the timeline.
    */
-  @Input() orientation: NgxTimelineOrientation = NgxTimelineOrientation.VERTICAL;
+  readonly orientation = input<NgxTimelineOrientation>(NgxTimelineOrientation.VERTICAL);
   /**
-   * Output click event emitter
+   * Output click event emitter.
    */
-  @Output() clickEmitter: BehaviorSubject<NgxTimelineItem> = new BehaviorSubject(null);
+  readonly clickEmitter = output<NgxTimelineItem>();
 
   ngxTimelineItemPosition = NgxTimelineItemPosition;
   ngxTimelineOrientation = NgxTimelineOrientation;
@@ -55,13 +54,11 @@ export class NgxTimelineEventComponent {
   private readonly monthAbbr = 'MMM';
   private readonly dayFormat = 'dd';
 
-  constructor() { }
-
-  getDateObj(): any {
-    let day;
-    let month;
-    let year;
-    const dateTimestamp = this.event?.eventInfo?.timestamp;
+  getDateObj(): { day: unknown, month: unknown, year: unknown } {
+    let day = undefined;
+    let month = undefined;
+    let year = undefined;
+    const dateTimestamp = this.event().eventInfo?.timestamp;
     if (dateTimestamp) {
       const timestamp = new Date(dateTimestamp);
       const langCode = this.getLangCode();
@@ -74,6 +71,6 @@ export class NgxTimelineEventComponent {
   }
 
   protected getLangCode(): SupportedLanguageCode {
-    return this.langCode;
+    return this.langCode();
   }
 }

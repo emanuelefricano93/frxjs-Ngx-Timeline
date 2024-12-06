@@ -6,7 +6,7 @@
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
     "preserveSymlinks": true,
-    "strict": false,
+    "strict": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
@@ -32,7 +32,7 @@
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": false
+    "strictTemplates": true
   },
   "include": [
     "projects/ngx-timeline/src/**/*.ts" ,

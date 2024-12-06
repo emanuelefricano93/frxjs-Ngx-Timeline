@@ -1,11 +1,11 @@
 /**
- * Event to be provided from outside the timeline
+ * Event to be provided from outside the timeline.
  */
 export interface NgxTimelineEvent {
-  timestamp?: Date;
+  timestamp: Date;
   title?: string;
   description?: string;
-  id?: any;
+  id?: unknown;
   itemPosition?: NgxTimelineItemPosition;
 }
 
@@ -14,14 +14,13 @@ export interface NgxTimelinePeriodInfo {
   year?: number;
   month?: number;
   day?: number;
-  firstDate?: any;
+  firstDate?: Date;
 }
 
 /**
- * Item used inside the timeline
+ * Item used inside the timeline.
  */
 export interface NgxTimelineItem {
-  type?: string;
   position?: NgxTimelineItemPosition.ON_LEFT | NgxTimelineItemPosition.ON_RIGHT;
   periodInfo?: NgxTimelinePeriodInfo;
   eventInfo?: NgxTimelineEvent;
