@@ -174,6 +174,8 @@ export class AppComponent {
     this.form.get('virtualScrolling')!.valueChanges.subscribe((value: boolean) => {
       if (value) {
         this.initEventsVirtual();
+        let orientation: NgxTimelineOrientation = this.form.get('orientation').value;
+        this.adjustVirtualScrollOrientation(orientation);
       } else {
         this.initEvents();
       }
@@ -192,13 +194,13 @@ export class AppComponent {
       const eventComponentWidth = 420;
       const windowWidth = window.innerWidth;
       this.virtualScrollItemSize.set(eventComponentWidth);
-      this.virtualScrollMaxBufferPx.set(windowWidth);
+      this.virtualScrollMinBufferPx.set(windowWidth);
       this.virtualScrollMaxBufferPx.set(windowWidth * 2);
     } else {
       const eventComponentHeight = 160;
       const windowHeight = window.innerHeight;
       this.virtualScrollItemSize.set(eventComponentHeight);
-      this.virtualScrollMaxBufferPx.set(windowHeight);
+      this.virtualScrollMinBufferPx.set(windowHeight);
       this.virtualScrollMaxBufferPx.set(windowHeight * 2);
     }
   }
