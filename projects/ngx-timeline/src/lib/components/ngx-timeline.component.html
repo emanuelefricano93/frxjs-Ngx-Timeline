@@ -2,9 +2,7 @@
   @if (virtualScroll) {
     <cdk-virtual-scroll-viewport
       class="items-container"
-      [ngClass]="{
-        horizontal: orientation === ngxTimelineOrientation.HORIZONTAL,
-      }"
+      [ngClass]="{horizontal: orientation === ngxTimelineOrientation.HORIZONTAL}"
       [orientation]="orientation.toLowerCase()"
       [itemSize]="virtualScrollItemSize"
       [maxBufferPx]="virtualScrollMaxBufferPx"
@@ -19,9 +17,7 @@
   } @else {
     <div
       class="items-container"
-      [ngClass]="{
-        horizontal: orientation === ngxTimelineOrientation.HORIZONTAL,
-      }"
+      [ngClass]="{horizontal: orientation === ngxTimelineOrientation.HORIZONTAL}"
     >
       @for (item of items; track item; let index = $index) {
         <ng-template

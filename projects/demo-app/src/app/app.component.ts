@@ -172,14 +172,17 @@ export class AppComponent {
     this.configurations.forEach(configuration =>
       this.form.addControl(configuration.formControlName, new UntypedFormControl(configuration.options[0].value)));
     this.form.get('virtualScrolling')!.valueChanges.subscribe((value: boolean) => {
-      if (value === true) {
+      if (value) {
         this.initEventsVirtual();
       } else {
         this.initEvents();
       }
     });
     this.form.get('orientation')!.valueChanges.subscribe((value: NgxTimelineOrientation) => {
-      this.adjustVirtualScrollOrientation(value);
+      let isVirtualScrollingEnabled = this.form.get('virtualScrolling').value;
+      if (isVirtualScrollingEnabled) {
+        this.adjustVirtualScrollOrientation(value);
+      }
     })
     this.initEvents();
   }
