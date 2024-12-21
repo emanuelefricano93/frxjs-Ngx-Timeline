@@ -18,9 +18,8 @@
         "plugin:@angular-eslint/recommended",
         "plugin:@angular-eslint/template/process-inline-templates",
         // "plugin:@angular-eslint/all", // more pedantic tests =)
-        "plugin:@typescript-eslint/recommended",
-        // "plugin:@typescript-eslint/recommended-type-checked",
-        // "plugin:@typescript-eslint/stylistic",
+        "plugin:@typescript-eslint/recommended-type-checked",
+        "plugin:@typescript-eslint/stylistic",
         // "plugin:@typescript-eslint/stylistic-type-checked",
         // "plugin:@stylistic/recommended-extends",
         "plugin:import/recommended"
@@ -31,7 +30,6 @@
       "rules": {
         "quotes": ["error", "single"],
         "@typescript-eslint/explicit-function-return-type": "warn",
-        "@typescript-eslint/no-explicit-any": "off",
         "import/order": [
           "error",
           {

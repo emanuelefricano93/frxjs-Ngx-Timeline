@@ -2,22 +2,24 @@ import {JsonPipe, NgClass} from '@angular/common';
 import {Component} from '@angular/core';
 import {UntypedFormGroup, UntypedFormControl, ReactiveFormsModule} from '@angular/forms';
 
+import {NgxTimelineItem} from '../../../ngx-timeline/src/lib/models';
 import {NgxDateFormat, NgxTimelineEvent, NgxTimelineEventChangeSide, NgxTimelineEventGroup, NgxTimelineModule, NgxTimelineOrientation} from 'ngx-timeline';
 
+
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrl: './app.component.scss',
-    imports: [
-        JsonPipe,
-        NgClass,
-        NgxTimelineModule,
-        ReactiveFormsModule,
-    ]
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.scss',
+  imports: [
+    JsonPipe,
+    NgClass,
+    NgxTimelineModule,
+    ReactiveFormsModule,
+  ],
 })
 export class AppComponent {
   title = 'demo-app';
-  events: NgxTimelineEvent[];
+  events: NgxTimelineEvent[] = [];
   form: UntypedFormGroup;
   ngxDateFormat = NgxDateFormat;
 
@@ -184,9 +186,7 @@ export class AppComponent {
     ];
   }
 
-  handleClick(event: any): void {
-    if (event) {
-      window.console.log('', event);
-    }
+  handleClick(event: NgxTimelineItem): void {
+    window.console.log('', event);
   }
 }
