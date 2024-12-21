@@ -8,7 +8,6 @@
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "forceConsistentCasingInFileNames": true,
-    "esModuleInterop": true,
     "preserveSymlinks": true,
     "strict": true,
     "noImplicitReturns": true,
@@ -30,8 +29,6 @@
         "dist/ngx-timeline"
       ]
     },
-    "preserveSymlinks": true,
-    "forceConsistentCasingInFileNames": true
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

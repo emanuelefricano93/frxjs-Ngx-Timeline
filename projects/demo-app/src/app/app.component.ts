@@ -1,5 +1,5 @@
 import {JsonPipe, NgClass} from '@angular/common';
-import {Component} from '@angular/core';
+import {Component, signal} from '@angular/core';
 import {UntypedFormGroup, UntypedFormControl, ReactiveFormsModule} from '@angular/forms';
 
 import {NgxTimelineItem} from '../../../ngx-timeline/src/lib/models';
@@ -19,9 +19,12 @@ import {NgxDateFormat, NgxTimelineEvent, NgxTimelineEventChangeSide, NgxTimeline
 })
 export class AppComponent {
   title = 'demo-app';
-  events: NgxTimelineEvent[] = [];
+  events = signal<NgxTimelineEvent[]>([]);
   form: UntypedFormGroup;
-  ngxDateFormat = NgxDateFormat;
+  ngxDateFormat: typeof NgxDateFormat = NgxDateFormat;
+  virtualScrollItemSize = signal<number>(160);
+  virtualScrollMaxBufferPx = signal<number>(2160);
+  virtualScrollMinBufferPx = signal<number>(1080);
 
   configurations = [
     {
@@ -155,13 +158,64 @@ export class AppComponent {
         {name: 'No custom theme', value: false},
         {name: 'Custom theme', value: true}
       ]
+    },
+    {
+      label: 'Virtual Scrolling',
+      formControlName: 'virtualScrolling',
+      options: [
+        {name: 'No virtual scrolling', value: false},
+        {name: 'virtual scrolling', value: true}
+      ]
     }
   ];
+
   constructor() {
     this.form = new UntypedFormGroup({});
     this.configurations.forEach(configuration =>
       this.form.addControl(configuration.formControlName, new UntypedFormControl(configuration.options[0].value)));
+    this.handleVirtualScrolling();
     this.initEvents();
+  }
+
+  private handleVirtualScrolling(): void {
+    this.form.get('virtualScrolling')!.valueChanges.subscribe((value: boolean) => {
+      if (value) {
+        this.initEventsVirtual();
+        const orientation: NgxTimelineOrientation = this.form.get('orientation')?.value as NgxTimelineOrientation;
+        this.adjustVirtualScrollOrientation(orientation);
+      } else {
+        this.initEvents();
+      }
+    });
+    this.form.get('orientation')!.valueChanges.subscribe((value: NgxTimelineOrientation) => {
+      const isVirtualScrollingEnabled = !!this.form.get('virtualScrolling')?.value;
+      if (isVirtualScrollingEnabled) {
+        this.adjustVirtualScrollOrientation(value);
+      }
+    });
+  }
+
+  adjustVirtualScrollOrientation(orientation: NgxTimelineOrientation): void {
+      const itemSize = orientation === NgxTimelineOrientation.HORIZONTAL ? 420 : 160;
+      const minBufferPx = orientation === NgxTimelineOrientation.HORIZONTAL ? window.innerWidth : window.innerHeight;
+      this.virtualScrollItemSize.set(itemSize);
+      this.virtualScrollMinBufferPx.set(minBufferPx);
+      this.virtualScrollMaxBufferPx.set(minBufferPx * 2);
+  }
+
+  initEventsVirtual(): void {
+    const today = new Date();
+    const newEvents: NgxTimelineEvent[] = [];
+    const len = 100_000;
+    for (let i = 0; i < len; i++) {
+      newEvents.push({
+        id: i,
+        description: `This is the description of the event ${i}`,
+        timestamp: today,
+        title: `title ${i}`
+      });
+    }
+    this.events.set(newEvents);
   }
 
   private initEvents(): void {
@@ -176,14 +230,14 @@ export class AppComponent {
     const nextYear = new Date();
     nextYear.setFullYear(today.getFullYear() + 1);
 
-    this.events = [
+    this.events.set([
       { id: 5, description: 'This is the description of the event 5', timestamp: nextYear, title: 'title 5' },
       { id: 0, description: 'This is the description of the event 0', timestamp: today, title: 'title 0' },
       { id: 1, description: 'This is the description of the event 1', timestamp: tomorrow, title: 'title 1' },
       { id: 2, description: 'This is the description of the event 2', timestamp: today, title: 'title 2' },
       { id: 3, description: 'This is the description of the event 3', timestamp: tomorrow, title: 'title 3' },
       { id: 4, description: 'This is the description of the event 4', timestamp: nextMonth, title: 'title 4', /*itemPosition: NgxTimelineItemPosition.ON_RIGHT */},
-    ];
+    ]);
   }
 
   handleClick(event: NgxTimelineItem): void {
