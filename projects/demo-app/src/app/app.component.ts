@@ -171,6 +171,11 @@ export class AppComponent {
     this.form = new UntypedFormGroup({});
     this.configurations.forEach(configuration =>
       this.form.addControl(configuration.formControlName, new UntypedFormControl(configuration.options[0].value)));
+    this.handleVirtualScrolling();
+    this.initEvents();
+  }
+
+  private handleVirtualScrolling() {
     this.form.get('virtualScrolling')!.valueChanges.subscribe((value: boolean) => {
       if (value) {
         this.initEventsVirtual();
@@ -185,24 +190,15 @@ export class AppComponent {
       if (isVirtualScrollingEnabled) {
         this.adjustVirtualScrollOrientation(value);
       }
-    })
-    this.initEvents();
+    });
   }
 
   adjustVirtualScrollOrientation(orientation: NgxTimelineOrientation) {
-    if (orientation === NgxTimelineOrientation.HORIZONTAL) {
-      const eventComponentWidth = 420;
-      const windowWidth = window.innerWidth;
-      this.virtualScrollItemSize.set(eventComponentWidth);
-      this.virtualScrollMinBufferPx.set(windowWidth);
-      this.virtualScrollMaxBufferPx.set(windowWidth * 2);
-    } else {
-      const eventComponentHeight = 160;
-      const windowHeight = window.innerHeight;
-      this.virtualScrollItemSize.set(eventComponentHeight);
-      this.virtualScrollMinBufferPx.set(windowHeight);
-      this.virtualScrollMaxBufferPx.set(windowHeight * 2);
-    }
+      const itemSize = orientation === NgxTimelineOrientation.HORIZONTAL ? 420 : 160;
+      const minBufferPx = orientation === NgxTimelineOrientation.HORIZONTAL ? window.innerWidth : window.innerHeight;
+      this.virtualScrollItemSize.set(itemSize);
+      this.virtualScrollMinBufferPx.set(minBufferPx);
+      this.virtualScrollMaxBufferPx.set(minBufferPx * 2);
   }
 
   initEventsVirtual() {
