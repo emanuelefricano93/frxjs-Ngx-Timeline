@@ -1,10 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import {ComponentRef} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {NgxTimelineComponent} from './ngx-timeline.component';
 import {NgxDateFormat, NgxTimelineEventChangeSide, NgxTimelineEventGroup, NgxTimelineItemPosition} from '../models';
+import {NgxTimelineComponent} from './ngx-timeline.component';
 
 describe('NgxTimelineComponent', () => {
   let component: NgxTimelineComponent;
+  let componentRef: ComponentRef<NgxTimelineComponent>;
   let fixture: ComponentFixture<NgxTimelineComponent>;
 
   beforeEach(async () => {
@@ -16,7 +19,8 @@ describe('NgxTimelineComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(NgxTimelineComponent);
     component = fixture.componentInstance;
-    component.events = null;
+    componentRef = fixture.componentRef;
+    componentRef.setInput('events', []);
     fixture.detectChanges();
   });
 
@@ -31,9 +35,9 @@ describe('NgxTimelineComponent', () => {
   });
 
   it('should call the groupEvents when ngDoCheck and iterable diff find some changes', () => {
-    component.events = [];
+    componentRef.setInput('event', []);
     const spy = spyOn<any>(component, 'groupEvents');
-    component.events.push({});
+    component.events().push({timestamp: new Date()});
     fixture.detectChanges();
     expect(spy).toHaveBeenCalled();
   });
@@ -55,24 +59,25 @@ describe('NgxTimelineComponent', () => {
       {groupEvent: NgxTimelineEventGroup.DAY_MONTH_YEAR, formatDate: NgxDateFormat.DAY_MONTH_YEAR},
     ].forEach((elem) => {
       it(`when groupEvent ${elem.groupEvent} is provided`, () => {
-        component.groupEvent = elem.groupEvent;
+        componentRef.setInput('groupEvent', elem.groupEvent);
         expect(component.getPeriodKeyDateFormat()).toEqual(elem.formatDate);
       });
     });
   });
 
 
-  describe('should groupEvents', ()=> {
-    it('when no events', () => {
+  describe('should groupEvents', () => {
+    it('when null as events (legacy)', () => {
       const spies = [];
       spies.push(spyOn<any>(component, 'clear'));
       spies.push(spyOn<any>(component, 'sortEvents'));
       spies.push(spyOn<any>(component, 'setGroupsAndPeriods'));
       spies.push(spyOn<any>(component, 'setItems'));
+      // @ts-expect-error legacy non-strict test
       component['groupEvents'](null);
       spies.forEach((spy) => expect(spy).not.toHaveBeenCalled());
     });
-    it('when events', () => {
+    it('when no events', () => {
       const spies = [];
       spies.push(spyOn<any>(component, 'clear'));
       spies.push(spyOn<any>(component, 'sortEvents'));
@@ -96,7 +101,7 @@ describe('NgxTimelineComponent', () => {
     });
   });
 
-  describe('should sortEvents', ()=> {
+  describe('should sortEvents', () => {
     it('when events', () => {
       const event = {timestamp: new Date(2021, 11, 10)};
       const event2 = {timestamp: new Date(2021, 8, 10)};
@@ -107,19 +112,19 @@ describe('NgxTimelineComponent', () => {
     });
   });
 
-  describe('should sortEvents in reverse order', ()=> {
+  describe('should sortEvents in reverse order', () => {
     it('when events', () => {
       const event = {timestamp: new Date(2021, 11, 10)};
       const event2 = {timestamp: new Date(2021, 8, 10)};
       const events = [event, event2];
-      component.reverseOrder = true;
+      componentRef.setInput('reverseOrder', true);
       component['sortEvents'](events);
       expect(events[0]).toEqual(event);
       expect(events[1]).toEqual(event2);
     });
   });
 
-  describe('should setGroupsAndPeriodsAndPeriods', ()=> {
+  describe('should setGroupsAndPeriodsAndPeriods', () => {
     it('when events', () => {
       const date = new Date(2021, 11, 10);
       const date2 = new Date(2021, 8, 10);
@@ -136,7 +141,7 @@ describe('NgxTimelineComponent', () => {
     });
   });
 
-  describe('should setItems', ()=> {
+  describe('should setItems', () => {
     it('when events', () => {
       const period = {periodInfo: {periodKey: '2021/7'}};
       const period2 = {periodInfo: {periodKey: '2021/8'}};
@@ -158,7 +163,7 @@ describe('NgxTimelineComponent', () => {
       const event3 = {timestamp: new Date(2021, 8, 11)};
       component.groups['2021/7'] = [event];
       component.groups['2021/8'] = [event2, event3];
-      component.changeSide = NgxTimelineEventChangeSide.ALL;
+      componentRef.setInput('changeSide', NgxTimelineEventChangeSide.ALL);
       component['setItems']();
       expect(component.items.length).toEqual(5);
       expect(component.items[1].position).toEqual(NgxTimelineItemPosition.ON_LEFT);
@@ -167,23 +172,23 @@ describe('NgxTimelineComponent', () => {
     });
   });
 
-  describe('should getPeriodKeyFromEvent', ()=> {
+  describe('should getPeriodKeyFromEvent', () => {
     it('when groupEvent by year', () => {
-      component.groupEvent = NgxTimelineEventGroup.YEAR;
+      componentRef.setInput('groupEvent', NgxTimelineEventGroup.YEAR);
       const event = {timestamp: new Date(2021, 7, 10)};
       const event2 = {timestamp: new Date(2021, 8, 9)};
       expect(component['getPeriodKeyFromEvent'](event)).toBe('2021');
       expect(component['getPeriodKeyFromEvent'](event2)).toBe('2021');
     });
     it('when groupEvent by month year', () => {
-      component.groupEvent = NgxTimelineEventGroup.MONTH_YEAR;
+      componentRef.setInput('groupEvent', NgxTimelineEventGroup.MONTH_YEAR);
       const event = {timestamp: new Date(2021, 7, 10)};
       const event2 = {timestamp: new Date(2021, 8, 9)};
       expect(component['getPeriodKeyFromEvent'](event)).toBe('2021/7');
       expect(component['getPeriodKeyFromEvent'](event2)).toBe('2021/8');
     });
     it('when groupEvent by day month year', () => {
-      component.groupEvent = NgxTimelineEventGroup.DAY_MONTH_YEAR;
+      componentRef.setInput('groupEvent', NgxTimelineEventGroup.DAY_MONTH_YEAR);
       const event = {timestamp: new Date(2021, 7, 10)};
       const event2 = {timestamp: new Date(2021, 8, 9)};
       expect(component['getPeriodKeyFromEvent'](event)).toBe('2021/7/10');
