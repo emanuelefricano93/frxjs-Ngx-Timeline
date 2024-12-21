@@ -1,9 +1,10 @@
 import {JsonPipe, NgClass} from '@angular/common';
-import {Component, signal, WritableSignal} from '@angular/core';
+import {Component, signal} from '@angular/core';
 import {UntypedFormGroup, UntypedFormControl, ReactiveFormsModule} from '@angular/forms';
 
 import {NgxTimelineItem} from '../../../ngx-timeline/src/lib/models';
 import {NgxDateFormat, NgxTimelineEvent, NgxTimelineEventChangeSide, NgxTimelineEventGroup, NgxTimelineModule, NgxTimelineOrientation} from 'ngx-timeline';
+
 
 @Component({
   selector: 'app-root',
@@ -18,12 +19,12 @@ import {NgxDateFormat, NgxTimelineEvent, NgxTimelineEventChangeSide, NgxTimeline
 })
 export class AppComponent {
   title = 'demo-app';
-  events: WritableSignal<NgxTimelineEvent[]> = signal([]);
+  events = signal<NgxTimelineEvent[]>([]);
   form: UntypedFormGroup;
-  ngxDateFormat = NgxDateFormat;
-  virtualScrollItemSize: WritableSignal<number> = signal(160);
-  virtualScrollMaxBufferPx: WritableSignal<number> = signal(2160);
-  virtualScrollMinBufferPx: WritableSignal<number> = signal(1080);
+  ngxDateFormat: typeof NgxDateFormat = NgxDateFormat;
+  virtualScrollItemSize = signal<number>(160);
+  virtualScrollMaxBufferPx = signal<number>(2160);
+  virtualScrollMinBufferPx = signal<number>(1080);
 
   configurations = [
     {
@@ -176,25 +177,25 @@ export class AppComponent {
     this.initEvents();
   }
 
-  private handleVirtualScrolling() {
+  private handleVirtualScrolling(): void {
     this.form.get('virtualScrolling')!.valueChanges.subscribe((value: boolean) => {
       if (value) {
         this.initEventsVirtual();
-        let orientation: NgxTimelineOrientation = this.form.get('orientation').value;
+        const orientation: NgxTimelineOrientation = this.form.get('orientation')?.value as NgxTimelineOrientation;
         this.adjustVirtualScrollOrientation(orientation);
       } else {
         this.initEvents();
       }
     });
     this.form.get('orientation')!.valueChanges.subscribe((value: NgxTimelineOrientation) => {
-      let isVirtualScrollingEnabled = this.form.get('virtualScrolling').value;
+      const isVirtualScrollingEnabled = !!this.form.get('virtualScrolling')?.value;
       if (isVirtualScrollingEnabled) {
         this.adjustVirtualScrollOrientation(value);
       }
     });
   }
 
-  adjustVirtualScrollOrientation(orientation: NgxTimelineOrientation) {
+  adjustVirtualScrollOrientation(orientation: NgxTimelineOrientation): void {
       const itemSize = orientation === NgxTimelineOrientation.HORIZONTAL ? 420 : 160;
       const minBufferPx = orientation === NgxTimelineOrientation.HORIZONTAL ? window.innerWidth : window.innerHeight;
       this.virtualScrollItemSize.set(itemSize);
@@ -202,7 +203,7 @@ export class AppComponent {
       this.virtualScrollMaxBufferPx.set(minBufferPx * 2);
   }
 
-  initEventsVirtual() {
+  initEventsVirtual(): void {
     const today = new Date();
     const newEvents: NgxTimelineEvent[] = [];
     const len = 100_000;

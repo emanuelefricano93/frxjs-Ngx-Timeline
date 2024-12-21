@@ -1,3 +1,4 @@
+import {ScrollingModule} from '@angular/cdk/scrolling';
 import {NgClass, NgTemplateOutlet} from '@angular/common';
 import {Component, DoCheck, inject, IterableDiffer, IterableDiffers, OnChanges, TemplateRef, input, output} from '@angular/core';
 
@@ -16,7 +17,6 @@ import {
 } from '../models';
 import {NgxDatePipe} from '../pipes';
 import {NgxTimelineEventComponent} from './ngx-timeline-event/ngx-timeline-event.component';
-import {ScrollingModule} from '@angular/cdk/scrolling';
 
 @Component({
   selector: 'ngx-timeline',
@@ -86,20 +86,20 @@ export class NgxTimelineComponent implements OnChanges, DoCheck {
   /**
    * Enable virtual scrolling, for rendering performance. Useful when rendering thousands of items.
    */
-  @Input() virtualScroll?: boolean = false;
+  readonly virtualScroll = input<boolean>(false);
   /**
    * The size of the items in the list (in pixels).
    */
-  @Input() virtualScrollItemSize?: number = 100;
+  readonly virtualScrollItemSize = input<number>(100);
   /**
    * The number of pixels worth of buffer to render for when rendering new items. Defaults to 200px.
    */ 
-  @Input() virtualScrollMaxBufferPx?: number = 200;
+  readonly virtualScrollMaxBufferPx = input<number>(200);
   /**
    * The minimum amount of buffer rendered beyond the viewport (in pixels). 
    * If the amount of buffer dips below this number, more items will be rendered. Defaults to 100px.
    */
-  @Input() virtualScrollMinBufferPx?: number = 100;
+  readonly virtualScrollMinBufferPx = input<number>(100);
    /**
    * Output click event emitter.
    */
@@ -244,5 +244,9 @@ export class NgxTimelineComponent implements OnChanges, DoCheck {
 
   protected getPeriodKeyFromEvent(event: NgxTimelineEvent): string {
     return fieldsToAddEventGroup[this.groupEvent()].map((field) => (event.timestamp[field as keyof Date] as () => number)()).join(this.separator);
+  }
+
+  protected getOrientationForVirtualScroll(): Lowercase<NgxTimelineOrientation.HORIZONTAL | NgxTimelineOrientation.VERTICAL>  {
+    return this.orientation().toLowerCase() as Lowercase<NgxTimelineOrientation>;
   }
 }
