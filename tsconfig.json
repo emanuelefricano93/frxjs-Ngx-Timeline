@@ -1,23 +1,27 @@
+/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
+/* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
 {
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
     "preserveSymlinks": true,
     "strict": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "sourceMap": true,
-    "declaration": false,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
     "experimentalDecorators": true,
-    "moduleResolution": "node",
-    "importHelpers": true,
+    "moduleResolution": "bundler",
     "target": "ES2022",
-    "module": "es2020",
+    "module": "ES2022",
     "lib": [
-      "es2018",
+      "ES2022",
       "dom"
     ],
     "paths": {
@@ -26,7 +30,8 @@
         "dist/ngx-timeline"
       ]
     },
-    "useDefineForClassFields": false
+    "preserveSymlinks": true,
+    "forceConsistentCasingInFileNames": true
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
