@@ -164,7 +164,7 @@ export class AppComponent {
       formControlName: 'virtualScrolling',
       options: [
         {name: 'No virtual scrolling', value: false},
-        {name: 'virtual scrolling', value: true}
+        {name: 'Virtual scrolling', value: true}
       ]
     }
   ];
