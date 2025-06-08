@@ -52,7 +52,7 @@
     "zone.js": "~0.15.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^20.0.1",
+    "@angular/build": "^20.0.1",
     "@angular/cli": "^20.0.1",
     "@angular/compiler-cli": "^20.0.2",
     "@cypress/schematic": "^2.5.2",
