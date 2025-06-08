@@ -39,6 +39,8 @@
             "style": "kebab-case"
           }
         ],
+       "@typescript-eslint/no-unsafe-assignment": "off",
+       "@typescript-eslint/no-unsafe-member-access": "off",
        "import/no-unresolved": "off"
       }
     }

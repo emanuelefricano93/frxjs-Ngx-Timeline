@@ -245,7 +245,7 @@
     "analytics": false,
     "schematicCollections": [
       "@cypress/schematic",
-      "@angular-eslint/schematics",
+      "@angular-eslint",
       "@schematics/angular"
     ]
   },
