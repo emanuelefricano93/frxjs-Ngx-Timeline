@@ -19,7 +19,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [ 18, 20, 22 ]
+        node-version: [ 20, 22, 24 ]
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
