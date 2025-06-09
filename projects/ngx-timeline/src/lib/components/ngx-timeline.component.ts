@@ -1,6 +1,6 @@
-import {ScrollingModule} from '@angular/cdk/scrolling';
-import {NgClass, NgTemplateOutlet} from '@angular/common';
-import {Component, DoCheck, inject, IterableDiffer, IterableDiffers, OnChanges, TemplateRef, input, output} from '@angular/core';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { NgClass, NgTemplateOutlet } from '@angular/common';
+import { Component, DoCheck, inject, IterableDiffer, IterableDiffers, OnChanges, TemplateRef, input, output, ChangeDetectionStrategy } from '@angular/core';
 
 import {
   NgxTimelineEvent,
@@ -15,20 +15,21 @@ import {
   fieldsToCheckEventChangeSideInGroup as fieldsToCheckEventChangeSide,
   fieldsToAddEventGroup, SupportedLanguageCode, defaultSupportedLanguageCode,
 } from '../models';
-import {NgxDatePipe} from '../pipes';
-import {NgxTimelineEventComponent} from './ngx-timeline-event/ngx-timeline-event.component';
+import { NgxDatePipe } from '../pipes';
+import { NgxTimelineEventComponent } from './ngx-timeline-event/ngx-timeline-event.component';
 
 @Component({
   selector: 'ngx-timeline',
-  templateUrl: './ngx-timeline.component.html',
-  styleUrl: './ngx-timeline.component.scss',
   imports: [
     NgClass,
     NgTemplateOutlet,
     NgxDatePipe,
     NgxTimelineEventComponent,
-    ScrollingModule
+    ScrollingModule,
   ],
+  templateUrl: './ngx-timeline.component.html',
+  styleUrl: './ngx-timeline.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NgxTimelineComponent implements OnChanges, DoCheck {
   /**
@@ -93,14 +94,14 @@ export class NgxTimelineComponent implements OnChanges, DoCheck {
   readonly virtualScrollItemSize = input<number>(100);
   /**
    * The number of pixels worth of buffer to render for when rendering new items. Defaults to 200px.
-   */ 
+   */
   readonly virtualScrollMaxBufferPx = input<number>(200);
   /**
-   * The minimum amount of buffer rendered beyond the viewport (in pixels). 
+   * The minimum amount of buffer rendered beyond the viewport (in pixels).
    * If the amount of buffer dips below this number, more items will be rendered. Defaults to 100px.
    */
   readonly virtualScrollMinBufferPx = input<number>(100);
-   /**
+  /**
    * Output click event emitter.
    */
   readonly clickEmitter = output<NgxTimelineItem>();
@@ -162,7 +163,7 @@ export class NgxTimelineComponent implements OnChanges, DoCheck {
       const periodKey = this.getPeriodKeyFromEvent(event);
       if (!this.groups[periodKey]) {
         this.groups[periodKey] = [];
-        this.periods.push({periodInfo: this.getPeriodInfoFromPeriodKey(periodKey, event)});
+        this.periods.push({ periodInfo: this.getPeriodInfoFromPeriodKey(periodKey, event) });
       }
       this.groups[periodKey].push(event);
     });
@@ -196,7 +197,8 @@ export class NgxTimelineComponent implements OnChanges, DoCheck {
       const prevEvent = this.groups[periodKey][index - 1];
       if (event.itemPosition) {
         onLeft = event.itemPosition && event.itemPosition === NgxTimelineItemPosition.ON_LEFT;
-      } else if (index > 0 && this.compareEvents(prevEvent, event)) {
+      }
+      else if (index > 0 && this.compareEvents(prevEvent, event)) {
         onLeft = !onLeft;
       }
       this.pushEventOnItems(event, onLeft);
@@ -206,8 +208,9 @@ export class NgxTimelineComponent implements OnChanges, DoCheck {
 
   protected pushEventOnItems(event: NgxTimelineEvent, onLeft: boolean): void {
     this.items.push({
-      eventInfo: {...event}, position: onLeft ?
-        this.ngxTimelineItemPosition.ON_LEFT : this.ngxTimelineItemPosition.ON_RIGHT,
+      eventInfo: { ...event }, position: onLeft
+        ? this.ngxTimelineItemPosition.ON_LEFT
+        : this.ngxTimelineItemPosition.ON_RIGHT,
     });
   }
 
@@ -215,8 +218,8 @@ export class NgxTimelineComponent implements OnChanges, DoCheck {
    * Compare the events inside the same group
    */
   protected compareEvents(prevEvent: NgxTimelineEvent, event: NgxTimelineEvent): boolean {
-    return this.shouldChangeEventsInPeriod() ||
-      this.compareEventsField(prevEvent, event, ...(fieldsToCheckEventChangeSide[this.changeSide()] ?? []));
+    return this.shouldChangeEventsInPeriod()
+      || this.compareEventsField(prevEvent, event, ...(fieldsToCheckEventChangeSide[this.changeSide()] ?? []));
   }
 
   protected compareEventsField(prevEvent: NgxTimelineEvent, event: NgxTimelineEvent, ...fields: string[]): boolean {
@@ -243,10 +246,10 @@ export class NgxTimelineComponent implements OnChanges, DoCheck {
   }
 
   protected getPeriodKeyFromEvent(event: NgxTimelineEvent): string {
-    return fieldsToAddEventGroup[this.groupEvent()].map((field) => (event.timestamp[field as keyof Date] as () => number)()).join(this.separator);
+    return fieldsToAddEventGroup[this.groupEvent()].map(field => (event.timestamp[field as keyof Date] as () => number)()).join(this.separator);
   }
 
-  protected getOrientationForVirtualScroll(): Lowercase<NgxTimelineOrientation.HORIZONTAL | NgxTimelineOrientation.VERTICAL>  {
+  protected getOrientationForVirtualScroll(): Lowercase<NgxTimelineOrientation.HORIZONTAL | NgxTimelineOrientation.VERTICAL> {
     return this.orientation().toLowerCase() as Lowercase<NgxTimelineOrientation>;
   }
 }

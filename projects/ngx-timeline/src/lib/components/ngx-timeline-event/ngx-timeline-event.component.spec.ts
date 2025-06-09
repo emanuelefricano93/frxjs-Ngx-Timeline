@@ -1,12 +1,10 @@
-import {registerLocaleData} from '@angular/common';
+import { registerLocaleData } from '@angular/common';
 import localeIt from '@angular/common/locales/it';
-import {ComponentRef} from '@angular/core';
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentRef } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {NgxTimelineEventComponent} from './ngx-timeline-event.component';
-import {NgxTimelineItemPosition} from '../../models';
-
-
+import { NgxTimelineEventComponent } from './ngx-timeline-event.component';
+import { NgxTimelineItemPosition } from '../../models';
 
 registerLocaleData(localeIt);
 
@@ -55,21 +53,21 @@ describe('NgxTimelineEventComponent', () => {
     it('without event info', () => {
       componentRef.setInput('event', {});
       const res = component.getDateObj();
-      expect(res).toEqual({day: undefined, month: undefined, year: undefined});
+      expect(res).toEqual({ day: undefined, month: undefined, year: undefined });
     });
     it('should getDateObj without langCode', () => {
       const res = component.getDateObj();
-      expect(res).toEqual({day: '19', month: 'Aug', year: 2021});
+      expect(res).toEqual({ day: '19', month: 'Aug', year: 2021 });
     });
     it('should getDateObj with supported langCode', () => {
       componentRef.setInput('langCode', 'en');
       const res = component.getDateObj();
-      expect(res).toEqual({day: '19', month: 'Aug', year: 2021});
+      expect(res).toEqual({ day: '19', month: 'Aug', year: 2021 });
     });
     it('should getDateObj with another supported langCode', () => {
       componentRef.setInput('langCode', 'it');
       const res = component.getDateObj();
-      expect(res).toEqual({day: '19', month: 'ago', year: 2021});
+      expect(res).toEqual({ day: '19', month: 'ago', year: 2021 });
     });
   });
   describe('should type error', () => {

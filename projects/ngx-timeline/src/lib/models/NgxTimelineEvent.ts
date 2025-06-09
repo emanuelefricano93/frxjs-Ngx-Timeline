@@ -28,5 +28,5 @@ export interface NgxTimelineItem {
 
 export enum NgxTimelineItemPosition {
   ON_LEFT = 'ON_LEFT',
-  ON_RIGHT = 'ON_RIGHT'
+  ON_RIGHT = 'ON_RIGHT',
 }

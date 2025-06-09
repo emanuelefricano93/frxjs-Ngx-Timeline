@@ -1,18 +1,19 @@
-import {DatePipe, NgClass, NgTemplateOutlet, TitleCasePipe} from '@angular/common';
-import {Component, output, TemplateRef, input} from '@angular/core';
+import { DatePipe, NgClass, NgTemplateOutlet, TitleCasePipe } from '@angular/common';
+import { Component, output, TemplateRef, input, ChangeDetectionStrategy } from '@angular/core';
 
-import {defaultSupportedLanguageCode, NgxTimelineOrientation, SupportedLanguageCode} from '../../models';
-import {NgxTimelineItem, NgxTimelineItemPosition} from '../../models/NgxTimelineEvent';
+import { defaultSupportedLanguageCode, NgxTimelineOrientation, SupportedLanguageCode } from '../../models';
+import { NgxTimelineItem, NgxTimelineItemPosition } from '../../models/NgxTimelineEvent';
 
 @Component({
   selector: 'ngx-timeline-event',
-  templateUrl: './ngx-timeline-event.component.html',
-  styleUrl: './ngx-timeline-event.component.scss',
   imports: [
     NgClass,
     NgTemplateOutlet,
     TitleCasePipe,
   ],
+  templateUrl: './ngx-timeline-event.component.html',
+  styleUrl: './ngx-timeline-event.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NgxTimelineEventComponent {
   /**
@@ -54,7 +55,7 @@ export class NgxTimelineEventComponent {
   private readonly monthAbbr = 'MMM';
   private readonly dayFormat = 'dd';
 
-  getDateObj(): { day: unknown, month: unknown, year: unknown } {
+  getDateObj(): { day: unknown; month: unknown; year: unknown } {
     let day = undefined;
     let month = undefined;
     let year = undefined;
@@ -67,7 +68,7 @@ export class NgxTimelineEventComponent {
       year = timestamp.getFullYear();
     }
 
-    return {day, month, year};
+    return { day, month, year };
   }
 
   protected getLangCode(): SupportedLanguageCode {

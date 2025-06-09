@@ -16,6 +16,7 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    timeout-minutes: 20
 
     strategy:
       matrix:
@@ -36,28 +37,13 @@ jobs:
       - name: Install pinned dependencies from package-lock.json
         run: npm ci
 
+      - name: Run lint
+        run: npm run lint
+
       - name: Run build prod
         run: npm run build:prod
 
       - name: Run test
-        run: npm run test
+        run: npm run test -- --watch=false --browsers=ChromeHeadless
         env:
           NODE_OPTIONS: --max_old_space_size=4096
-
-      - name: Run lint
-        run: npm run lint
-
-  #if the version will be updated in package.json to 1.2.3 with the commit message Release 1.2.3 this job action will perform a new tag before publishing
-  # npm-publish:
-  #   name: npm-publish
-  #   needs: build
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v1
-  #     - uses: actions/setup-node@v1
-  #       with:
-  #         node-version: 12
-  #         registry-url: https://registry.npmjs.org/
-  #     - run: npm run publish
-  #       env:
-  #         NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}

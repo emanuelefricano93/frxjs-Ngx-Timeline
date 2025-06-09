@@ -3,41 +3,46 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
-    "outDir": "./dist/out-tsc",
+    "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
-    "forceConsistentCasingInFileNames": true,
-    "preserveSymlinks": true,
-    "strict": true,
     "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "skipLibCheck": true,
-    "isolatedModules": true,
-    "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "moduleResolution": "bundler",
-    "target": "ES2022",
-    "module": "ES2022",
-    "lib": [
-      "ES2022",
-      "dom"
-    ],
     "paths": {
       "ngx-timeline": [
-        "dist/ngx-timeline/ngx-timeline",
         "dist/ngx-timeline"
       ]
     },
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "ES2022",
+    "module": "preserve",
+    "baseUrl": "./",
+    "preserveSymlinks": true,
+    "forceConsistentCasingInFileNames": true
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
+    "typeCheckHostBindings": true,
     "strictTemplates": true
   },
-  "include": [
-    "projects/ngx-timeline/src/**/*.ts" ,
-    "projects/demo-app/src/**/*.ts" ,
+  "files": [],
+  "references": [
+    {
+      "path": "./projects/ngx-timeline/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/ngx-timeline/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/demo-app/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/demo-app/tsconfig.spec.json"
+    }
   ]
 }

@@ -1,4 +1,4 @@
-@use "./../../../style.scss";
+@use "../../../styles";
 
 .main-container {
   display: flex;
@@ -51,7 +51,7 @@
       align-items: center;
       justify-content: flex-end;
     }
-    
+
     .col-right {
       min-height: 300px;
       align-items: center;
