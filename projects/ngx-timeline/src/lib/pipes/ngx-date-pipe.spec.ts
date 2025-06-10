@@ -6,8 +6,6 @@ describe('NgxDatePipe', () => {
   const pipe = new NgxDatePipe();
   let consoleWarnSpy: jasmine.Spy; // Using a union type for Jest/Jasmine compatibility
 
-
-
   beforeEach(() => {
     // 1. Create a spy on console.warn
     // Jest:
