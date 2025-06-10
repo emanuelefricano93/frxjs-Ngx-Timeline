@@ -249,7 +249,7 @@ export class NgxTimelineComponent implements OnChanges, DoCheck {
     return fieldsToAddEventGroup[this.groupEvent()].map(field => (event.timestamp[field as keyof Date] as () => number)()).join(this.separator);
   }
 
-  protected getOrientationForVirtualScroll(): Lowercase<NgxTimelineOrientation.HORIZONTAL | NgxTimelineOrientation.VERTICAL> {
+  getOrientationForVirtualScroll(): Lowercase<NgxTimelineOrientation.HORIZONTAL | NgxTimelineOrientation.VERTICAL> {
     return this.orientation().toLowerCase() as Lowercase<NgxTimelineOrientation>;
   }
 }

@@ -2,7 +2,7 @@
 import { ComponentRef } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NgxDateFormat, NgxTimelineEventChangeSide, NgxTimelineEventGroup, NgxTimelineItemPosition } from '../models';
+import { NgxDateFormat, NgxTimelineEventChangeSide, NgxTimelineEventGroup, NgxTimelineItemPosition, NgxTimelineOrientation } from '../models';
 import { NgxTimelineComponent } from './ngx-timeline.component';
 
 describe('NgxTimelineComponent', () => {
@@ -34,8 +34,8 @@ describe('NgxTimelineComponent', () => {
     expect(spy).toHaveBeenCalled();
   });
 
-  xit('should call the groupEvents when ngDoCheck and iterable diff find some changes', () => {
-    componentRef.setInput('event', []);
+  it('should call the groupEvents when ngDoCheck and iterable diff find some changes', () => {
+    componentRef.setInput('events', []);
     const spy = spyOn<any>(component, 'groupEvents');
     component.events().push({ timestamp: new Date() });
     fixture.detectChanges();
@@ -62,6 +62,22 @@ describe('NgxTimelineComponent', () => {
       it(`when groupEvent ${elem.groupEvent} is provided`, () => {
         componentRef.setInput('groupEvent', elem.groupEvent);
         expect(component.getPeriodKeyDateFormat()).toEqual(elem.formatDate);
+      });
+    });
+  });
+
+  describe('should getOrientationForVirtualScroll', () => {
+    it('when default orientation is provided', () => {
+      const res = component.getOrientationForVirtualScroll();
+      expect(res).toEqual(NgxTimelineOrientation.VERTICAL.toLowerCase());
+    });
+
+    [{ orientation: NgxTimelineOrientation.HORIZONTAL },
+      { orientation: NgxTimelineOrientation.VERTICAL },
+    ].forEach((elem) => {
+      it(`when orientation ${elem.orientation} is provided`, () => {
+        componentRef.setInput('orientation', elem.orientation);
+        expect(component.getOrientationForVirtualScroll()).toEqual(elem.orientation.toLowerCase());
       });
     });
   });
@@ -175,6 +191,40 @@ describe('NgxTimelineComponent', () => {
       expect(component.items[1].position).toEqual(NgxTimelineItemPosition.ON_LEFT);
       expect(component.items[3].position).toEqual(NgxTimelineItemPosition.ON_RIGHT);
       expect(component.items[4].position).toEqual(NgxTimelineItemPosition.ON_LEFT);
+    });
+    it('when events with no periodKey and changeSide is set to NgxTimelineEventChangeSide.ALL', () => {
+      const period = { periodInfo: { periodKey: '2021/7' } };
+      const period2 = { periodInfo: { } };
+      component.periods = [period, period2];
+      const event = { timestamp: new Date(2021, 7, 10) };
+      const event2 = { timestamp: new Date(2021, 8, 10) };
+      const event3 = { timestamp: new Date(2021, 8, 11) };
+      component.groups['2021/7'] = [event];
+      component.groups['2021/8'] = [event2, event3];
+      componentRef.setInput('changeSide', NgxTimelineEventChangeSide.ALL);
+      // @ts-expect-error TS2445
+      component.setItems();
+      expect(component.items.length).toEqual(3);
+      expect(component.items[0].position).toEqual(undefined);
+      expect(component.items[1].position).toEqual(NgxTimelineItemPosition.ON_LEFT);
+      expect(component.items[2].position).toEqual(undefined);
+    });
+    it('when events with no periodKey and changeSide is set to a wrong param', () => {
+      const period = { periodInfo: { periodKey: '2021/7' } };
+      const period2 = { periodInfo: { periodKey: '2021/8' } };
+      component.periods = [period, period2];
+      const event = { timestamp: new Date(2021, 7, 10) };
+      const event2 = { timestamp: new Date(2021, 8, 10) };
+      const event3 = { timestamp: new Date(2021, 8, 11) };
+      component.groups['2021/7'] = [event];
+      component.groups['2021/8'] = [event2, event3];
+      componentRef.setInput('changeSide', 'wrong param');
+      // @ts-expect-error TS2445
+      component.setItems();
+      expect(component.items.length).toEqual(5);
+      expect(component.items[0].position).toEqual(undefined);
+      expect(component.items[1].position).toEqual(NgxTimelineItemPosition.ON_LEFT);
+      expect(component.items[2].position).toEqual(undefined);
     });
   });
 
