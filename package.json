@@ -22,7 +22,7 @@
     "build:prod": "ng build ngx-timeline --configuration production",
     "watch-lib": "ng build ngx-timeline --watch --configuration production",
     "start-dev": "npm run link && npm run link-lib && npm run start",
-    "test": "ng test --watch=false",
+    "test": "ng test",
     "test-app": "ng test demo-app",
     "test-lib": "ng test ngx-timeline",
     "lint": "ng lint",
