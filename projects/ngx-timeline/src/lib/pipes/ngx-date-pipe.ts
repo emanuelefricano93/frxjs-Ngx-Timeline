@@ -1,7 +1,7 @@
-import {DatePipe} from '@angular/common';
-import {Pipe, PipeTransform} from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { Pipe, PipeTransform } from '@angular/core';
 
-import {dateConfigMap, defaultSupportedLanguageCode, fieldConfigDate, NgxConfigDate, NgxDateFormat, SupportedLanguageCode} from '../models';
+import { dateConfigMap, defaultSupportedLanguageCode, fieldConfigDate, NgxConfigDate, NgxDateFormat, SupportedLanguageCode } from '../models';
 
 @Pipe({
   name: 'ngxdate',
@@ -12,9 +12,11 @@ export class NgxDatePipe implements PipeTransform {
     let dateFormatString = 'yyyy';
     if (dateFormat === undefined) {
       console.warn('frxjs-ngx-timeline: no date format defined.');
-    } else if (dateFormat in NgxDateFormat) {
+    }
+    else if (dateFormat in NgxDateFormat) {
       dateFormatString = this.dateFormat(dateFormat as NgxDateFormat, configDate);
-    } else if (typeof dateFormat === 'string') {
+    }
+    else if (typeof dateFormat === 'string') {
       dateFormatString = dateFormat;
     }
     return new DatePipe(configDate.code).transform(new Date(date), dateFormatString);

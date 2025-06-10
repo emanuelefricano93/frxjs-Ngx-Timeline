@@ -99,7 +99,7 @@ export enum NgxDateFormat {
   FULL_DATE = 'FULL_DATE',
   HOURS_MINUTES = 'HOURS_MINUTES',
   MONTH_YEAR = 'MONTH_YEAR',
-  YEAR = 'YEAR'
+  YEAR = 'YEAR',
 }
 
 export const fieldConfigDate: Record<NgxDateFormat, keyof NgxConfigDate> = {
@@ -116,7 +116,7 @@ export const fieldConfigDate: Record<NgxDateFormat, keyof NgxConfigDate> = {
 export enum NgxTimelineEventGroup {
   YEAR = 'YEAR',
   MONTH_YEAR = 'MONTH_YEAR',
-  DAY_MONTH_YEAR = 'DAY_MONTH_YEAR'
+  DAY_MONTH_YEAR = 'DAY_MONTH_YEAR',
 }
 
 export const fieldsToAddEventGroup: Record<NgxTimelineEventGroup, string[]> = {
@@ -147,7 +147,7 @@ export enum NgxTimelineEventChangeSide {
   ALL_IN_GROUP = 'ALL_IN_GROUP',
   ON_DIFFERENT_DAY_IN_GROUP = 'ON_DIFFERENT_DAY_IN_GROUP',
   ON_DIFFERENT_HMS_IN_GROUP = 'ON_DIFFERENT_HMS_IN_GROUP',
-  ON_DIFFERENT_MONTH_IN_GROUP = 'ON_DIFFERENT_MONTH_IN_GROUP'
+  ON_DIFFERENT_MONTH_IN_GROUP = 'ON_DIFFERENT_MONTH_IN_GROUP',
 }
 
 export const fieldsToCheckEventChangeSideInGroup: Partial<Record<NgxTimelineEventChangeSide, string[]>> = {

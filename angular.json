@@ -10,24 +10,26 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "tsConfig": "projects/ngx-timeline/tsconfig.lib.json",
-            "project": "projects/ngx-timeline/ng-package.json"
-          },
+          "builder": "@angular/build:ng-packagr",
           "configurations": {
             "production": {
               "tsConfig": "projects/ngx-timeline/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ngx-timeline/tsconfig.lib.json"
             }
-          }
+          },
+          "defaultConfiguration": "production"
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@angular/build:karma",
           "options": {
-            "main": "projects/ngx-timeline/src/test.ts",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
             "tsConfig": "projects/ngx-timeline/tsconfig.spec.json",
-            "codeCoverage": true,
-            "karmaConfig": "projects/ngx-timeline/karma.conf.js"
+            "codeCoverage": true
           }
         },
         "lint": {
@@ -36,150 +38,99 @@
             "lintFilePatterns": [
               "projects/ngx-timeline/**/*.ts",
               "projects/ngx-timeline/**/*.html"
-            ]
-          }
-        },
-        "cypress-run": {
-          "builder": "@cypress/schematic:cypress",
-          "options": {
-            "devServerTarget": "ngx-timeline:serve",
-            "configFile": "projects/ngx-timeline/cypress.config.js"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "ngx-timeline:serve:production"
-            }
-          }
-        },
-        "cypress-open": {
-          "builder": "@cypress/schematic:cypress",
-          "options": {
-            "watch": true,
-            "headless": false,
-            "configFile": "projects/ngx-timeline/cypress.config.js"
-          }
-        },
-        "ct": {
-          "builder": "@cypress/schematic:cypress",
-          "options": {
-            "devServerTarget": "ngx-timeline:serve",
-            "watch": true,
-            "headless": false,
-            "testingType": "component"
-          },
-          "configurations": {
-            "development": {
-              "devServerTarget": "ngx-timeline:serve:development"
-            }
-          }
-        },
-        "e2e": {
-          "builder": "@cypress/schematic:cypress",
-          "options": {
-            "devServerTarget": "ngx-timeline:serve",
-            "watch": true,
-            "headless": false
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "ngx-timeline:serve:production"
-            }
+            ],
+            "eslintConfig": "projects/ngx-timeline/eslint.config.js"
           }
         }
       }
     },
     "demo-app": {
       "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "root": "projects/demo-app",
       "sourceRoot": "projects/demo-app/src",
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:application",
+          "builder": "@angular/build:application",
           "options": {
-            "outputPath": {
-              "base": "docs",
-              "browser": ""
-            },
-            "index": "projects/demo-app/src/index.html",
+            "browser": "projects/demo-app/src/main.ts",
             "polyfills": [
-              "@angular/localize/init",
               "zone.js"
             ],
             "tsConfig": "projects/demo-app/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
             "assets": [
-              "projects/demo-app/src/favicon.ico",
-              "projects/demo-app/src/assets"
+              {
+                "glob": "**/*",
+                "input": "projects/demo-app/public"
+              }
             ],
             "styles": [
               "projects/demo-app/src/styles.scss"
-            ],
-            "scripts": [],
-            "extractLicenses": false,
-            "sourceMap": true,
-            "optimization": false,
-            "namedChunks": true,
-            "browser": "projects/demo-app/src/main.ts"
+            ]
           },
           "configurations": {
             "production": {
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
                 }
-              ]
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
             }
           },
-          "defaultConfiguration": ""
+          "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "buildTarget": "demo-app:build"
-          },
+          "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
               "buildTarget": "demo-app:build:production"
+            },
+            "development": {
+              "buildTarget": "demo-app:build:development"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "buildTarget": "demo-app:build"
-          }
+          "builder": "@angular/build:extract-i18n"
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@angular/build:karma",
           "options": {
-            "main": "projects/demo-app/src/test.ts",
             "polyfills": [
-              "@angular/localize/init",
               "zone.js",
               "zone.js/testing"
             ],
             "tsConfig": "projects/demo-app/tsconfig.spec.json",
-            "karmaConfig": "projects/demo-app/karma.conf.js",
+            "inlineStyleLanguage": "scss",
             "assets": [
-              "projects/demo-app/src/favicon.ico",
-              "projects/demo-app/src/assets"
+              {
+                "glob": "**/*",
+                "input": "projects/demo-app/public"
+              }
             ],
             "styles": [
               "projects/demo-app/src/styles.scss"
-            ],
-            "scripts": []
+            ]
           }
         },
         "lint": {
@@ -188,54 +139,8 @@
             "lintFilePatterns": [
               "projects/demo-app/src/**/*.ts",
               "projects/demo-app/src/**/*.html"
-            ]
-          }
-        },
-        "cypress-run": {
-          "builder": "@cypress/schematic:cypress",
-          "options": {
-            "devServerTarget": "demo-app:serve",
-            "configFile": "projects/demo-app/cypress.config.ts"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "demo-app:serve:production"
-            }
-          }
-        },
-        "cypress-open": {
-          "builder": "@cypress/schematic:cypress",
-          "options": {
-            "watch": true,
-            "headless": false,
-            "configFile": "projects/demo-app/cypress.config.ts"
-          }
-        },
-        "ct": {
-          "builder": "@cypress/schematic:cypress",
-          "options": {
-            "devServerTarget": "demo-app:serve",
-            "watch": true,
-            "headless": false,
-            "testingType": "component"
-          },
-          "configurations": {
-            "development": {
-              "devServerTarget": "demo-app:serve:development"
-            }
-          }
-        },
-        "e2e": {
-          "builder": "@cypress/schematic:cypress",
-          "options": {
-            "devServerTarget": "demo-app:serve",
-            "watch": true,
-            "headless": false
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "demo-app:serve:production"
-            }
+            ],
+            "eslintConfig": "projects/demo-app/eslint.config.js"
           }
         }
       }
@@ -244,20 +149,41 @@
   "cli": {
     "analytics": false,
     "schematicCollections": [
-      "@cypress/schematic",
-      "@angular-eslint/schematics",
+      "@angular-eslint",
       "@schematics/angular"
     ]
   },
   "schematics": {
     "@schematics/angular:component": {
-      "style": "scss"
+      "style": "scss",
+      "type": "component"
     },
     "@angular-eslint/schematics:application": {
       "setParserOptionsProject": true
     },
     "@angular-eslint/schematics:library": {
       "setParserOptionsProject": true
+    },
+    "@schematics/angular:directive": {
+      "type": "directive"
+    },
+    "@schematics/angular:service": {
+      "type": "service"
+    },
+    "@schematics/angular:guard": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:interceptor": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:module": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:pipe": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:resolver": {
+      "typeSeparator": "."
     }
   }
 }
