@@ -41,6 +41,7 @@ export class AppComponent {
         { name: 'Polish', value: 'pl' },
         { name: 'Portuguese', value: 'pt' },
         { name: 'Russian', value: 'ru' },
+        { name: 'Norwegian', value: 'no' },
       ],
     },
     {
