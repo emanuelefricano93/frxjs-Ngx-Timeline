@@ -9,8 +9,6 @@ import localeRu from '@angular/common/locales/ru';
 import localeSl from '@angular/common/locales/sl';
 import localeTr from '@angular/common/locales/tr';
 import localeNo from '@angular/common/locales/nb';
-import localeNb from '@angular/common/locales/nb';
-import localeNbExtra from '@angular/common/locales/extra/nb';
 import { NgModule } from '@angular/core';
 
 import { NgxTimelineComponent, NgxTimelineEventComponent } from './components';
@@ -25,7 +23,6 @@ registerLocaleData(localePt);
 registerLocaleData(localeRu);
 registerLocaleData(localeSl);
 registerLocaleData(localeTr);
-registerLocaleData(localeNb, 'no', localeNbExtra);
 registerLocaleData(localeNo);
 
 @NgModule({

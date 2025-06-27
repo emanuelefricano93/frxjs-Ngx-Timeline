@@ -1,4 +1,4 @@
-export const supportedLanguageCodes = ['en', 'it', 'fr', 'de', 'es', 'sl', 'tr', 'pl', 'pt', 'ru', 'no'] as const;
+export const supportedLanguageCodes = ['en', 'it', 'fr', 'de', 'es', 'sl', 'tr', 'pl', 'pt', 'ru', 'nb'] as const;
 export type SupportedLanguageCode = typeof supportedLanguageCodes[number];
 export const defaultSupportedLanguageCode: SupportedLanguageCode = supportedLanguageCodes[0];
 
@@ -92,7 +92,7 @@ export const dateConfigMap: Record<SupportedLanguageCode, NgxConfigDate> = {
     year: 'yyyy',
     hoursMinutes: 'HH:mm',
   },
-  no: {
+  nb: {
     code: 'nb-NO',
     fullDate: 'dd/MM/yyyy H:mm',
     dayMonthYear: 'dd MMMM yyyy',

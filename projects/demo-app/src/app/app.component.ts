@@ -35,7 +35,7 @@ export class AppComponent {
         { name: 'French', value: 'fr' },
         { name: 'German', value: 'de' },
         { name: 'Italian', value: 'it' },
-        { name: 'Norwegian', value: 'no' },
+        { name: 'Norwegian', value: 'nb' },
         { name: 'Polish', value: 'pl' },
         { name: 'Portuguese', value: 'pt' },
         { name: 'Russian', value: 'ru' },

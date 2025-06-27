@@ -2,7 +2,7 @@
 
 The main goal of this angular library is to give you the possibility to integrate a timeline in your app.
 <br>
-Version 20.0.6 is compatible with angular 20.
+Version 20.0.7 is compatible with angular 20.
 <br>
 Go [here](https://emanuelefricano93.github.io/frxjs-Ngx-Timeline/) and discover all possible configurations for the timeline 
 
@@ -36,7 +36,7 @@ After installing the library and including NgxTimelineModule in your imports mod
 | Input name                     | Explanation                                                 | Mandatory | Type/Supported Values                                                                                                                       | Default value                                        |
 |--------------------------------|-------------------------------------------------------------|-----------|---------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------|
 | events                         | list of events to be displayed                              | yes       | NgxTimelineEvent                                                                                                                            | no default                                           |
-| langCode                       | language code use to format dates                           | no        | <ul><li>'de' (German)</li><li>'en' (English)</li><li>'es' (Spanish)</li><li>'fr' (French)</li><li>'it' (Italian)</li><li>'no' (Norwegian)</li><li>'pl' (Polish)</li><li>'pt' (Portuguese)</li><li>'ru' (Russian)</li><li>'sl' (Slovenian)</li><li>'tr' (Turkish)</li></ul> | 'en'                                                 |
+| langCode                       | language code use to format dates                           | no        | <ul><li>'de' (German)</li><li>'en' (English)</li><li>'es' (Spanish)</li><li>'fr' (French)</li><li>'it' (Italian)</li><li>'nb' (Norwegian)</li><li>'pl' (Polish)</li><li>'pt' (Portuguese)</li><li>'ru' (Russian)</li><li>'sl' (Slovenian)</li><li>'tr' (Turkish)</li></ul> | 'en'                                                 |
 | enableAnimation                | Boolean used to enable or disable the animations            | no        | boolean                                                                                                                                     | true                                                 |
 | reverseOrder                   | Boolean used to reverse sort order (default older first)    | no        | boolean                                                                                                                                     | false                                                |
 | virtualScroll                  | Boolean used to enable or disable the virtual scroll        | no        | boolean                                                                                                                                     | false                                                |
