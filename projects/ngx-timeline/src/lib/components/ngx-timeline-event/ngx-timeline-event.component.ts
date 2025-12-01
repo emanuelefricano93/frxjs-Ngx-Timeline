@@ -1,4 +1,4 @@
-import { DatePipe, NgClass, NgTemplateOutlet, TitleCasePipe } from '@angular/common';
+import { DatePipe, NgTemplateOutlet, TitleCasePipe } from '@angular/common';
 import { Component, output, TemplateRef, input, ChangeDetectionStrategy } from '@angular/core';
 
 import { defaultSupportedLanguageCode, NgxTimelineOrientation, SupportedLanguageCode } from '../../models';
@@ -7,7 +7,6 @@ import { NgxTimelineItem, NgxTimelineItemPosition } from '../../models/NgxTimeli
 @Component({
   selector: 'ngx-timeline-event',
   imports: [
-    NgClass,
     NgTemplateOutlet,
     TitleCasePipe,
   ],

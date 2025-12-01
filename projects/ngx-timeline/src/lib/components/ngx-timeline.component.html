@@ -2,7 +2,7 @@
   @if (virtualScroll()) {
     <cdk-virtual-scroll-viewport
       class="items-container"
-      [ngClass]="{horizontal: orientation() === ngxTimelineOrientation.HORIZONTAL}"
+      [class.horizontal]="orientation() === ngxTimelineOrientation.HORIZONTAL"
       [orientation]="getOrientationForVirtualScroll()"
       [itemSize]="virtualScrollItemSize()"
       [maxBufferPx]="virtualScrollMaxBufferPx()"
@@ -15,7 +15,7 @@
       </div>
     </cdk-virtual-scroll-viewport>
   } @else {
-    <div class="items-container" [ngClass]="{'horizontal': orientation() === ngxTimelineOrientation.HORIZONTAL}">
+    <div class="items-container" [class.horizontal]="orientation() === ngxTimelineOrientation.HORIZONTAL">
       @for (item of items; track item; let index = $index) {
         <ng-template
           *ngTemplateOutlet="rowTemplate; context: { item: item, index: index }"
@@ -99,7 +99,7 @@
 <ng-template #centerLinesIconTemplate let-index=index let-event=event>
   <div class="line"></div>
   <ng-container *ngTemplateOutlet="centerIconCustomTemplate() || centerIconTemplate; context: {index:index, event:event}"></ng-container>
-  <div [ngClass]="{'transparent last-line': index === items.length - 1}" class="line"></div>
+  <div [class.transparent]="index === items.length - 1" [class.last-line]="index === items.length - 1" class="line"></div>
 </ng-template>
 
 <ng-template #centerIconTemplate let-index=index let-event=event>
