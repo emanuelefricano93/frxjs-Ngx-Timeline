@@ -28,14 +28,14 @@ describe('NgxTimelineComponent', () => {
   });
 
   it('should call the groupEvents when ngOnChanges', () => {
-    const spy = spyOn<any>(component, 'groupEvents');
+    const spy = vi.spyOn<any, string>(component, 'groupEvents');
     component.ngOnChanges();
     expect(spy).toHaveBeenCalled();
   });
 
   it('should call the groupEvents when ngDoCheck and iterable diff find some changes', () => {
     componentRef.setInput('events', []);
-    const spy = spyOn<any>(component, 'groupEvents');
+    const spy = vi.spyOn<any, string>(component, 'groupEvents');
     component.events().push({ timestamp: new Date() });
     fixture.detectChanges();
     expect(spy).toHaveBeenCalled();
@@ -84,30 +84,30 @@ describe('NgxTimelineComponent', () => {
   describe('should groupEvents', () => {
     it('when null as events (legacy)', () => {
       const spies = [];
-      spies.push(spyOn<any>(component, 'clear'));
-      spies.push(spyOn<any>(component, 'sortEvents'));
-      spies.push(spyOn<any>(component, 'setGroupsAndPeriods'));
-      spies.push(spyOn<any>(component, 'setItems'));
+      spies.push(vi.spyOn<any, string>(component, 'clear'));
+      spies.push(vi.spyOn<any, string>(component, 'sortEvents'));
+      spies.push(vi.spyOn<any, string>(component, 'setGroupsAndPeriods'));
+      spies.push(vi.spyOn<any, string>(component, 'setItems'));
       // @ts-expect-error legacy non-strict test
       component.groupEvents(null);
       spies.forEach(spy => expect(spy).not.toHaveBeenCalled());
     });
     it('when no events', () => {
       const spies = [];
-      spies.push(spyOn<any>(component, 'clear'));
-      spies.push(spyOn<any>(component, 'sortEvents'));
-      spies.push(spyOn<any>(component, 'setGroupsAndPeriods'));
-      spies.push(spyOn<any>(component, 'setItems'));
+      spies.push(vi.spyOn<any, string>(component, 'clear'));
+      spies.push(vi.spyOn<any, string>(component, 'sortEvents'));
+      spies.push(vi.spyOn<any, string>(component, 'setGroupsAndPeriods'));
+      spies.push(vi.spyOn<any, string>(component, 'setItems'));
       // @ts-expect-error TS2445
       component.groupEvents([]);
       spies.forEach(spy => expect(spy).toHaveBeenCalled());
     });
     it('when events with itemPosition', () => {
       const spies = [];
-      spies.push(spyOn<any>(component, 'clear'));
-      spies.push(spyOn<any>(component, 'sortEvents'));
-      spies.push(spyOn<any>(component, 'setGroupsAndPeriods').and.callThrough());
-      spies.push(spyOn<any>(component, 'setItems').and.callThrough());
+      spies.push(vi.spyOn<any, string>(component, 'clear'));
+      spies.push(vi.spyOn<any, string>(component, 'sortEvents'));
+      spies.push(vi.spyOn<any, string>(component, 'setGroupsAndPeriods'));
+      spies.push(vi.spyOn<any, string>(component, 'setItems'));
       const event = { timestamp: new Date(2021, 11, 10) };
       const event2 = { timestamp: new Date(2021, 11, 11), itemPosition: NgxTimelineItemPosition.ON_LEFT };
       const event3 = { timestamp: new Date(2021, 11, 12), itemPosition: NgxTimelineItemPosition.ON_RIGHT };
@@ -193,7 +193,7 @@ describe('NgxTimelineComponent', () => {
     });
     it('when events with no periodKey and changeSide is set to NgxTimelineEventChangeSide.ALL', () => {
       const period = { periodInfo: { periodKey: '2021/7' } };
-      const period2 = { periodInfo: { } };
+      const period2 = { periodInfo: {} };
       component.periods = [period, period2];
       const event = { timestamp: new Date(2021, 7, 10) };
       const event2 = { timestamp: new Date(2021, 8, 10) };
