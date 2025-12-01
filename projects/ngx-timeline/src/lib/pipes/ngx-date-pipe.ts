@@ -7,6 +7,7 @@ import { dateConfigMap, defaultSupportedLanguageCode, fieldConfigDate, NgxConfig
   name: 'ngxdate',
 })
 export class NgxDatePipe implements PipeTransform {
+  // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
   transform(date: Date | string, dateFormat?: NgxDateFormat | string, langCode?: SupportedLanguageCode): string | null {
     const configDate = this.getDateConfig(langCode);
     let dateFormatString = 'yyyy';

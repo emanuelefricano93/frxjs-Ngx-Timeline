@@ -30,7 +30,7 @@
       </div>
     </form>
 
-    <div class="ngx-timeline-container" [ngClass]="{'custom-theme': form.get('customTheme')?.value, 'ngx-timeline-container-virtual': form.get('virtualScrolling')?.value}">
+    <div class="ngx-timeline-container" [class]="{'custom-theme': form.get('customTheme')?.value, 'ngx-timeline-container-virtual': form.get('virtualScrolling')?.value}">
       <!-- ngx-timeline -->
       <ngx-timeline
         [events]="events()"

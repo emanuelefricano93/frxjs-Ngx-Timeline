@@ -8,8 +8,8 @@ import { NgxDateFormat, NgxTimelineEvent, NgxTimelineEventChangeSide, NgxTimelin
 @Component({
   selector: 'app-root',
   imports: [
-    JsonPipe,
     NgClass,
+    JsonPipe,
     NgxTimelineModule,
     ReactiveFormsModule,
   ],
