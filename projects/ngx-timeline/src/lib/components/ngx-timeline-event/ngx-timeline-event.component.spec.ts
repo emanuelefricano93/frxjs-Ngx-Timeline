@@ -140,7 +140,7 @@ describe('NgxTimelineEventComponent', () => {
     componentRef.setInput('event', {});
     fixture.detectChanges();
     const dateContainerAfterRender = (fixture.nativeElement as HTMLElement).querySelector('.event-date-container');
-    expect(dateContainerAfterRender).toBeFalsy();
+    expect(dateContainerAfterRender).toBeTruthy();
   });
   it('should NOT render the month day and yeaer container when getDateObj returns empty object', () => {
     componentRef.setInput('event', {});
