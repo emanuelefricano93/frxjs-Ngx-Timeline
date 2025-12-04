@@ -50,11 +50,10 @@ export class NgxTimelineEventComponent {
 
   ngxTimelineItemPosition = NgxTimelineItemPosition;
   ngxTimelineOrientation = NgxTimelineOrientation;
-  dateObjSignal = computed(() => !this.event() ? null : this.getDateObj());
+  readonly dateObjSignal = computed(() => !this.event() ? null : this.getDateObj());
 
   private readonly monthAbbr = 'MMM';
   private readonly dayFormat = 'dd';
-
 
   getDateObj(): { day: unknown; month: unknown; year: unknown } {
     let day = undefined;

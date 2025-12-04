@@ -179,6 +179,7 @@ export class AppComponent {
   }
 
   private handleVirtualScrolling(): void {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     this.form.get('virtualScrolling')!.valueChanges.subscribe((value: boolean) => {
       if (value) {
         this.initEventsVirtual();
@@ -189,6 +190,7 @@ export class AppComponent {
         this.initEvents();
       }
     });
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     this.form.get('orientation')!.valueChanges.subscribe((value: NgxTimelineOrientation) => {
       const isVirtualScrollingEnabled = !!this.form.get('virtualScrolling')?.value;
       if (isVirtualScrollingEnabled) {

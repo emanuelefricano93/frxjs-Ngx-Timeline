@@ -44,7 +44,7 @@ describe('NgxTimelineEventComponent', () => {
     fixture = TestBed.createComponent(NgxTimelineEventComponent);
     component = fixture.componentInstance;
     componentRef = fixture.componentRef;
-    
+
     component.clickEmitter.emit = clickEmitterSpy;
     componentRef.setInput('event', event);
     fixture.detectChanges();
@@ -59,9 +59,9 @@ describe('NgxTimelineEventComponent', () => {
       const res = component.getDateObj();
       expect(res).toEqual({ day: undefined, month: undefined, year: undefined });
       fixture.detectChanges();
-      const dateContainer = fixture.nativeElement.querySelector('.event-date-container');
+      const dateContainer = (fixture.nativeElement as HTMLElement).querySelector('.event-date-container')!;
       expect(dateContainer).toBeTruthy();
-      expect(dateContainer.textContent).toContain(''); // Also verify content 
+      expect(dateContainer.textContent).toContain(''); // Also verify content
       fixture.detectChanges();
     });
     it('should getDateObj without langCode', () => {
@@ -78,9 +78,10 @@ describe('NgxTimelineEventComponent', () => {
       const res = component.getDateObj();
       expect(res).toEqual({ day: '19', month: 'ago', year: 2021 });
       fixture.detectChanges();
-      const dateContainer = fixture.nativeElement.querySelector('.event-date-container');
+      // eslint-disable-next-line @typescript-eslint/non-nullable-type-assertion-style
+      const dateContainer = (fixture.nativeElement as HTMLElement).querySelector('.event-date-container') as HTMLElement;
       expect(dateContainer).toBeTruthy();
-      expect(dateContainer.textContent).toContain('ago'); // Also verify content  
+      expect(dateContainer.textContent).toContain('ago');
     });
   });
   describe('should type error', () => {
@@ -100,13 +101,13 @@ describe('NgxTimelineEventComponent', () => {
 
   describe('should test inputs', () => {
     it(('with different types'), () => {
-        fixture.componentRef.setInput('orientation', null);
-        fixture.componentRef.setInput('langCode', 'en');
-        fixture.detectChanges();
-        expect(component.dateObjSignal()).toBeTruthy();
-        expect(component).toBeTruthy();
-        expect(componentRef.instance.langCode()).toBe('en');
-        expect(componentRef.instance.orientation()).toBeFalsy();
+      fixture.componentRef.setInput('orientation', null);
+      fixture.componentRef.setInput('langCode', 'en');
+      fixture.detectChanges();
+      expect(component.dateObjSignal()).toBeTruthy();
+      expect(component).toBeTruthy();
+      expect(componentRef.instance.langCode()).toBe('en');
+      expect(componentRef.instance.orientation()).toBeFalsy();
     });
     it('should default to true when no input is provided', () => {
       // Setup: Component fixture created without calling setInput
@@ -116,39 +117,36 @@ describe('NgxTimelineEventComponent', () => {
 
   describe('should test html', () => {
     it('should emit the correct event data when the element is clicked', () => {
-        const expectedPayload: NgxTimelineItem = {position: NgxTimelineItemPosition.ON_LEFT}
-        vi.spyOn(component, 'event').mockReturnValue(expectedPayload);
-        fixture.detectChanges();
-        const clickableElement = fixture.nativeElement.querySelector('.event-wrapper-container'); 
-        clickableElement.click(); 
-        expect(clickEmitterSpy).toHaveBeenCalledTimes(1); 
-        expect(clickEmitterSpy).toHaveBeenCalledWith(expectedPayload);
-      });
-    });
-    it('should test colesidepoistion ON_RIGHT', () => {
-        componentRef.setInput('colSidePosition', NgxTimelineItemPosition.ON_RIGHT);
-        fixture.detectChanges();
-        const visibleElement = fixture.nativeElement.querySelector('.arrow.left'); 
-        expect(visibleElement).toBeTruthy();
-    });
-    it('should test colesidepoistion ON_LEFT', () => {
-        componentRef.setInput('colSidePosition', NgxTimelineItemPosition.ON_LEFT);
-        fixture.detectChanges();
-        const visibleElement = fixture.nativeElement.querySelector('.arrow.right'); 
-        expect(visibleElement).toBeTruthy();
-    });
-    it('should NOT render the date container when getDateObj returns null (False Branch)', () => {
-      componentRef.setInput('event', null as any);
+      const expectedPayload: NgxTimelineItem = { position: NgxTimelineItemPosition.ON_LEFT };
+      vi.spyOn(component, 'event').mockReturnValue(expectedPayload);
       fixture.detectChanges();
-      const dateContainerAfterRender = fixture.nativeElement.querySelector('.event-date-container');
-      expect(dateContainerAfterRender).toBeFalsy(); 
+      // eslint-disable-next-line @typescript-eslint/non-nullable-type-assertion-style
+      ((fixture.nativeElement as HTMLElement).querySelector('.event-wrapper-container') as HTMLDivElement).click();
+      expect(clickEmitterSpy).toHaveBeenCalledTimes(1);
+      expect(clickEmitterSpy).toHaveBeenCalledWith(expectedPayload);
     });
-    it('should NOT render the month day and yeaer container when getDateObj returns empty object', () => {
-      componentRef.setInput('event', {} as any);
-      fixture.detectChanges();
-      expect(fixture.nativeElement.querySelector('.event-date-container.event-date-month')).toBeFalsy(); 
-      expect(fixture.nativeElement.querySelector('.event-date-container.event-date-day')).toBeFalsy(); 
-      expect(fixture.nativeElement.querySelector('.event-date-container.event-date-month')).toBeFalsy(); 
-    });
+  });
+  it('should test colesidepoistion ON_RIGHT', () => {
+    componentRef.setInput('colSidePosition', NgxTimelineItemPosition.ON_RIGHT);
+    fixture.detectChanges();
+    expect((fixture.nativeElement as HTMLElement).querySelector('.arrow.left')).toBeTruthy();
+  });
+  it('should test colesidepoistion ON_LEFT', () => {
+    componentRef.setInput('colSidePosition', NgxTimelineItemPosition.ON_LEFT);
+    fixture.detectChanges();
+    expect((fixture.nativeElement as HTMLElement).querySelector('.arrow.right')).toBeTruthy();
+  });
+  it('should NOT render the date container when getDateObj returns null (False Branch)', () => {
+    componentRef.setInput('event', {});
+    fixture.detectChanges();
+    const dateContainerAfterRender = (fixture.nativeElement as HTMLElement).querySelector('.event-date-container');
+    expect(dateContainerAfterRender).toBeFalsy();
+  });
+  it('should NOT render the month day and yeaer container when getDateObj returns empty object', () => {
+    componentRef.setInput('event', {});
+    fixture.detectChanges();
+    expect((fixture.nativeElement as HTMLElement).querySelector('.event-date-container.event-date-month')).toBeFalsy();
+    expect((fixture.nativeElement as HTMLElement).querySelector('.event-date-container.event-date-day')).toBeFalsy();
+    expect((fixture.nativeElement as HTMLElement).querySelector('.event-date-container.event-date-month')).toBeFalsy();
+  });
 });
-
