@@ -25,16 +25,16 @@
       <hr>
     </div>
 
-    @if (getDateObj(); as dateObj) {
+    @if (dateObjSignal(); as dateObj) {
       <div class="event-date-container">
         <div>
-          <p>{{dateObj?.month}}</p>
+          <p>{{dateObj.month}}</p>
         </div>
         <div>
-          <p class="day">{{dateObj?.day}}</p>
+          <p class="day">{{dateObj.day}}</p>
         </div>
         <div>
-          <p>{{dateObj?.year}}</p>
+          <p>{{dateObj.year}}</p>
         </div>
       </div>
     }

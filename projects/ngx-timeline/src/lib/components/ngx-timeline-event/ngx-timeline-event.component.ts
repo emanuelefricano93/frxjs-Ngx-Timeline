@@ -1,5 +1,5 @@
 import { DatePipe, NgTemplateOutlet, TitleCasePipe } from '@angular/common';
-import { Component, output, TemplateRef, input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, output, TemplateRef, input, ChangeDetectionStrategy, computed } from '@angular/core';
 
 import { defaultSupportedLanguageCode, NgxTimelineOrientation, SupportedLanguageCode } from '../../models';
 import { NgxTimelineItem, NgxTimelineItemPosition } from '../../models/NgxTimelineEvent';
@@ -50,9 +50,11 @@ export class NgxTimelineEventComponent {
 
   ngxTimelineItemPosition = NgxTimelineItemPosition;
   ngxTimelineOrientation = NgxTimelineOrientation;
+  dateObjSignal = computed(() => !this.event() ? null : this.getDateObj());
 
   private readonly monthAbbr = 'MMM';
   private readonly dayFormat = 'dd';
+
 
   getDateObj(): { day: unknown; month: unknown; year: unknown } {
     let day = undefined;

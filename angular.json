@@ -24,7 +24,13 @@
         "test": {
           "builder": "@angular/build:unit-test",
           "options": {
-            "tsConfig": "projects/ngx-timeline/tsconfig.spec.json"
+            "tsConfig": "projects/ngx-timeline/tsconfig.spec.json",
+            "coverage": true,
+            "coverageReporters": [
+              "html",
+              "lcov",
+              "text-summary"
+            ]
           }
         },
         "lint": {
@@ -109,7 +115,13 @@
         "test": {
           "builder": "@angular/build:unit-test",
           "options": {
-            "tsConfig": "projects/demo-app/tsconfig.spec.json"
+            "tsConfig": "projects/demo-app/tsconfig.spec.json",
+            "coverage": true,
+            "coverageReporters": [
+              "html",
+              "lcov",
+              "text-summary"
+            ]
           }
         },
         "lint": {

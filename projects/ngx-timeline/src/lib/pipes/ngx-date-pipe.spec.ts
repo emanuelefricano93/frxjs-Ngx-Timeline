@@ -1,17 +1,20 @@
 import { MockInstance } from 'vitest';
 import { NgxDateFormat } from '../models';
 import { NgxDatePipe } from './ngx-date-pipe';
+import { registerLocaleData } from '@angular/common';
+import localeIt from '@angular/common/locales/it';
 
 describe('NgxDatePipe', () => {
   // This pipe is a pure, stateless function so no need for BeforeEach
   const pipe = new NgxDatePipe();
   let consoleWarnSpy: MockInstance;
+  registerLocaleData(localeIt, 'it');
 
   beforeEach(() => {
     consoleWarnSpy = vi.spyOn(console, 'warn');
   });
 
-  it.todo('transforms from date to string (language: it)', () => {
+  it('transforms from date to string (language: it)', () => {
     const date = new Date('2024-07-10');
     expect(pipe.transform(date, NgxDateFormat.DAY_MONTH_YEAR, 'it')).toBe('10 luglio 2024');
   });
