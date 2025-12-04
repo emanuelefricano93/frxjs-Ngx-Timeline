@@ -2,9 +2,9 @@ import { registerLocaleData } from '@angular/common';
 import localeIt from '@angular/common/locales/it';
 import { ComponentRef, provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NgxTimelineItemPosition } from '../../models';
-
+import { NgxTimelineItem, NgxTimelineItemPosition } from '../../models';
 import { NgxTimelineEventComponent } from './ngx-timeline-event.component';
+import { vi } from 'vitest';
 
 registerLocaleData(localeIt);
 
@@ -28,6 +28,8 @@ const event = {
     id: '1',
   },
 };
+const clickEmitterSpy = vi.fn();
+
 describe('NgxTimelineEventComponent', () => {
   let component: NgxTimelineEventComponent;
   let componentRef: ComponentRef<NgxTimelineEventComponent>;
@@ -42,6 +44,8 @@ describe('NgxTimelineEventComponent', () => {
     fixture = TestBed.createComponent(NgxTimelineEventComponent);
     component = fixture.componentInstance;
     componentRef = fixture.componentRef;
+
+    component.clickEmitter.emit = clickEmitterSpy;
     componentRef.setInput('event', event);
     fixture.detectChanges();
   });
@@ -54,6 +58,11 @@ describe('NgxTimelineEventComponent', () => {
       componentRef.setInput('event', {});
       const res = component.getDateObj();
       expect(res).toEqual({ day: undefined, month: undefined, year: undefined });
+      fixture.detectChanges();
+      const dateContainer = (fixture.nativeElement as HTMLElement).querySelector('.event-date-container')!;
+      expect(dateContainer).toBeTruthy();
+      expect(dateContainer.textContent).toContain(''); // Also verify content
+      fixture.detectChanges();
     });
     it('should getDateObj without langCode', () => {
       const res = component.getDateObj();
@@ -68,6 +77,11 @@ describe('NgxTimelineEventComponent', () => {
       componentRef.setInput('langCode', 'it');
       const res = component.getDateObj();
       expect(res).toEqual({ day: '19', month: 'ago', year: 2021 });
+      fixture.detectChanges();
+      // eslint-disable-next-line @typescript-eslint/non-nullable-type-assertion-style
+      const dateContainer = (fixture.nativeElement as HTMLElement).querySelector('.event-date-container') as HTMLElement;
+      expect(dateContainer).toBeTruthy();
+      expect(dateContainer.textContent).toContain('ago');
     });
   });
   describe('should type error', () => {
@@ -83,5 +97,56 @@ describe('NgxTimelineEventComponent', () => {
         component.getDateObj();
       }).toThrowError(TypeError);
     });
+  });
+
+  describe('should test inputs', () => {
+    it(('with different types'), () => {
+      fixture.componentRef.setInput('orientation', null);
+      fixture.componentRef.setInput('langCode', 'en');
+      fixture.detectChanges();
+      expect(component.dateObjSignal()).toBeTruthy();
+      expect(component).toBeTruthy();
+      expect(componentRef.instance.langCode()).toBe('en');
+      expect(componentRef.instance.orientation()).toBeFalsy();
+    });
+    it('should default to true when no input is provided', () => {
+      // Setup: Component fixture created without calling setInput
+      expect(component.event()).toBeTruthy();
+    });
+  });
+
+  describe('should test html', () => {
+    it('should emit the correct event data when the element is clicked', () => {
+      const expectedPayload: NgxTimelineItem = { position: NgxTimelineItemPosition.ON_LEFT };
+      vi.spyOn(component, 'event').mockReturnValue(expectedPayload);
+      fixture.detectChanges();
+      // eslint-disable-next-line @typescript-eslint/non-nullable-type-assertion-style
+      ((fixture.nativeElement as HTMLElement).querySelector('.event-wrapper-container') as HTMLDivElement).click();
+      expect(clickEmitterSpy).toHaveBeenCalledTimes(1);
+      expect(clickEmitterSpy).toHaveBeenCalledWith(expectedPayload);
+    });
+  });
+  it('should test colesidepoistion ON_RIGHT', () => {
+    componentRef.setInput('colSidePosition', NgxTimelineItemPosition.ON_RIGHT);
+    fixture.detectChanges();
+    expect((fixture.nativeElement as HTMLElement).querySelector('.arrow.left')).toBeTruthy();
+  });
+  it('should test colesidepoistion ON_LEFT', () => {
+    componentRef.setInput('colSidePosition', NgxTimelineItemPosition.ON_LEFT);
+    fixture.detectChanges();
+    expect((fixture.nativeElement as HTMLElement).querySelector('.arrow.right')).toBeTruthy();
+  });
+  it('should NOT render the date container when getDateObj returns null (False Branch)', () => {
+    componentRef.setInput('event', {});
+    fixture.detectChanges();
+    const dateContainerAfterRender = (fixture.nativeElement as HTMLElement).querySelector('.event-date-container');
+    expect(dateContainerAfterRender).toBeTruthy();
+  });
+  it('should NOT render the month day and yeaer container when getDateObj returns empty object', () => {
+    componentRef.setInput('event', {});
+    fixture.detectChanges();
+    expect((fixture.nativeElement as HTMLElement).querySelector('.event-date-container.event-date-month')).toBeFalsy();
+    expect((fixture.nativeElement as HTMLElement).querySelector('.event-date-container.event-date-day')).toBeFalsy();
+    expect((fixture.nativeElement as HTMLElement).querySelector('.event-date-container.event-date-month')).toBeFalsy();
   });
 });

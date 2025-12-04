@@ -3,6 +3,7 @@ import eslint from "@eslint/js";
 import tseslint from "typescript-eslint";
 import angular from "angular-eslint";
 import stylistic from '@stylistic/eslint-plugin'
+import vitest from '@vitest/eslint-plugin'
 
 export default tseslint.config(
   {
@@ -48,6 +49,10 @@ export default tseslint.config(
       "@angular-eslint/sort-keys-in-type-decorator": "warn",
       "@angular-eslint/prefer-signals": "warn",
     },
+  },
+  {
+    files: ["**/*.spec.ts"],
+    ...vitest.configs.recommended,
   },
   {
     files: ["**/*.html"],

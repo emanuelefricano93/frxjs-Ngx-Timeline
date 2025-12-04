@@ -22,11 +22,15 @@
           "defaultConfiguration": "production"
         },
         "test": {
-          "builder": "@angular/build:karma",
+          "builder": "@angular/build:unit-test",
           "options": {
-            "polyfills": [],
             "tsConfig": "projects/ngx-timeline/tsconfig.spec.json",
-            "codeCoverage": true
+            "coverage": true,
+            "coverageReporters": [
+              "html",
+              "lcov",
+              "text-summary"
+            ]
           }
         },
         "lint": {
@@ -109,19 +113,14 @@
           "builder": "@angular/build:extract-i18n"
         },
         "test": {
-          "builder": "@angular/build:karma",
+          "builder": "@angular/build:unit-test",
           "options": {
-            "polyfills": [],
             "tsConfig": "projects/demo-app/tsconfig.spec.json",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "projects/demo-app/public"
-              }
-            ],
-            "styles": [
-              "projects/demo-app/src/styles.scss"
+            "coverage": true,
+            "coverageReporters": [
+              "html",
+              "lcov",
+              "text-summary"
             ]
           }
         },

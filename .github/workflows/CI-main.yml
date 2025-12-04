@@ -43,7 +43,5 @@ jobs:
       - name: Run build prod
         run: npm run build:prod
 
-      - name: Run test
-        run: npm run test -- --watch=false --browsers=ChromeHeadless
-        env:
-          NODE_OPTIONS: --max_old_space_size=4096
+      - name: Run tests with Playwright
+        run: npm run test -- --watch=false
